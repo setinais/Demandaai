@@ -1,0 +1,45 @@
+{% extends 'site/base.html' %}
+
+{% block header %}
+    <header id="header" class="header default">
+  <div class="menu" id="onepagenav">
+  <!-- menu start -->
+   <nav id="menu" class="mega-menu">
+    <!-- menu list items container -->
+    <section class="menu-list-items">
+     <div class="container">
+      <div class="row">
+       <div class="col-lg-12 col-md-12">
+        <!-- menu logo -->
+        <ul class="menu-logo">
+            <li>
+                <a href="{% url 'home' %}"><h1 class="text-success">DEMANDAI</h1></a>
+            </li>
+        </ul>
+        <!-- menu links -->
+       </div>
+      </div>
+     </div>
+    </section>
+   </nav>
+  <!-- menu end -->
+ </div>
+</header>
+    <section class="page-title bg-overlay-black-60 parallax" data-jarallax='{"speed": 0.6}' data-jarallax-video="https://vimeo.com/176916362">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+      <div class="page-title-name">
+          <h1>{% block title %}Sobre o portifolio{% endblock %}</h1>
+          <p></p>
+        </div>
+     </div>
+     </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}{% endblock %}
+

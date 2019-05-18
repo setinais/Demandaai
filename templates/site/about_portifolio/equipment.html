@@ -1,0 +1,90 @@
+{% extends 'site/about_portifolio.html' %}
+{% block content %}
+    {% load static %}
+    <section class="page-section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="who-we-are-left">
+                        <div class="owl-carousel" data-nav-dots="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1">
+                            <div class="item"><img class="img-fluid full-width" src="{% static 'images/about/01.jpg' %}" alt="">
+                            </div>
+                            <div class="item"><img class="img-fluid full-width" src="{% static 'images/about/02.jpg' %}" alt="">
+                            </div>
+                            <div class="item"><img class="img-fluid full-width" src="{% static 'images/about/03.jpg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 sm-mt-30">
+                    <div class="section-title">
+                        <h6>Equipamento</h6>
+                        <h2 class="title-effect">{{ dados.nome }}</h2>
+                        <p>{{ dados.descricao }}. São as Plataformas atendidas pelo servico: {{ dados.plataformas }}</p>
+                    </div>
+                    <p>Vinculado ao Laboratório <a class="text-danger" href="/about-portifolio/lab/{{ dados.laboratory.id }}">{{ dados.laboratory.nome }}</a></p>
+                    <div class="row mt-30">
+                        <div class="col-md-6">
+                            <span class="badge-pill badge-info">Localidade</span>
+                            <ul class="list list-unstyled list-hand" >
+                                <li> {{ dados.institution.nome }}</li>
+                                <li> {{ dados.institution.local }} </li>
+                                <li> {{ dados.institution.email }} </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="badge-pill badge-info">Coordenador Responsavel</span>
+                            <ul class="list list-unstyled list-hand">
+                                <li>Professor {{ dados.user.nome }}</li>
+                                <li> {{ dados.user.email }} </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="feature-text left-icon mt-50 xs-mt-20">
+                        <div class="feature-icon">
+                            <span class="fa fa-clipboard-list" style="color: #17a2b8;" aria-hidden="true"></span>
+                        </div>
+                        <div class="feature-info">
+                            <h5 class="text-back">
+                                <span class="badge badge-info badge-pill">5</span>
+                                Demandas
+                            </h5>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="feature-text left-icon mt-50 xs-mt-20">
+                        <div class="feature-icon">
+                            <span class="fa fa-spinner" style="color: #ffc107;" aria-hidden="true"></span>
+                        </div>
+                        <div class="feature-info">
+                            <h5 class="text-back">
+                                <span class="badge badge-warning badge-pill">5</span>
+                                Em Andamento
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="feature-text left-icon mt-50 xs-mt-20">
+                        <div class="feature-icon">
+                            <span class="fa fa-check" style="color: #28a745;" aria-hidden="true"></span>
+                        </div>
+                        <div class="feature-info">
+                            <h5 class="text-back">
+                                <span class="badge badge-success badge-pill">5</span>
+                                Soluções
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

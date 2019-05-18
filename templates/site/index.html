@@ -1,0 +1,34 @@
+{% extends 'site/base.html' %}
+{% block content %}
+    <!--=================================
+     About-->
+    {% block about %}
+        {% include 'site/about.html' %}
+    {% endblock %}
+    <!--=================================
+     About-->
+
+     <!--=================================
+    counter-->
+    {% block counter %}
+        {% include 'site/counter.html' %}
+    {% endblock %}
+    <!--=================================
+    counter-->
+
+    <!--=================================
+    key features  -->
+    {% block services %}
+        {% include 'site/services.html' %}
+    {% endblock %}
+    <!--=================================
+    key features -->
+
+    <!--=================================
+     portfolio -->
+    {% block portfolio %}
+        {% include 'site/portfolio.html' %}
+    {% endblock %}
+    <!--=================================
+     portfolio -->
+{% endblock %}

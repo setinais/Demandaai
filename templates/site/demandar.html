@@ -1,0 +1,118 @@
+{% extends 'site/about_portifolio.html' %}
+
+{% block title %} Formulario de Demanda {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-70">
+            <div class="col-sm-12">
+                <form action="{% url 'add_demanda' %}" method="post">
+                    {% csrf_token %}
+                    <h4 class="mb-40">Form border</h4>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="inputEmail4">Nome</label>
+                                <input type="text" placeholder="Nome" class="form-control"  name="nome">
+                            </div>
+                            <div class="form-group col-md-3 offset-1">
+                                <label for="inputPassword4">CPF</label>
+                                <input type="text" placeholder="CPF" class="form-control"  name="cpf" maxlength="11">
+                            </div>
+                            <div class="form-group col-md-3">
+                            <label for="inputAddress">Data Nascimento</label>
+                            <input type="date" placeholder="Data Nascimento" class="form-control"  name="data_nascimento">
+                        </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="inputAddress2">E-mail</label>
+                                <input type="email" placeholder="Email" class="form-control" name="email">
+                            </div>
+                            <div class="form-group col-md-5 offset-2">
+                                <label for="inputAddress2">Telefone</label>
+                                <input type="text" placeholder="Telefone" class="form-control" name="telefone" maxlength="11">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="inputState">O que demandar?</label>
+                                <select id="select-action" class="form-control" name="action" style="height: auto;">
+                                    <option value="SER" {% if 'ser' == dados.action %}selected{% endif %}>Serviço</option>
+                                    <option value="LAB" {% if 'lab' == dados.action %}selected{% endif %}>Laboratorio</option>
+                                    <option value="EQU" {% if 'equ' == dados.action %}selected{% endif %}>Equipamento</option>
+                                </select>
+                            </div>
+
+                            <div id="ser-demand" class="form-group col-md-4">
+
+                                <label for="inputState">Onde Demandar?</label>
+                                <select class="form-control" name="action_id" style="height: auto;">
+                                    <div id="ser">
+                                    {% for foo in dados.ser %}
+                                        <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
+                                    {% endfor %}
+                                    </div>
+                                </select>
+                            </div>
+                            <div id="lab-demand" class="form-group col-md-4">
+                                <label for="inputState">Onde Demandar?</label>
+                                <select  class="form-control" name="action_id" style="height: auto;">
+                                    {% for foo in dados.lab %}
+                                        <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div id="equ-demand" class="form-group col-md-4">
+                                <label for="inputState">Onde Demandar?</label>
+                                <select  class="form-control" name="action_id" style="height: auto;">
+                                    {% for foo in dados.equ %}
+                                        <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                        </div>
+                            <div class="textarea">
+                                <textarea class="input-message form-control" placeholder="Descrição"  rows="7" name="descricao"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-success"><span> Send message </span> <i class="fa fa-paper-plane"></i></button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contact %}{% endblock %}
+
+{% block script %}
+    <script type="application/javascript">
+        $(document).ready(function () {
+            var selected_init = $("#select-action option:selected").val();
+            changeSelect(selected_init);
+            $('#select-action').change(function () {
+                var selected = ($(this).val());
+                changeSelect(selected);
+            });
+        });
+        function changeSelect(selected){
+            switch (selected) {
+                    case 'SER':
+                        $("#ser-demand").show();
+                        $("#lab-demand").hide();
+                        $("#equ-demand").hide();
+                        break;
+                    case 'LAB':
+                        $("#ser-demand").hide();
+                        $("#lab-demand").show();
+                        $("#equ-demand").hide();
+                        break;
+                    case 'EQU':
+                        $("#ser-demand").hide();
+                        $("#lab-demand").hide();
+                        $("#equ-demand").show();
+                        break;
+                }
+        }
+    </script>
+{% endblock %}

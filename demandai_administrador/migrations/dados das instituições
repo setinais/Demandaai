@@ -1,0 +1,179 @@
+
+INSERT INTO `demandai_administrador_institution` (`nome`, `descricao`, `email`, `phone`, `site`, `status`,
+    `street`, `number`, `sector`, `city`, `complement`, `created_at`, `updated_at`) VALUES
+
+    ('IFTO - Campus Paraíso do Tocantins', 'Instituto Federal do Tocantins - Campus Paraíso','paraiso@ifto.edu.br','63 3361-0300','http://portal.ifto.edu.br/paraiso/','1','BR 153, KM 480',
+        'sn','Parque Agroindustrial','Paraíso do Tocantins - TO','IFTO',NOW(), NOW()),
+    ('IFTO - Campus Palmas','Instituto Federal do Tocantins - Campus Palmas','palmas@ifto.edu.br','63 3236-4000','http://portal.ifto.edu.br/paraiso/','1','Quadra 310 Su, Lo 5','sn',
+        'Plano Diretor Sul','Palmas - TO','IFTO',NOW(),NOW()),
+        (
+             'IFTO - Campus Araguaína',
+             'Instituto Federal do Tocantins - Campus Araguaína',
+             'araguaina@ifto.edu.br',
+             '63 3411-0300',
+             'http://portal.ifto.edu.br/araguaina',
+             '1',
+             'Av. Amazonas, esquina com a Av. Paraguai, Quadra 56, Lote 01',
+             'sn',
+             'Cimba Araguaína',
+             'Araguaína - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+
+        ),
+
+        (
+             'IFTO - Campus Colinas',
+             'Instituto Federal do Tocantins - Campus Colinas do Tocantins',
+             'colinas@ifto.edu.br',
+             '63 99972-2908',
+             'http://portal.ifto.edu.br/colinas',
+             '1',
+             'Avenida Bernardo Sayão, Lote 29B, Chácara Raio de Sol',
+             'sn',
+             'Santa Maria',
+             'Colinas do Tocantins - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+
+        ),
+
+        (
+             'IFTO - Campus Dianópolis',
+             'Instituto Federal do Tocantins - Campus Dianópolis',
+             'dianopolis@ifto.edu.br',
+             '63 99969-4268',
+             'http://portal.ifto.edu.br/dianopolis',
+             '1',
+             'Rodovia TO 040 - Km 349',
+             'sn',
+             'Loteamento Rio Palmeira - Lote 1',
+             'Dianópolis - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+
+        ),
+
+        (
+             'IFTO - Campus Gurupi',
+             'Instituto Federal do Tocantins - Campus Gurupi',
+             'gurupi@ifto.edu.br',
+             '63 3311-5400',
+             'http://portal.ifto.edu.br/gurupi',
+             '1',
+             'Alameda Madrid',
+             '545',
+             'Jardim Sevilha',
+             'Gurupi - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+
+        ),
+
+        (
+             'IFTO - Campus Porto Nacional',
+             'Instituto Federal do Tocantins - Campus Gurupi',
+             'portonacional@ifto.edu.br',
+             '63 3363-9700',
+             'http://portal.ifto.edu.br/porto',
+             '1',
+             'Avenida Tocantins, A.I. - Loteamento Mãe Dedé',
+             'sn',
+             'Jardim América',
+             'Porto Nacional - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+
+        ),
+        (
+             'IFTO - Campus Araguatins',
+             'Instituto Federal do Tocantins - Campus Araguatins',
+             'araguatins@ifto.edu.br',
+             '63 3474-4800',
+             'http://www.ifto.edu.br/araguatins',
+             '1',
+             'Povoado Santa Teresa - Km 05',
+             'sn',
+             'Zona Rural',
+             'Araguatins - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+        ),
+
+        (
+             'IFTO - Campus Avançado Formoso do Araguaia',
+             'Instituto Federal do Tocantins - Campus Avançado Formoso do Araguaia',
+             'formoso@ifto.edu.br',
+             '63 3474-4800',
+             'http://www.ifto.edu.br/formoso',
+             '1',
+             'Rua do Açude/Lago Municipal',
+             'sn',
+             'Centro',
+             'Formoso do Araguaia - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+        ),
+
+        (
+             'IFTO - Campus Avançado Lagoa da Confusão',
+             'Instituto Federal do Tocantins - Campus Avançado Lagoa da Confusão',
+             'lagoadaconfusao@ifto.edu.br',
+             '63 3364-1571',
+             'http://www.ifto.edu.br/lagoa',
+             '1',
+             'Rua João Maximino de Alencar',
+             '728',
+             'Centro',
+             'Lagoa da Confusão - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+        ),
+        (
+             'IFTO - Campus Avançado Pedro Afonso',
+             'Instituto Federal do Tocantins - Campus Avançado Pedro Afonso',
+             'pedroafonso@ifto.edu.br',
+             '63 3466-1633',
+             'http://www.ifto.edu.br/pedroafonso',
+             '1',
+             'Rua Ceará',
+             '1441',
+             'Setor Zacarias Campelo ',
+             'Pedro Afonso - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+        ),
+        (
+             'IFTO - Reitoria',
+             'Instituto Federal do Tocantins - Reitoria',
+             'reitoria@ifto.edu.br',
+             '63 3229-2200',
+             'http://www.ifto.edu.br/reitoria',
+             '1',
+             'Avenida Joaquim Teotônio Segurado, Quadra 202 sul, ACSU-SE 20, Conjunto 1, Lote 8',
+             '1441',
+             'Plano Diretor Sul',
+             'Palmas - TO',
+             'IFTO',
+             NOW(),
+             NOW()
+
+        )
