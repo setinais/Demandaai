@@ -25,7 +25,7 @@ SECRET_KEY = '=9i$a+n(q66jw1=8x%ira26fke7sa(tob8l_(ghk_r&km^eo+1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,6 +78,7 @@ WSGI_APPLICATION = 'projeto_demandai.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'NAME': 'demandai',
@@ -85,14 +86,14 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': ''
     },
-}
+}"""
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation
@@ -132,3 +133,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Configuração de envio de email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'teste@email.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '123e@gmail.com'
+EMAIL_HOST_PASSWORD = '123'
+EMAIL_PORT = 587
+
+# Email usado para contato pelo site
+CONTACT_EMAIL = 'contato@email.com'

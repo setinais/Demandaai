@@ -2,10 +2,10 @@ from inspect import getmembers
 from pprint import pprint
 from random import *
 
-from django.forms import ModelForm
 from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
-from demandai_administrador.models import Laboratory, Equipment, Service, User, Demand
+from demandai_administrador.models import Laboratory, Equipment, Service, User
+from .forms import *
 
 
 # Create your views here.
@@ -89,11 +89,6 @@ def about_portifolio(request, action, id):
     else:
         return HttpResponseNotFound('<h1>Pagina não encontrada</h1>')
     return render(request, template, {'dados': dados})
-
-class DemandForm(ModelForm):
-    class Meta:
-        model = Demand
-        fields = ['nome', 'cpf', 'data_nascimento', 'email', 'telefone', 'descricao', 'action', 'action_id']
 
 def demandarSelected(request, action, id):
 
