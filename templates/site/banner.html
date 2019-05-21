@@ -1,17 +1,32 @@
 {% load static %}
-<section class="slider-parallax typer-banner bg-overlay-black-50 parallax" style="background: url({% static 'images/bg/01.jpg' %});">
-  <div class="slider-content-middle">
-  <div class="container-fluid">
-     <div class="row">
-        <div class="col-lg-12 col-md-12">
-         <div class="slider-content text-center">
-          <h1 class="text-white">Nós somos <span class="typer" data-delay="150" data-words="Dedicados, Excelentes" data-colors="#84ba3f,#84ba3f,#84ba3f"></span>  <span class="cursor" data-cursorDisplay="|" data-owner="some-id"></span> </h1>
-           <p class="text-white mt-20">Nós resolveremos seus problemas</p>
-           <a class="button move mt-30" href="{% url 'demandar' %}"> DEMANDAI </a>
-          </div>
-         </div>
+<section class="slider-parallax typer-banner bg-overlay-black-50 parallax"
+         style="background: url({% static 'images/demandai/campus_paraiso.jpg' %});">
+    <div class="slider-content-middle">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="slider-content text-center">
+                         <img src="{% static "images/demandai/demandai-logo.png" %}" style="height: 250px" alt="">
+                        <h1 class="text-white">Nós somos <span class="typer" data-delay="150"
+                                                               data-words="Dedicados, Excelentes"
+                                                               data-colors="#84ba3f,#84ba3f,#84ba3f"></span> <span
+                                class="cursor" data-cursorDisplay="|" data-owner="some-id"></span></h1>
+                        {#           <p class="text-white mt-20">Nós resolveremos seus problemas</p>#}
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 mb-15">
+                                <input type="search" class="form-control" placeholder="Descrição do problema...">
+                            </div>
+                            <div>
+
+                                <a class="button btn-block" href="#"><i
+                                        class="fa fa-search"></i><span>  Buscar Solução</span></a>
+                            </div>
+                        </div>
+                        <a class="button move mt-15" href="{% url 'demandar' %}"> DEMANDAI </a>
+                    </div>
+                </div>
+            </div>
         </div>
-     </div>
-  </div>
-  <a class="scroll-down move" title="Scroll Down" href="#about-us"><i></i></a>
+    </div>
+    <a class="scroll-down move" title="Scroll Down" href="#about-us"><i></i></a>
 </section>
