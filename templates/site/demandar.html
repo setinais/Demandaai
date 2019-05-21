@@ -6,31 +6,73 @@
     <div class="container">
         <div class="row mt-70">
             <div class="col-sm-12">
-                <form action="{% url 'add_demanda' %}" method="post">
+            {% if message %}
+                <div class="alert alert-success" role="alert">
+                    Demanda registrada com sucesso!
+                </div>
+            {% endif %}
+                <form action="{% url 'demandar' %}" method="post">
                     {% csrf_token %}
+                    {{ form.action }}
+                    {{ form.action_id }}
                     <h4 class="mb-40">Form border</h4>
                         <div class="form-row">
                             <div class="form-group col-md-5">
                                 <label for="inputEmail4">Nome</label>
-                                <input type="text" placeholder="Nome" class="form-control"  name="nome">
+                                {{ form.nome }}
+                                {% if form.nome.errors %}
+                                    <ol>
+                                    {% for error in form.nome.errors %}
+                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                    </ol>
+                                {% endif %}
                             </div>
                             <div class="form-group col-md-3 offset-1">
                                 <label for="inputPassword4">CPF</label>
-                                <input type="text" placeholder="CPF" class="form-control"  name="cpf" maxlength="11">
+                                {{ form.cpf }}
+                                {% if form.cpf.errors %}
+                                    <ol>
+                                    {% for error in form.cpf.errors %}
+                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                    </ol>
+                                {% endif %}
                             </div>
                             <div class="form-group col-md-3">
                             <label for="inputAddress">Data Nascimento</label>
-                            <input type="date" placeholder="Data Nascimento" class="form-control"  name="data_nascimento">
+                                {{ form.data_nascimento }}
+                                {% if form.data_nascimento.errors %}
+                                    <ol>
+                                    {% for error in form.data_nascimento.errors %}
+                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                    </ol>
+                                {% endif %}
                         </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-5">
                                 <label for="inputAddress2">E-mail</label>
-                                <input type="email" placeholder="Email" class="form-control" name="email">
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                    <ol>
+                                    {% for error in form.email.errors %}
+                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                    </ol>
+                                {% endif %}
                             </div>
                             <div class="form-group col-md-5 offset-2">
                                 <label for="inputAddress2">Telefone</label>
-                                <input type="text" placeholder="Telefone" class="form-control" name="telefone" maxlength="11">
+                                {{ form.telefone }}
+                                {% if form.telefone.errors %}
+                                    <ol>
+                                    {% for error in form.telefone.errors %}
+                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                    </ol>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="form-row">
@@ -46,17 +88,16 @@
                             <div id="ser-demand" class="form-group col-md-4">
 
                                 <label for="inputState">Onde Demandar?</label>
-                                <select class="form-control" name="action_id" style="height: auto;">
-                                    <div id="ser">
+                                <select onchange="changeSelectAction(this.value);" class="form-control" name="action_id" style="height: auto;">
+                                    <option disabled selected>Selecione...</option>
                                     {% for foo in dados.ser %}
                                         <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
                                     {% endfor %}
-                                    </div>
                                 </select>
                             </div>
                             <div id="lab-demand" class="form-group col-md-4">
                                 <label for="inputState">Onde Demandar?</label>
-                                <select  class="form-control" name="action_id" style="height: auto;">
+                                <select onchange="changeSelectAction(this.value);" class="form-control" name="action_id" style="height: auto;">
                                     {% for foo in dados.lab %}
                                         <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
                                     {% endfor %}
@@ -64,7 +105,7 @@
                             </div>
                             <div id="equ-demand" class="form-group col-md-4">
                                 <label for="inputState">Onde Demandar?</label>
-                                <select  class="form-control" name="action_id" style="height: auto;">
+                                <select onchange="changeSelectAction(this.value);" class="form-control" name="action_id" style="height: auto;">
                                     {% for foo in dados.equ %}
                                         <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
                                     {% endfor %}
@@ -73,12 +114,20 @@
 
                         </div>
                             <div class="textarea">
-                                <textarea class="input-message form-control" placeholder="Descrição"  rows="7" name="descricao"></textarea>
+                                {{ form.descricao }}
+                                {% if form.descricao.errors %}
+                                    <ol>
+                                    {% for error in form.descricao.errors %}
+                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                    </ol>
+                                {% endif %}
                             </div>
 
                             <button type="submit" class="btn btn-success"><span> Send message </span> <i class="fa fa-paper-plane"></i></button>
 
                 </form>
+
             </div>
         </div>
     </div>
@@ -88,8 +137,15 @@
 {% block script %}
     <script type="application/javascript">
         $(document).ready(function () {
+            //MASK
+            $("#id_telefone").mask('(00) 0 0000-0000');
+            $("#id_cpf").mask('000.000.000-00');
+
+
             var selected_init = $("#select-action option:selected").val();
             changeSelect(selected_init);
+            $("#id_action").val(selected_init);
+            //$("#id_action_id").val(selected_init);
             $('#select-action').change(function () {
                 var selected = ($(this).val());
                 changeSelect(selected);
@@ -101,18 +157,29 @@
                         $("#ser-demand").show();
                         $("#lab-demand").hide();
                         $("#equ-demand").hide();
+                        $("#id_action_id").val($("#ser-demand option:selected").val());
+                        $("#id_action").val('SER');
                         break;
                     case 'LAB':
                         $("#ser-demand").hide();
                         $("#lab-demand").show();
                         $("#equ-demand").hide();
+                        $("#id_action").val('LAB');
+                        $("#id_action_id").val($("#lab-demand option:selected").val());
+
                         break;
                     case 'EQU':
                         $("#ser-demand").hide();
                         $("#lab-demand").hide();
                         $("#equ-demand").show();
+                        $("#id_action_id").val($("#equ-demand option:selected").val());
+                        $("#id_action").val('EQU');
                         break;
                 }
+        }
+        
+        function changeSelectAction(id) {
+            $("#id_action_id").val(id);
         }
     </script>
 {% endblock %}

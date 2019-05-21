@@ -133,9 +133,9 @@ class Demand(SafeDeleteModel):
     codigo = models.CharField(max_length=9)
     email = models.EmailField(max_length=40)
     descricao = models.TextField()
-    cpf = models.CharField(max_length=11)
+    cpf = models.CharField(max_length=20)
     data_nascimento = models.DateField()
-    visualizada = models.BooleanField()
+    visualizada = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

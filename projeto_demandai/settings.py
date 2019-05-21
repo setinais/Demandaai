@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'projeto_demandai.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-"""
+
 DATABASES = {
     'default': {
         'NAME': 'demandai',
@@ -86,14 +86,14 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': ''
     },
-}"""
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
@@ -135,13 +135,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Configuração de envio de email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'teste@email.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'vinnicyus.saopaulino@gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = '123e@gmail.com'
-EMAIL_HOST_PASSWORD = '123'
+EMAIL_HOST_USER = 'vinnicyus.saopaulino@gmail.com'
+EMAIL_HOST_PASSWORD = '0v2m56gtf'
 EMAIL_PORT = 587
 
 # Email usado para contato pelo site
-CONTACT_EMAIL = 'contato@email.com'
+CONTACT_EMAIL = 'vynny.cg@gmail.com'

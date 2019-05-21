@@ -1,5 +1,5 @@
 {% extends 'site/base.html' %}
-
+{% load static %}
 {% block header %}
     <header id="header" class="header default">
   <div class="menu" id="onepagenav">
@@ -25,7 +25,7 @@
   <!-- menu end -->
  </div>
 </header>
-    <section class="page-title bg-overlay-black-60 parallax" data-jarallax='{"speed": 0.6}' data-jarallax-video="https://vimeo.com/176916362">
+    <section class="slider-parallax typer-banner bg-overlay-black-50 parallax" style="height: 30vh;background: url({% static 'images/demandai/campus_paraiso.jpg' %});">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">

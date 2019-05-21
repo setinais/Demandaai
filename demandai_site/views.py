@@ -91,7 +91,6 @@ def about_portifolio(request, action, id):
     return render(request, template, {'dados': dados})
 
 def demandarSelected(request, action, id):
-
     dados = {
         'ser': Service.objects.all(),
         'lab': Laboratory.objects.all(),
@@ -100,7 +99,12 @@ def demandarSelected(request, action, id):
         'action_id': id,
         'errors': request.body
     }
-    return render(request, 'site/demandar.html/', {'dados': dados})
+
+    if request.method == 'GET':
+        form = DemandForm()
+        return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
+    else:
+        HttpResponseNotFound('<h1>Error 404 Not Found</h1>')
 
 def demandar(request):
     dados = {
@@ -108,14 +112,13 @@ def demandar(request):
         'lab': Laboratory.objects.all(),
         'equ': Equipment.objects.all(),
     }
-    return render(request, 'site/demandar.html/', {'dados': dados})
-
-def createDemand(request):
-    form = DemandForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('demandar', {'dados': {'message': 'Cadastradp cp, sucesso'}})
+    if request.method == 'GET':
+        form = DemandForm()
+        return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
     else:
-        pprint(getmembers(form.errors))
-        old = form.errors
-        return redirect('demandar/'+request.body.action+'/'+request.body.action_id)
+        form = DemandForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            form.send_mail('Wyllian é viadown!')
+            return render(request, 'site/demandar.html',{'dados': dados, 'message':'Cadastradp com sucesso'})
+        return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
