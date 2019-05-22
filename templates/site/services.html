@@ -17,7 +17,7 @@
          {% for servico in dados.lista_servicos %}
 
          <div class="col-lg-6 col-sm-8">
-             <a href="#">
+             <a href="{% url 'about_portifolio' action='ser' id=servico.id  %}">
                   <div class="feature-text left-icon mb-40">
                       <div class="feature-icon">
                       <span class="ti-layers-alt theme-color" aria-hidden="true"></span>

@@ -22,7 +22,7 @@
                         <h2 class="title-effect">{{ dados.nome }}</h2>
                         <p>{{ dados.descricao }}. São as Plataformas atendidas pelo servico: {{ dados.plataformas }}</p>
                     </div>
-                    <p>Vinculado ao Laboratório <a class="text-danger" href="/about-portifolio/lab/{{ dados.laboratory.id }}">{{ dados.laboratory.nome }}</a></p>
+                    <p>Vinculado ao Laboratório <a class="text-danger" href="{% url 'about_portifolio' action='lab' id=dados.laboratory.id %}">{{ dados.laboratory.nome }}</a></p>
                     <div class="row mt-30">
                         <div class="col-md-6">
                             <span class="badge-pill badge-info">Localidade</span>

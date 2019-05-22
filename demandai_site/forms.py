@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.forms import widgets
 
-from demandai_administrador.models import Demand, Service, Laboratory, Equipment
+from demandai_administrador.models import Demand, User
 
 from .mail import send_mail_template
 
@@ -34,3 +34,12 @@ class DemandForm(forms.ModelForm):
         message = message % context
 
         send_mail_template(subject, 'site/email_demanda.html', context, email)
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email', 'password']
+        widgets = {
+            'email': forms.TextInput(attrs={'class': 'web form-control', 'placeholder': 'example@example.com'}),
+            'password': forms.PasswordInput(attrs={'class': 'Password form-control', 'placeholder': 'senha', 'type': 'password'}),
+        }

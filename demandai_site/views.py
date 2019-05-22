@@ -128,3 +128,11 @@ def demandar(request):
             form = DemandForm()
             return render(request, 'site/demandar.html',{'dados': dados,'form': form, 'message': post['codigo']})
         return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
+
+def login(request):
+
+    if request.method == 'GET':
+        form = LoginForm()
+        return render(request, 'site/login.html', {'form': form})
+
+    return True

@@ -7,4 +7,7 @@ urlpatterns = [
     path('demandar/<str:action>/<int:id>', views.demandarSelected, name='demanda_selecionada'),
     path('demandar', views.demandar, name='demandar'),
 
+    # Login
+    path('login', views.login, name='login'),
+
 ]

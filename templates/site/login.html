@@ -1,0 +1,53 @@
+{% extends 'site/about_portifolio.html' %}
+
+{% block header %}{% endblock %}
+{% block banner %}{% endblock %}
+{% block login %}{% endblock %}
+{% load static %}
+{% block content %}
+    <section class="gray-bg height-100vh d-flex align-items-center page-section-ptb login">
+      <div class="container">
+         <div class="row no-gutters justify-content-center">
+
+           <div class="col-lg-4 col-md-6 login-fancy-bg bg-overlay-black-30" style="background: url(images/login/01.jpg);">
+             <div class="login-fancy pos-r">
+                 <a href="{% url 'home' %}">
+                 <img src="{% static "images/demandai/demandai-logo.png" %}" style="height: 250px" alt="">
+                </a>
+              <ul class="list-unstyled  pos-bot pb-30">
+                <li class="list-inline-item"><a class="text-white" href="#"> Termo de Uso</a> </li>
+                <li class="list-inline-item"><a class="text-white" href="#"> Politica de Privacidade</a></li>
+              </ul>
+             </div>
+           </div>
+           <div class="col-lg-4 col-md-6 white-bg">
+            <div class="login-fancy pb-40 clearfix">
+            <h3 class="mb-30">Login</h3>
+             <div class="section-field mb-20">
+                 <label class="mb-10" for="name">E-mail </label>
+                   {{ form.email }}
+                </div>
+                <div class="section-field mb-20">
+                 <label class="mb-10" for="Password">Senha </label>
+                   {{ form.password }}
+                </div>
+                <div class="section-field">
+                  <div class="remember-checkbox mb-30">
+                     <input type="checkbox" class="form-control" name="two" id="two" />
+                     <label for="two"> Lembrar-me</label>
+                     <a href="password-recovery.html" class="float-right">Esqueceu sua senha?</a>
+                    </div>
+                  </div>
+                  <a href="#" class="button">
+                    <span>Log in</span>
+                    <i class="fa fa-check"></i>
+                 </a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+{% endblock %}
+
+{% block contact %}{% endblock %}
+{% block footer %}{% endblock %}

@@ -33,7 +33,7 @@
                         <div class="portfolio-hover">
                             <div class="hover-name">
                                 <span> With some description</span>
-                                <a href="#">{{ portifolio.nome }}</a>
+                                <a href="{% url 'about_portifolio' action='ser' id=portifolio.id %}">{{ portifolio.nome }}</a>
                             </div>
                             <div class="hover-icon">
                                 <a class="portfolio-img" href="{% static 'images/portfolio/small/01.jpg' %}"><i class="fa fa-arrows-alt"></i></a>
@@ -52,7 +52,7 @@
                         <div class="portfolio-hover">
                             <div class="hover-name">
                                 <span> With some description</span>
-                                <a href="#">{{ portifolio.nome }}</a>
+                                <a href="{% url 'about_portifolio' action='lab' id=portifolio.id %}">{{ portifolio.nome }}</a>
                             </div>
                             <div class="hover-icon">
                                 <a class="portfolio-img" href="{% static 'images/portfolio/small/01.jpg' %}"><i class="fa fa-arrows-alt"></i></a>
@@ -71,7 +71,7 @@
                         <div class="portfolio-hover">
                             <div class="hover-name">
                                 <span> With some description</span>
-                                <a href="#">{{ portifolio.nome }}</a>
+                                <a href="{% url 'about_portifolio' action='equ' id=portifolio.id %}">{{ portifolio.nome }}</a>
                             </div>
                             <div class="hover-icon">
                                 <a class="portfolio-img" href="{% static 'images/portfolio/small/01.jpg' %}"><i class="fa fa-arrows-alt"></i></a>
