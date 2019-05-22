@@ -130,7 +130,7 @@ class Demand(SafeDeleteModel):
     action_id = models.IntegerField()
     nome = models.CharField(max_length=30)
     telefone = models.CharField(max_length=30)
-    codigo = models.CharField(max_length=9)
+    codigo = models.CharField(max_length=6)
     email = models.EmailField(max_length=40)
     descricao = models.TextField()
     cpf = models.CharField(max_length=20)

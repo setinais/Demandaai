@@ -10,7 +10,7 @@ from .mail import send_mail_template
 class DemandForm(forms.ModelForm):
     class Meta:
         model = Demand
-        fields = ['nome', 'cpf', 'data_nascimento', 'email', 'telefone', 'descricao', 'action', 'action_id']
+        fields = ['nome', 'cpf', 'data_nascimento', 'email', 'telefone', 'descricao', 'action', 'action_id', 'codigo']
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Vinnicyus Carvalho Gonçalves'}),
             'cpf': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '999.999.999-99'}),
@@ -22,7 +22,8 @@ class DemandForm(forms.ModelForm):
             'action_id': forms.TextInput(attrs={'class': 'form-control', 'type': 'hidden'})
         }
 
-    def send_mail(self, request):
+
+    def send_mail(self, request, email):
         subject = '[%s] Contato' % request
         message = 'Nome: %(name)s; E-mail: %(email)s; %(message)s'
         context = {
@@ -32,4 +33,4 @@ class DemandForm(forms.ModelForm):
         }
         message = message % context
 
-        send_mail_template(subject, 'site/email_demanda.html', context, [settings.CONTACT_EMAIL])
+        send_mail_template(subject, 'site/email_demanda.html', context, email)

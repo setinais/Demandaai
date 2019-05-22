@@ -1,3 +1,5 @@
+import binascii
+import os
 from inspect import getmembers
 from pprint import pprint
 from random import *
@@ -116,9 +118,13 @@ def demandar(request):
         form = DemandForm()
         return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
     else:
-        form = DemandForm(request.POST or None)
+        post = request.POST.copy()
+        post['codigo'] = binascii.hexlify(os.urandom(3)).decode().upper()
+        form = DemandForm(post)
         if form.is_valid():
             form.save()
-            form.send_mail('Wyllian é viadown!')
-            return render(request, 'site/demandar.html',{'dados': dados, 'message':'Cadastradp com sucesso'})
+            # form.send_mail('Wyllian é viadown!', form.email)
+
+            form = DemandForm()
+            return render(request, 'site/demandar.html',{'dados': dados,'form': form, 'message': post['codigo']})
         return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
