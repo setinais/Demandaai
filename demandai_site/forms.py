@@ -12,12 +12,12 @@ class DemandForm(forms.ModelForm):
         model = Demand
         fields = ['nome', 'cpf', 'data_nascimento', 'email', 'telefone', 'descricao', 'action', 'action_id', 'codigo']
         widgets = {
-            'nome': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Vinnicyus Carvalho Gonçalves'}),
+            'nome': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Informe o seu nome'}),
             'cpf': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '999.999.999-99'}),
-            'data_nascimento': forms.DateInput(attrs={'class': 'form-control', 'placeholder': '01/02/2000', 'type': 'date'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'example@example.com'}),
+            'data_nascimento': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'dd/mm/aaaa', 'type': 'date'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'exemplo@exemplo.com'}),
             'telefone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '99 9 9999-9999'}),
-            'descricao': forms.Textarea(attrs={'class': 'form-control input-message', 'placeholder': 'Descricao da demanda'}),
+            'descricao': forms.Textarea(attrs={'class': 'form-control input-message', 'placeholder': 'Descrição da demanda'}),
             'action': forms.TextInput(attrs={'class': 'form-control', 'type': 'hidden'}),
             'action_id': forms.TextInput(attrs={'class': 'form-control', 'type': 'hidden'})
         }
