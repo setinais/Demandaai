@@ -22,12 +22,11 @@ class DemandForm(forms.ModelForm):
             'action_id': forms.TextInput(attrs={'class': 'form-control', 'type': 'hidden'})
         }
 
-
     def send_mail(self):
         subject = ' Contato'
-        message = 'Nome: %(name)s; E-mail: %(email)s; %(message)s'
+        message = 'Nome:ffff'
         context = {
-            'name': 'ddddddd',
+            'nome': self.nome,
             'email': 'dddddd',
             'message': 'okoggggggggggggggggggggggggggk',
         }

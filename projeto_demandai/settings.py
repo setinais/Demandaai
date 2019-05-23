@@ -64,6 +64,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.media',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -135,13 +136,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+MEDIA_ROOT = (
+  os.path.join(BASE_DIR, "media") #pasta media para abrigar os arquivos dos usuários
+)
+
+MEDIA_URL = '/media/' #endereço para acessar os arquivos
+
+
 # Configuração de envio de email
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'vinnicyus.saopaulino@gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'projetosepare@gmail.com'
-EMAIL_HOST_PASSWORD = 'projeto@123'
+EMAIL_HOST_USER = 'vinnicyus.saopaulino@gmail.com'
+EMAIL_HOST_PASSWORD = '0v2m56gtf'
 EMAIL_PORT = 587
 
 # EMAIL_HOST_USER = 'vinnicyus.saopaulino@gmail.com'
@@ -149,3 +161,6 @@ EMAIL_PORT = 587
 
 # Email usado para contato pelo site
 CONTACT_EMAIL = 'vynny.cg@gmail.com'
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login'

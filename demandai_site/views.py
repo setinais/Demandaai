@@ -123,10 +123,7 @@ def demandar(request):
         form = DemandForm(post)
         if form.is_valid():
             form.save()
-            # form.send_mail()
-
-            send_mail("kkkkkkkkk","pppppppppppp", settings.EMAIL_HOST_USER,['wylliansalles@gmail.com'])
-
+            form.send_mail()
             form = DemandForm()
             return render(request, 'site/demandar.html',{'dados': dados,'form': form, 'message': post['codigo']})
         return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
