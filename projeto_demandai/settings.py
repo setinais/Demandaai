@@ -140,9 +140,12 @@ STATIC_URL = '/static/'
 DEFAULT_FROM_EMAIL = 'vinnicyus.saopaulino@gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'vinnicyus.saopaulino@gmail.com'
-EMAIL_HOST_PASSWORD = '0v2m56gtf'
+EMAIL_HOST_USER = 'projetosepare@gmail.com'
+EMAIL_HOST_PASSWORD = 'projeto@123'
 EMAIL_PORT = 587
+
+# EMAIL_HOST_USER = 'vinnicyus.saopaulino@gmail.com'
+# EMAIL_HOST_PASSWORD = '0v2m56gtf'
 
 # Email usado para contato pelo site
 CONTACT_EMAIL = 'vynny.cg@gmail.com'

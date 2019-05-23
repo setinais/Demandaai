@@ -23,8 +23,8 @@ class DemandForm(forms.ModelForm):
         }
 
 
-    def send_mail(self, request, email):
-        subject = '[%s] Contato' % request
+    def send_mail(self):
+        subject = ' Contato'
         message = 'Nome: %(name)s; E-mail: %(email)s; %(message)s'
         context = {
             'name': 'ddddddd',
@@ -33,7 +33,7 @@ class DemandForm(forms.ModelForm):
         }
         message = message % context
 
-        send_mail_template(subject, 'site/email_demanda.html', context, email)
+        send_mail_template(subject, 'site/email_demanda.html', context, ['wylliansalles@gmail.com'])
 
 class LoginForm(forms.ModelForm):
     class Meta:
