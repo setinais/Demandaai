@@ -696,7 +696,7 @@ POTENZA.wowanimation = function () {
 *************************/
 POTENZA.googlemaps = function () {
   if ($('.g-map').exists()) {
-    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAWI9rhUFXXbXL5tq_qorDOo7HogeTEYtA', function() {
+    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAk-NKIjD74eS1H4iAB-6cD3cZy8t8twDc', function() {
       $('.g-map').each(function(){
             var id = $(this).attr('id');
             var color = $(this).attr('data-type');
@@ -706,21 +706,83 @@ POTENZA.googlemaps = function () {
             else if(color === 'light') clr = [{"featureType":"administrative.locality","elementType":"all","stylers":[{"hue":"#2c2e33"},{"saturation":7},{"lightness":19},{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"simplified"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":-2},{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"hue":"#e9ebed"},{"saturation":-90},{"lightness":-8},{"visibility":"simplified"}]},{"featureType":"transit","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":10},{"lightness":69},{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":-78},{"lightness":67},{"visibility":"simplified"}]}]
             else if(color === 'grey') clr = [{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"stylers":[{"hue":"#00aaff"},{"saturation":-100},{"gamma":2.15},{"lightness":12}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"lightness":24}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":57}]}]
             else if(color ==='blackandwhite') clr = [{"featureType":"water","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"on"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#000000"},{"saturation":-100},{"lightness":-100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"administrative","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":0},{"lightness":100},{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"hue":"#000000"},{"saturation":0},{"lightness":-100},{"visibility":"on"}]},{"featureType":"transit","elementType":"labels","stylers":[{"hue":"#ffffff"},{"saturation":0},{"lightness":100},{"visibility":"off"}]}]
-            google.maps.event.addDomListener(window, 'load', init(id,clr));   
+            google.maps.event.addDomListener(window, 'load', init(id,clr));
+
          });
          function init(id,clr) {
-                var mapOptions = {
-                    zoom: 11,
-                    center: new google.maps.LatLng(-37.817078, 144.955936), //Update Latitude and Longitude here
-                    styles:clr 
-                };
-                var mapElement = document.getElementById(id);
-                var map = new google.maps.Map(mapElement, mapOptions);
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(40.6700, -73.9400),
-                    map: map,
-                    title: 'Snazzy!'
-                });
+             var mapOptions = {
+                 zoom: 7,
+                 center: new google.maps.LatLng(-11.797631, -49.5243837), //Update Latitude and Longitude here
+                 styles: clr
+             };
+             var mapElement = document.getElementById(id);
+             var map = new google.maps.Map(mapElement, mapOptions);
+             var marker = new google.maps.Marker({
+                 position: new google.maps.LatLng(-10.1991753, -48.3115822),
+                 map: map,
+                 title: 'Instituto Federal do Tocantins (IFTO) - Campus Palmas'
+             });
+             var marker1 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-10.26854, -48.887637),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Paraíso do Tocantins'
+                 });
+             var marker2 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-10.6847123, -48.4072181),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Porto Nacional'
+                 });
+             var marker3 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-9.119904, -49.7995255),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Colinas Do Tocantins'
+                 });
+             var marker4 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-7.1814311, -48.1937735),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Campus Araguaina'
+                 });
+             var marker5 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-5.6448779, -48.0722022),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Araguatins'
+                 });
+             var marker6 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-11.634931, -46.765946),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Dianopolis'
+                 });
+             var marker7 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-11.797631, -49.5243837),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Avançado Formoso Do Araguaia'
+                 });
+             var marker8 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-11.797631, -49.5243837),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Avançado Formoso Do Araguaia'
+                 });
+              var marker9 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-10.9409544, -49.5358528),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Gurupi'
+                 });
+               var marker10 = new google.maps.Marker(
+                 {
+                     position: new google.maps.LatLng(-8.9881861, -48.1609976),
+                     map: map,
+                     title: 'Instituto Federal do Tocantins - Campus Avançado Pedro Afonso'
+                 });
+
           }
        });
     }
