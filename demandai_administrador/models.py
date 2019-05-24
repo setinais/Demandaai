@@ -1,6 +1,10 @@
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import User
 from django.db import models
 from safedelete.models import SafeDeleteModel
 from safedelete.models import HARD_DELETE_NOCASCADE
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Institution(SafeDeleteModel):
@@ -22,8 +26,7 @@ class Institution(SafeDeleteModel):
 
 
 
-class User(SafeDeleteModel):
-    _safedelete_policy = HARD_DELETE_NOCASCADE
+class Profile(models.Model):
     roles = (
         ('AD', 'Administrador'),
         ('SE', 'Servidor'),
@@ -32,15 +35,18 @@ class User(SafeDeleteModel):
         ('PI', 'Propi'),
         ('TE', 'Técnico'),
     )
-    nome = models.CharField(max_length=30)
-    email = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=128)
-    role = models.CharField(max_length=2, choices=roles)
-    institution = models.ForeignKey(Institution, related_name='users', on_delete=models.PROTECT)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    role = models.CharField(max_length=2, choices=roles, default='SE', blank=True)
+    # institution = models.ForeignKey(Institution, related_name='profile', on_delete=models.PROTECT)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    def __str__(self):  # __unicode__ for Python 2
+        return self.user.username
 
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
 
 class Action(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
