@@ -1,9 +1,7 @@
 from django import forms
-from django.core.mail import send_mail
-from django.conf import settings
-from django.forms import widgets
+from django.contrib.sites.shortcuts import get_current_site
 
-from demandai_administrador.models import Demand, User
+from demandai_administrador.models import Demand, User, Action
 
 from .mail import send_mail_template
 
@@ -22,17 +20,22 @@ class DemandForm(forms.ModelForm):
             'action_id': forms.TextInput(attrs={'class': 'form-control', 'type': 'hidden'})
         }
 
-    def send_mail(self):
-        subject = ' Contato'
-        message = 'Nome:ffff'
+    def send_mail(self, request):
+        current_site = get_current_site(request)
+        print(current_site.domain)
+        subject = 'Contato'
+        message = 'Serviço'
         context = {
-            'nome': self.nome,
-            'email': 'dddddd',
-            'message': 'okoggggggggggggggggggggggggggk',
+            'nome': self.cleaned_data['nome'],
+            'descricao': self.cleaned_data['descricao'],
+            'action': Action.objects.get(pk=self.cleaned_data['action_id']).nome,
+            'cpf': self.cleaned_data['cpf'],
+            'codigo': self.cleaned_data['codigo'],
+            'domain': current_site.domain
         }
         message = message % context
 
-        send_mail_template(subject, 'site/email_demanda.html', context, ['wylliansalles@gmail.com'])
+        send_mail_template(subject, 'site/email_demanda.html', context, [self.cleaned_data['email']])
 
 class LoginForm(forms.ModelForm):
     class Meta:
