@@ -11,7 +11,7 @@
     </title>
 
     <!-- font -->
-    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
+{#    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">#}
 
     <!-- Plugins -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/plugins-css.css' %}"/>
@@ -116,6 +116,13 @@ contact  -->
 <script src="{% static 'js/custom.js' %}"></script>
 
 <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+<script type="application/javascript">
+    $(document).ready(function () {
+       $('#home-adm').click(function () {
+           window.location.href = "{% url 'home-adm' %}";
+       }) 
+    });
+</script>
 
 </body>
 </html>

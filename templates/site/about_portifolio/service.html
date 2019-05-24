@@ -15,6 +15,7 @@
                             </div>
                         </div>
                     </div>
+                    <a class="btn btn-success mt-100" href="{% url 'demanda_selecionada' action='SER' id=dados.id  %}">Demandar serviço</a>
                 </div>
                 <div class="col-lg-6 sm-mt-30">
                     <div class="section-title">
@@ -23,6 +24,7 @@
                         <p>{{ dados.descricao }}. São as Plataformas atendidas pelo servico: {{ dados.plataformas }}</p>
                     </div>
                     <p>Localidade</p>
+
                     <div class="row mt-30">
                         <div class="col-md-6">
                             <span class="badge-pill badge-info">Localidade</span>

@@ -28,7 +28,7 @@ def start(request, template_name='site/index.html'):
             'equipamentos': Equipment.objects.filter(pk__in=[1,2,3]),
             },
         }
-    return render(request, template_name, {'dados': dados})
+    return render(request, template_name, {'dados': dados, 'user': request.user.is_authenticated})
 
 def about_portifolio(request, action, id):
 
@@ -39,6 +39,7 @@ def about_portifolio(request, action, id):
         preparar_dados = Service.objects.get(pk=id)
         template = 'site/about_portifolio/service.html'
         dados = {
+            'id': preparar_dados.id,
             'nome': preparar_dados.nome,
             'descricao': preparar_dados.descricao,
             'plataformas': preparar_dados.plataformas,
@@ -48,7 +49,7 @@ def about_portifolio(request, action, id):
                 'email': preparar_dados.institution.email
             },
             'user': {
-                'nome': preparar_dados.user.nome,
+                'nome': preparar_dados.user.first_name,
                 'email': preparar_dados.user.email
             }
         }
@@ -56,6 +57,7 @@ def about_portifolio(request, action, id):
         preparar_dados = Laboratory.objects.get(pk=id)
         template = 'site/about_portifolio/laboratory.html'
         dados = {
+            'id': preparar_dados.id,
             'nome': preparar_dados.nome,
             'descricao': preparar_dados.descricao,
             'atividade_realizadas': preparar_dados.atividades_realizadas,
@@ -66,7 +68,7 @@ def about_portifolio(request, action, id):
                 'email': preparar_dados.institution.email
             },
             'user': {
-                'nome': preparar_dados.user.nome,
+                'nome': preparar_dados.user.first_name,
                 'email': preparar_dados.user.email
             }
         }
@@ -74,6 +76,7 @@ def about_portifolio(request, action, id):
         preparar_dados = Equipment.objects.get(pk=id)
         template = 'site/about_portifolio/equipment.html'
         dados = {
+            'id': preparar_dados.id,
             'nome': preparar_dados.nome,
             'descricao': preparar_dados.descricao,
             'laboratory': {
@@ -86,7 +89,7 @@ def about_portifolio(request, action, id):
                 'email': preparar_dados.institution.email
             },
             'user': {
-                'nome': preparar_dados.user.nome,
+                'nome': preparar_dados.user.first_name,
                 'email': preparar_dados.user.email
             }
         }
@@ -136,20 +139,16 @@ def demandDetail(request, cpf, codigo):
     return HttpResponse({'descrição: aqui deve ser implementado o detalhe da demanda'})
 
 
-def login(request):
-
+def login_in(request):
     if request.method == 'GET':
         return render(request, 'site/login.html')
     email = request.POST['email']
     password = request.POST['password']
-    profile = authenticate(request, email=email, password=password)
+    profile = authenticate(request, username=email, password=password)
     if profile is not None:
-        if request.POST['conection_permanent']:
+        if hasattr(request.POST, 'conection_permanent'):
             login(request, profile)
-        redirect('home-adm')
+        return redirect('home-adm')
     else:
-        return render(request, 'site/login.html')
+        return render(request, 'site/login.html', {'error': 'Email/Senha Incorretos!'})
 
-
-def p(test):
-    print(test)

@@ -34,10 +34,14 @@ class Profile(AbstractUser, SafeDeleteModel):
         ('PI', 'Propi'),
         ('TE', 'Técnico'),
     )
+    email = models.CharField(max_length=60, unique=True)
     role = models.CharField(max_length=2, choices=roles, default='SE')
-    institution = models.ForeignKey(Institution, related_name='profile', on_delete=models.PROTECT)
+    institution = models.ForeignKey(Institution, related_name='profile', on_delete=models.PROTECT, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
 
 class Action(SafeDeleteModel):

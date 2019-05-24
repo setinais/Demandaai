@@ -24,7 +24,21 @@
             <li><a href="#services">Serviços</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#contact-us">Contato</a></li>
-            <li><a style="cursor:pointer;" data-toggle="modal" data-target="#loginModal">Login</a></li>
+             {% if user %}
+                <li><div id="home-adm" style="margin: 0;
+                                        padding: 0 13px;
+                                        display: inline-block;
+                                        float: none;
+                                        width: 100%;
+                                        color: #ffffff;
+                                        font-size: 14px;
+                                        font-weight: 500;
+                                        line-height: 20px;
+                                        cursor:pointer;
+                ">Administrativo</div></li>
+             {% else %}
+                 <li><a style="cursor:pointer;" data-toggle="modal" data-target="#loginModal">Login</a></li>
+             {% endif %}
           </ul>
         </div>
        </div>
@@ -35,3 +49,6 @@
   <!-- menu end -->
  </div>
 </header>
+
+
+
