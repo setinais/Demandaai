@@ -8,7 +8,7 @@
             <div class="col-sm-12">
             {% if message %}
                 <div class="alert alert-success" role="alert">
-                    Cadastrado com sucesso! Use este codigo <strong>{{ message }}</strong> para consultar sua demanda, foi lhe enviado um e-mail com todas informações. Obrigado!{{ message }}
+                    Cadastrado com sucesso! Use este codigo <strong>{{ message }}</strong> para consultar sua demanda, foi lhe enviado um e-mail com todas informações. Obrigado!
                 </div>
             {% endif %}
                 <form action="{% url 'demandar' %}" method="post">
@@ -78,7 +78,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="inputState">O que demandar?</label>
-                                <select id="select-action" class="form-control" name="action" style="height: auto;">
+                                <select id="select-action" class="form-control" style="height: auto;">
                                     <option value="SER" {% if 'ser' == dados.action %}selected{% endif %}>Serviço</option>
                                     <option value="LAB" {% if 'lab' == dados.action %}selected{% endif %}>Laboratorio</option>
                                     <option value="EQU" {% if 'equ' == dados.action %}selected{% endif %}>Equipamento</option>
@@ -88,7 +88,7 @@
                             <div id="ser-demand" class="form-group col-md-4">
 
                                 <label for="inputState">Onde Demandar?</label>
-                                <select onchange="changeSelectAction(this.value);" class="form-control" name="action_id" style="height: auto;">
+                                <select onchange="changeSelectAction(this.value);" class="form-control" style="height: auto;">
                                     {% for foo in dados.ser %}
                                         <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
                                     {% endfor %}
@@ -96,7 +96,7 @@
                             </div>
                             <div id="lab-demand" class="form-group col-md-4">
                                 <label for="inputState">Onde Demandar?</label>
-                                <select onchange="changeSelectAction(this.value);" class="form-control" name="action_id" style="height: auto;">
+                                <select onchange="changeSelectAction(this.value);" class="form-control" style="height: auto;">
                                     {% for foo in dados.lab %}
                                         <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
                                     {% endfor %}
@@ -104,7 +104,7 @@
                             </div>
                             <div id="equ-demand" class="form-group col-md-4">
                                 <label for="inputState">Onde Demandar?</label>
-                                <select onchange="changeSelectAction(this.value);" class="form-control" name="action_id" style="height: auto;">
+                                <select onchange="changeSelectAction(this.value);" class="form-control" style="height: auto;">
                                     {% for foo in dados.equ %}
                                         <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
                                     {% endfor %}

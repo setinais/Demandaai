@@ -1,3 +1,5 @@
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 from django.db import models
 from safedelete.models import SafeDeleteModel
 from safedelete.models import HARD_DELETE_NOCASCADE
@@ -22,7 +24,7 @@ class Institution(SafeDeleteModel):
 
 
 
-class Profile(SafeDeleteModel):
+class Profile(AbstractUser, SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
     roles = (
         ('AD', 'Administrador'),
@@ -32,14 +34,11 @@ class Profile(SafeDeleteModel):
         ('PI', 'Propi'),
         ('TE', 'Técnico'),
     )
-    nome = models.CharField(max_length=30)
-    email = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=128)
     role = models.CharField(max_length=2, choices=roles, default='SE')
-    user_id = models.IntegerField(max_length=5)
     institution = models.ForeignKey(Institution, related_name='profile', on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
 
 class Action(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
@@ -56,7 +55,7 @@ class AccessControl(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
     action = models.ForeignKey(Action, on_delete=models.CASCADE)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     create = models.BooleanField()
     update = models.BooleanField()
     delete = models.BooleanField()
@@ -68,7 +67,7 @@ class AccessControl(SafeDeleteModel):
 class Laboratory(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
-    user = models.ForeignKey(Profile, related_name='laboratories', on_delete=models.PROTECT)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='laboratories', on_delete=models.PROTECT)
     telefone = models.CharField(max_length=14)
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
@@ -88,7 +87,7 @@ class Laboratory(SafeDeleteModel):
 class Equipment(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
-    user = models.ForeignKey(Profile, related_name='equipments', on_delete=models.PROTECT)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='equipments', on_delete=models.PROTECT)
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
@@ -103,7 +102,7 @@ class Equipment(SafeDeleteModel):
 class Service(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
-    user = models.ForeignKey(Profile, related_name='services', on_delete=models.PROTECT)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='services', on_delete=models.PROTECT)
     plataformas = models.TextField()
     descricao = models.TextField()
     nome = models.CharField(max_length=30)

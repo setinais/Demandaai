@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from django.conf import settings
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -75,6 +75,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'projeto_demandai.wsgi.application'
 
+AUTH_USER_MODEL = 'demandai_administrador.Profile'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -160,7 +161,3 @@ EMAIL_PORT = 587
 
 # Email usado para contato pelo site
 CONTACT_EMAIL = 'vynny.cg@gmail.com'
-
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/login'
-CONTACT_EMAIL = 'contato@email.com'

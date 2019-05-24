@@ -1,13 +1,12 @@
 import binascii
 import os
-from inspect import getmembers
-from pprint import pprint
 from random import *
+from django.contrib.auth import authenticate, login
+
 
 import _thread
 from django.http import HttpResponseNotFound, HttpResponse
 from django.shortcuts import render, redirect
-from django.views.decorators.http import require_http_methods
 
 from demandai_administrador.models import Laboratory, Equipment, Service
 from .forms import *
@@ -21,7 +20,7 @@ def start(request, template_name='site/index.html'):
         'servicos': Service.objects.count(),
         'laboratorios': Laboratory.objects.count(),
         'equipamentos': Equipment.objects.count(),
-        'profissionais': User.objects.count(),
+        'profissionais': Profile.objects.count(),
         'lista_servicos': Service.objects.filter(pk__in=servicos_id),
         'lista_portifolio': {
             'servicos': Service.objects.filter(pk__in=[1,2,3]),
@@ -140,10 +139,16 @@ def demandDetail(request, cpf, codigo):
 def login(request):
 
     if request.method == 'GET':
-        form = LoginForm()
-        return render(request, 'site/login.html', {'form': form})
-
-    return True
+        return render(request, 'site/login.html')
+    email = request.POST['email']
+    password = request.POST['password']
+    profile = authenticate(request, email=email, password=password)
+    if profile is not None:
+        if request.POST['conection_permanent']:
+            login(request, profile)
+        redirect('home-adm')
+    else:
+        return render(request, 'site/login.html')
 
 
 def p(test):

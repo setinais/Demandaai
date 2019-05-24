@@ -32,32 +32,31 @@ modal -->
                             <div class="login-title text-center">
                                 <h2 class="text-white mb-0">Faça login na sua conta</h2>
                             </div>
+                            <form action="{% url 'login' %}" method="post">
                             <div class="login-form">
                                 <div class="form-row mb-20">
                                     <label class="mb-10" for="name">E-mail* </label>
-                                    <input id="name" class="form-control is-valid" type="text" placeholder="Seu e-mail"
-                                        name="web">
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                          </div>
+                                    <input type="text" name="email" class="web form-control" placeholder="example@example.com" maxlength="254" id="id_email">
+
                                 </div>
                                 <div class="form-group mb-20">
                                     <label class="mb-10" for="Password">Senha* </label>
-                                    <input id="Password" class="Password form-control" type="password"
-                                        placeholder="Sua senha" name="Password">
+                                    <input type="password" name="password" class="Password form-control" placeholder="senha" maxlength="128" required="" id="id_password">
                                 </div>
                                 <div class="form-group">
                                     <div class="remember-checkbox mb-30">
-                                        <input type="checkbox" class="form-control" name="two" id="two" />
-                                        <label for="two"> Conectar automaticamente</label>
+                                        <input type="checkbox" class="form-control" name="conection_permanent" id="two" />
+                                        <label for="two"> Lembrar-me</label>
                                         <a href="#" class="float-right">Esqueceu sua senha?</a>
                                     </div>
                                 </div>
-                                <a href="#" class="button btn-block mt-10">
+                                <button type="submit" class="button btn-block mt-10">
                                     <span>Acessar </span>
                                     <i class="fa fa-check"></i>
-                                </a>
+                                </button>
+
                             </div>
+                                </form>
                         </div>
                     </div>
                 </div>

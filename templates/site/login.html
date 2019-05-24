@@ -6,46 +6,64 @@
 {% load static %}
 {% block content %}
     <section class="gray-bg height-100vh d-flex align-items-center page-section-ptb login">
-      <div class="container">
-         <div class="row no-gutters justify-content-center">
+        <div class="container">
+            <div class="row no-gutters justify-content-center">
 
-           <div class="col-lg-4 col-md-6 login-fancy-bg bg-overlay-black-30" style="background: url(images/login/01.jpg);">
-             <div class="login-fancy pos-r">
-                 <a href="{% url 'home' %}">
-                 <img src="{% static "images/demandai/demandai-logo.png" %}" style="height: 250px" alt="">
-                </a>
-              <ul class="list-unstyled  pos-bot pb-30">
-                <li class="list-inline-item"><a class="text-white" href="#"> Termo de Uso</a> </li>
-                <li class="list-inline-item"><a class="text-white" href="#"> Politica de Privacidade</a></li>
-              </ul>
-             </div>
-           </div>
-           <div class="col-lg-4 col-md-6 white-bg">
-            <div class="login-fancy pb-40 clearfix">
-            <h3 class="mb-30">Login</h3>
-             <div class="section-field mb-20">
-                 <label class="mb-10" for="name">E-mail </label>
-                   {{ form.email }}
-                </div>
-                <div class="section-field mb-20">
-                 <label class="mb-10" for="Password">Senha </label>
-                   {{ form.password }}
-                </div>
-                <div class="section-field">
-                  <div class="remember-checkbox mb-30">
-                     <input type="checkbox" class="form-control" name="two" id="two" />
-                     <label for="two"> Lembrar-me</label>
-                     <a href="password-recovery.html" class="float-right">Esqueceu sua senha?</a>
+                <div class="col-lg-4 col-md-6 login-fancy-bg bg-overlay-black-30" style="background: url(images/login/01.jpg);">
+                    <div class="login-fancy pos-r">
+                        <a href="{% url 'home' %}">
+                            <img src="{% static "images/demandai/demandai-logo.png" %}" style="height: 250px" alt="">
+                        </a>
+                        <ul class="list-unstyled  pos-bot pb-30">
+                            <li class="list-inline-item"><a class="text-white" href="#"> Termo de Uso</a> </li>
+                            <li class="list-inline-item"><a class="text-white" href="#"> Politica de Privacidade</a></li>
+                        </ul>
                     </div>
-                  </div>
-                  <a href="#" class="button">
-                    <span>Log in</span>
-                    <i class="fa fa-check"></i>
-                 </a>
-              </div>
+                </div>
+                <div class="col-lg-4 col-md-6 white-bg">
+                    <div class="login-fancy pb-40 clearfix">
+                        <h3 class="mb-30">Login</h3>
+                        <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                            <div class="section-field mb-20">
+                                <label class="mb-10" for="name">E-mail </label>
+                                <input type="text" name="email" class="web form-control" placeholder="example@example.com" maxlength="254" id="id_email">
+                                {% if form.email.errors %}
+                                    <ol>
+                                        {% for error in form.email.errors %}
+                                            <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="section-field mb-20">
+                                <label class="mb-10" for="Password">Senha </label>
+                                <input type="password" name="password" class="Password form-control" placeholder="senha" maxlength="128" required="" id="id_password">
+                                {% if form.password.errors %}
+                                    <ol>
+                                        {% for error in form.password.errors %}
+                                            <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="section-field">
+                                <div class="remember-checkbox mb-30">
+                                    <input type="checkbox" class="form-control" name="conection_permanent" id="two" />
+                                    <label for="two"> Lembrar-me</label>
+                                    <a href="#" class="float-right">Esqueceu sua senha?</a>
+                                </div>
+                            </div>
+                            <button type="submit" class="button">
+                                <span>Log in</span>
+                                <i class="fa fa-check"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
             </div>
-          </div>
-      </div>
+        </div>
     </section>
 {% endblock %}
 

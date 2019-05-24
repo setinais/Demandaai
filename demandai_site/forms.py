@@ -37,11 +37,3 @@ class DemandForm(forms.ModelForm):
 
         send_mail_template(subject, 'site/email_demanda.html', context, [self.cleaned_data['email']])
 
-class LoginForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['email', 'password']
-        widgets = {
-            'email': forms.TextInput(attrs={'class': 'web form-control', 'placeholder': 'example@example.com'}),
-            'password': forms.PasswordInput(attrs={'class': 'Password form-control', 'placeholder': 'senha', 'type': 'password'}),
-        }
