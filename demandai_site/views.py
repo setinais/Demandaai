@@ -4,11 +4,14 @@ from inspect import getmembers
 from pprint import pprint
 from random import *
 
-from django.http import HttpResponseNotFound
+import _thread
+from django.http import HttpResponseNotFound, HttpResponse
 from django.shortcuts import render, redirect
-from demandai_administrador.models import Laboratory, Equipment, Service, User
-from .forms import *
+from django.views.decorators.http import require_http_methods
 
+from demandai_administrador.models import Laboratory, Equipment, Service
+from .forms import *
+from django.views.decorators.http import require_http_methods
 
 # Create your views here.
 def start(request, template_name='site/index.html'):
@@ -123,11 +126,16 @@ def demandar(request):
         form = DemandForm(post)
         if form.is_valid():
             form.save()
-            # form.send_mail('Wyllian é viadown!', form.email)
-
+            _thread.start_new_thread(form.send_mail, (request,))
             form = DemandForm()
             return render(request, 'site/demandar.html',{'dados': dados,'form': form, 'message': post['codigo']})
         return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
+
+
+@require_http_methods(["GET"])
+def demandDetail(request, cpf, codigo):
+    return HttpResponse({'descrição: aqui deve ser implementado o detalhe da demanda'})
+
 
 def login(request):
 
@@ -136,3 +144,7 @@ def login(request):
         return render(request, 'site/login.html', {'form': form})
 
     return True
+
+
+def p(test):
+    print(test)

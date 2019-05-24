@@ -1,10 +1,6 @@
-from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import User
 from django.db import models
 from safedelete.models import SafeDeleteModel
 from safedelete.models import HARD_DELETE_NOCASCADE
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 # Create your models here.
 class Institution(SafeDeleteModel):
@@ -26,7 +22,8 @@ class Institution(SafeDeleteModel):
 
 
 
-class Profile(models.Model):
+class Profile(SafeDeleteModel):
+    _safedelete_policy = HARD_DELETE_NOCASCADE
     roles = (
         ('AD', 'Administrador'),
         ('SE', 'Servidor'),
@@ -35,18 +32,14 @@ class Profile(models.Model):
         ('PI', 'Propi'),
         ('TE', 'Técnico'),
     )
-    role = models.CharField(max_length=2, choices=roles, default='SE', blank=True)
-    # institution = models.ForeignKey(Institution, related_name='profile', on_delete=models.PROTECT)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __str__(self):  # __unicode__ for Python 2
-        return self.user.username
-
-@receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-    instance.profile.save()
+    nome = models.CharField(max_length=30)
+    email = models.CharField(max_length=50, unique=True)
+    password = models.CharField(max_length=128)
+    role = models.CharField(max_length=2, choices=roles, default='SE')
+    user_id = models.IntegerField(max_length=5)
+    institution = models.ForeignKey(Institution, related_name='profile', on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 class Action(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
@@ -63,7 +56,7 @@ class AccessControl(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
     action = models.ForeignKey(Action, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     create = models.BooleanField()
     update = models.BooleanField()
     delete = models.BooleanField()
@@ -75,7 +68,7 @@ class AccessControl(SafeDeleteModel):
 class Laboratory(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
-    user = models.ForeignKey(User, related_name='laboratories', on_delete=models.PROTECT)
+    user = models.ForeignKey(Profile, related_name='laboratories', on_delete=models.PROTECT)
     telefone = models.CharField(max_length=14)
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
@@ -95,7 +88,7 @@ class Laboratory(SafeDeleteModel):
 class Equipment(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
-    user = models.ForeignKey(User, related_name='equipments', on_delete=models.PROTECT)
+    user = models.ForeignKey(Profile, related_name='equipments', on_delete=models.PROTECT)
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
@@ -110,7 +103,7 @@ class Equipment(SafeDeleteModel):
 class Service(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
-    user = models.ForeignKey(User, related_name='services', on_delete=models.PROTECT)
+    user = models.ForeignKey(Profile, related_name='services', on_delete=models.PROTECT)
     plataformas = models.TextField()
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
