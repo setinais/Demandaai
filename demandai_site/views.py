@@ -136,7 +136,9 @@ def demandar(request):
 
 @require_http_methods(["GET"])
 def demandDetail(request, cpf, codigo):
-    return HttpResponse({'descrição: aqui deve ser implementado o detalhe da demanda'})
+    demanda = Demand.objects.filter(cpf=cpf, codigo=codigo)
+    print(demanda[0])
+    return render(request, 'site/visualizar_demanda.html', {'dados': demanda})
 
 
 def login_in(request):
