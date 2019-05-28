@@ -1,3 +1,5 @@
+
+
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.db import models
@@ -34,6 +36,7 @@ class Profile(AbstractUser, SafeDeleteModel):
         ('PI', 'Propi'),
         ('TE', 'Técnico'),
     )
+    username = models.CharField(max_length=60, blank=True, null=True)
     email = models.CharField(max_length=60, unique=True)
     role = models.CharField(max_length=2, choices=roles, default='SE')
     institution = models.ForeignKey(Institution, related_name='profile', on_delete=models.PROTECT, blank=True, null=True)
@@ -41,8 +44,7 @@ class Profile(AbstractUser, SafeDeleteModel):
     updated_at = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-
+    REQUIRED_FIELDS = ['username']
 
 class Action(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
@@ -121,12 +123,18 @@ class Service(SafeDeleteModel):
 
 
 class Demand(SafeDeleteModel):
-    _safedelete_policy = HARD_DELETE_NOCASCADE
-
     actions = (
-        ('SER', 'Serviços'),
-        ('LAB', 'Laboratorios'),
-        ('EQU', 'Equipamentos'),
+        ('SER', 'Serviço'),
+        ('LAB', 'Laboratorio'),
+        ('EQU', 'Equipamento'),
+    )
+    status = (
+        ('S', 'Solicitado'),
+        ('E', 'Analise'),
+        ('R', 'Recusada'),
+        ('A', 'Aceita'),
+        ('P', 'Produção'),
+        ('F', 'Finalizada'),
     )
     action = models.CharField(max_length=3, choices=actions)
     action_id = models.IntegerField()
@@ -137,9 +145,8 @@ class Demand(SafeDeleteModel):
     descricao = models.TextField()
     cpf = models.CharField(max_length=20)
     data_nascimento = models.DateField()
+    status = models.CharField(max_length=1, choices=status, default='S')
     visualizada = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
-
+    _safedelete_policy = HARD_DELETE_NOCASCADE

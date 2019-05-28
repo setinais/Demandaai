@@ -1,10 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>
+        {% block title %}
+            {#O conteúdo definino no bloco title nos outros aquivos será carregado aqui!#}
+        {% endblock %}
+    </title>
+
+    <!-- font -->
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
+
+    <!-- Plugins -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/plugins-css.css' %}"/>
+
+    <!-- Typography -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/typography.css' %}"/>
+
+    <!-- Shortcodes -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/shortcodes/shortcodes.css' %}"/>
+
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+
+    <!-- Responsive -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}"/>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}" type="text/css"/>
+
+    <style type="text/css">
+        .text-errors-form{
+            font-size: 9pt;
+        }
+    </style>
+
+
 </head>
 <body>
-gregregrgregre
+
+<div class="wrapper"> <!-- wrapper start (Class principal do template) -->
+
+    <!--=================================
+    preloader -->
+
+    <div id="pre-loader" style="background: black;">
+        <img src="{% static 'images/pre-loader/gif-demandai.gif' %}" alt="">
+    </div>
+
+    <!--=================================
+    preloader -->
+        <section id="homesection"></section>
+
+<!--=================================
+
+
+ content -->
+{% block content %}{% endblock %}
+<!--=================================
+ content -->
+
+
+
+</div>
+<div id="back-to-top"><a class="top arrow" href="#top"><i class="fa fa-angle-up"></i> <span>TOP</span></a></div>
+<!--=================================
+ jquery -->
+
+<!-- jquery -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+
+<!-- plugins-jquery -->
+<script src="{% static 'js/plugins-jquery.js' %}"></script>
+
+<!-- plugin_path -->
+<script>var plugin_path = "{% static 'js/' %}";</script>
+
+<!-- custom -->
+<script src="{% static 'js/custom.js' %}"></script>
+
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script type="application/javascript">
+    $(document).ready(function () {
+       $('#home-adm').click(function () {
+           window.location.href = "{% url 'home-adm' %}";
+       })
+    });
+</script>
+
 </body>
 </html>
+
+{% block script %}{% endblock %}

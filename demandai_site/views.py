@@ -43,6 +43,11 @@ def about_portifolio(request, action, id):
             'nome': preparar_dados.nome,
             'descricao': preparar_dados.descricao,
             'plataformas': preparar_dados.plataformas,
+            'estatistica': {
+                'demanda': Demand.objects.filter(action='SER', action_id=preparar_dados.id, status='S').count(),
+                'analise': Demand.objects.filter(action='SER', action_id=preparar_dados.id,status='E').count(),
+                'finalizada': Demand.objects.filter(action='SER', action_id=preparar_dados.id,status='F').count(),
+            },
             'institution': {
                 'nome': preparar_dados.institution.nome,
                 'local': preparar_dados.institution.city,
@@ -62,6 +67,11 @@ def about_portifolio(request, action, id):
             'descricao': preparar_dados.descricao,
             'atividade_realizadas': preparar_dados.atividades_realizadas,
             'pesext': preparar_dados.pesquisa_extensao,
+            'estatistica': {
+                'demanda': Demand.objects.filter(action='LAB', action_id=preparar_dados.id, status='S').count(),
+                'analise': Demand.objects.filter(action='LAB', action_id=preparar_dados.id, status='E').count(),
+                'finalizada': Demand.objects.filter(action='LAB', action_id=preparar_dados.id, status='F').count(),
+            },
             'institution': {
                 'nome': preparar_dados.institution.nome,
                 'local': preparar_dados.institution.city,
@@ -79,6 +89,11 @@ def about_portifolio(request, action, id):
             'id': preparar_dados.id,
             'nome': preparar_dados.nome,
             'descricao': preparar_dados.descricao,
+            'estatistica': {
+                'demanda': Demand.objects.filter(action='EQU', action_id=preparar_dados.id, status='S').count(),
+                'analise': Demand.objects.filter(action='EQU', action_id=preparar_dados.id, status='E').count(),
+                'finalizada': Demand.objects.filter(action='EQU', action_id=preparar_dados.id, status='F').count(),
+            },
             'laboratory': {
                 'nome': preparar_dados.laboratory.nome,
                 'id': preparar_dados.laboratory.id,
@@ -136,9 +151,23 @@ def demandar(request):
 
 @require_http_methods(["GET"])
 def demandDetail(request, cpf, codigo):
-    demanda = Demand.objects.filter(cpf=cpf, codigo=codigo)
-    print(demanda[0])
-    return render(request, 'site/visualizar_demanda.html', {'dados': demanda})
+    demandas = Demand.objects.filter(cpf=cpf, codigo=codigo)
+    demanda = demandas[0]
+    action = {}
+    if demanda.action == 'SER':
+        action = Service.objects.get(id=demanda.action_id)
+    elif demanda.action == 'LAB':
+        action = Laboratory.objects.get(id=demanda.action_id)
+    elif demanda.action == 'EQU':
+        action = Equipment.objects.get(id=demanda.action_id)
+    else:
+        return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
+
+    dados = {
+        'demanda': demanda,
+        'action': action
+    }
+    return render(request, 'site/visualizar_demanda.html', {'dados': dados})
 
 
 def login_in(request):

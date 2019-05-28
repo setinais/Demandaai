@@ -1,38 +1,23 @@
 {% extends 'site/about_portifolio.html' %}
 {% block content %}
     <div class="container">
-    <div class="blog-comments mt-40">
-      <div class="comments-1">
+        <div class="blog-comments mt-40 col-md-12 col-lg-12">
+            <div class="comments-1">
 
-           <div class="comments-info">
-           <h4 class="theme-color"> Kevin Martin <span>Sep 15, 2017</span></h4>
-            <div class="port-post-social float-right">
-              <a href="#">Reply</a>
+                <div class="comments-info col-md-12 col-lg-12">
+                    <div class="port-post-social float-right">
+                        <span> Solicitada em {{ dados.demanda.created_at }}</span>
+                    </div>
+                    <h4 class="theme-color">Olá Senhor(a) {{ dados.demanda.nome }} </h4>
+                    <p>Sua demanda no {{ dados.demanda.get_action_display }} <strong> {{ dados.action.nome }}</strong> foi entregue a nós!</p>
+                    <p><strong>Descrição:</strong> {{ dados.demanda.descricao }}</p>
+                    <p><strong>Status: </strong><span class="badge badge-pill badge-info">{{ dados.demanda.get_status_display }}</span></p>
+                    <div class="port-post-social float-right">
+                        <span>Atualizado {{ dados.demanda.updated_at }}</span>
+                    </div>
+                </div>
             </div>
-              <p>Sit amet nibh vulputate cursus a sit amet mauris lorem ipsum dolor sit amet of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio  <a href="#">http://themeforest.net</a> Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat </p>
-         </div>
-         </div>
-         <div class="comments-1 comments-2">
-
-           <div class="comments-info">
-           <h4 class="theme-color"> Kevin Martin <span>Sep 15, 2017</span></h4>
-            <div class="port-post-social float-right">
-              <a href="#">Reply</a>
-            </div>
-              <p>Vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor Lorem ipsum dolor sit amet of Lorem Ipsum. Proin gravida nibh..</p>
-         </div>
-         </div>
-         <div class="comments-1 comments-2">
-
-           <div class="comments-info">
-           <h4 class="theme-color"> Kevin Martin <span>Sep 15, 2017</span></h4>
-            <div class="port-post-social float-right">
-              <a href="#">Reply</a>
-            </div>
-              <p>Aenean sollicitudin, lorem quis bibendum auctor Lorem ipsum dolor sit amet of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet..</p>
-         </div>
-         </div>
-    </div>
+        </div>
     </div>
 {% endblock %}
 {% block contact %}{% endblock %}

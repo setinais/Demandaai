@@ -37,4 +37,8 @@ Comandos basicos
                     ou
     
     python manage.py runserver 192.168.0.101:8001
+    
+*SQL
+
+    UPDATE `demandai_administrador_demand` SET  `action_id`=FLOOR(RAND() * 50 +1)
 
