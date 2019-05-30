@@ -696,7 +696,7 @@ POTENZA.wowanimation = function () {
 *************************/
 POTENZA.googlemaps = function () {
   if ($('.g-map').exists()) {
-    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAk-NKIjD74eS1H4iAB-6cD3cZy8t8twDc', function() {
+    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyABVjWgjAOCL6DndE9Ucln5Hg-QOJTLd2k', function (listener) {
       $('.g-map').each(function(){
             var id = $(this).attr('id');
             var color = $(this).attr('data-type');
@@ -720,7 +720,7 @@ POTENZA.googlemaps = function () {
              var marker = new google.maps.Marker({
                  position: new google.maps.LatLng(-10.1991753, -48.3115822),
                  map: map,
-                 title: 'Instituto Federal do Tocantins (IFTO) - Campus Palmas'
+                 title: 'Instituto Federal do Tocantins - Campus Palmas'
              });
              var marker1 = new google.maps.Marker(
                  {
@@ -782,7 +782,9 @@ POTENZA.googlemaps = function () {
                      map: map,
                      title: 'Instituto Federal do Tocantins - Campus Avançado Pedro Afonso'
                  });
-
+                marker.addListener('click', function () {
+                    window.location.href = 'http://localhost:8000/demandar'
+                });
           }
        });
     }

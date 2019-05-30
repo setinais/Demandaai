@@ -1,0 +1,23 @@
+{% extends 'site/base.html' %}
+{% load static %}
+{% block header %}
+
+    <section class="slider-parallax typer-banner bg-overlay-black-50 parallax" style="height: 15vh;background: url({% static 'images/demandai/campus_paraiso.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title-name">
+                        <h1>{% block title %}Resultados de busca{% endblock %}</h1>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block content %}
+    {% include 'site/services.html' %}
+{% endblock %}
+
+{% block banner %}{% endblock %}
+{% block contact %}{% endblock %}

@@ -183,3 +183,65 @@ def login_in(request):
     else:
         return render(request, 'site/login.html', {'error': 'Email/Senha Incorretos!'})
 
+def search(request, text):
+    lista_servicos = []
+    i = 0
+
+    s_inicio = Service.objects.filter(nome__contains=text)
+    l_inicio = Laboratory.objects.filter(nome__contains=text)
+    e_inicio = Equipment.objects.filter(nome__contains=text)
+    s_des = Service.objects.filter(descricao__contains=text)
+    l_des = Laboratory.objects.filter(descricao__contains=text)
+    e_des = Equipment.objects.filter(descricao__contains=text)
+
+    i_s = 0
+    if len(s_inicio) > len(s_des):
+        i_s = len(s_inicio)
+    else:
+        i_s = len(s_des)
+
+    while i < i_s:
+        if len(s_inicio) > i:
+            if len(s_des) > i:
+                if s_inicio[i].id == s_des[i].id:
+                    prepare = {
+                        'id': s_inicio[i].id,
+                        'nome': s_inicio[i].nome,
+                        'descricao': s_inicio[i].descricao
+                    }
+                    lista_servicos.append(prepare)
+                else:
+                    prepare = {
+                        'id': s_inicio[i].id,
+                        'nome': s_inicio[i].nome,
+                        'descricao': s_inicio[i].descricao
+                    }
+                    prepare2 = {
+                        'id': s_des[i].id,
+                        'nome': s_des[i].nome,
+                        'descricao': s_des[i].descricao
+                    }
+                    lista_servicos.append(prepare)
+                    lista_servicos.append(prepare2)
+            else:
+                prepare = {
+                    'id': s_inicio[i].id,
+                    'nome': s_inicio[i].nome,
+                    'descricao': s_inicio[i].descricao
+                }
+                lista_servicos.append(prepare)
+        elif len(s_des) > i:
+            prepare = {
+                'id': s_des[i].id,
+                'nome': s_des[i].nome,
+                'descricao': s_des[i].descricao
+            }
+            lista_servicos.append(prepare)
+        # elif s_des is None:
+        i += 1
+    i = 0
+
+    dados = {
+        'lista_servicos': lista_servicos
+    }
+    return render(request, 'site/search.html', {'dados': dados})
