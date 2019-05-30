@@ -20,7 +20,7 @@ def start(request, template_name='site/index.html'):
         'servicos': Service.objects.count(),
         'laboratorios': Laboratory.objects.count(),
         'equipamentos': Equipment.objects.count(),
-        'profissionais': Profile.objects.count(),
+        'profissionais': Profile.objects.filter(role='SE').count(),
         'lista_servicos': Service.objects.filter(pk__in=servicos_id),
         'lista_portifolio': {
             'servicos': Service.objects.filter(pk__in=[1,2,3]),
@@ -54,10 +54,11 @@ def about_portifolio(request, action, id):
                 'email': preparar_dados.institution.email
             },
             'user': {
-                'nome': preparar_dados.user.first_name,
-                'email': preparar_dados.user.email
+                'nome': preparar_dados.profile.first_name,
+                'email': preparar_dados.profile.email
             }
         }
+
     elif action == 'lab':
         preparar_dados = Laboratory.objects.get(pk=id)
         template = 'site/about_portifolio/laboratory.html'
@@ -78,8 +79,8 @@ def about_portifolio(request, action, id):
                 'email': preparar_dados.institution.email
             },
             'user': {
-                'nome': preparar_dados.user.first_name,
-                'email': preparar_dados.user.email
+                'nome': preparar_dados.profile.first_name,
+                'email': preparar_dados.profile.email
             }
         }
     elif action == 'equ':
@@ -104,8 +105,8 @@ def about_portifolio(request, action, id):
                 'email': preparar_dados.institution.email
             },
             'user': {
-                'nome': preparar_dados.user.first_name,
-                'email': preparar_dados.user.email
+                'nome': preparar_dados.profile.first_name,
+                'email': preparar_dados.profile.email
             }
         }
     else:
@@ -150,8 +151,8 @@ def demandar(request):
 
 
 @require_http_methods(["GET"])
-def demandDetail(request, cpf, codigo):
-    demandas = Demand.objects.filter(cpf=cpf, codigo=codigo)
+def demandDetail(request, email, codigo):
+    demandas = Demand.objects.filter(email=email, codigo=codigo)
     demanda = demandas[0]
     action = {}
     if demanda.action == 'SER':
@@ -177,8 +178,7 @@ def login_in(request):
     password = request.POST['password']
     profile = authenticate(request, username=email, password=password)
     if profile is not None:
-        if hasattr(request.POST, 'conection_permanent'):
-            login(request, profile)
+        login(request, profile)
         return redirect('home-adm')
     else:
         return render(request, 'site/login.html', {'error': 'Email/Senha Incorretos!'})

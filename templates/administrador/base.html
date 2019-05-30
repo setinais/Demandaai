@@ -2,13 +2,16 @@
 {% load static %}
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Webster - Responsive Multi-purpose HTML5 Template" />
+    <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>
-        {% block title %}
-            {#O conteúdo definino no bloco title nos outros aquivos será carregado aqui!#}
-        {% endblock %}
-    </title>
+    <title>ADM</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" />
 
     <!-- font -->
     <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
@@ -31,41 +34,114 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}" type="text/css"/>
 
-    <style type="text/css">
-        .text-errors-form{
-            font-size: 9pt;
-        }
-    </style>
-
-
 </head>
+
 <body>
 
-<div class="wrapper"> <!-- wrapper start (Class principal do template) -->
+<div class="wrapper vertical-header">
 
     <!--=================================
-    preloader -->
+     preloader -->
 
-    <div id="pre-loader" style="background: black;">
-        <img src="{% static 'images/pre-loader/gif-demandai.gif' %}" alt="">
+    <div id="pre-loader">
+        <img src="images/pre-loader/loader-04.svg" alt="">
     </div>
 
     <!--=================================
-    preloader -->
-        <section id="homesection"></section>
+     preloader -->
 
-<!--=================================
+    <!--=================================
+     header -->
 
+    <section id="homesection"></section>
 
- content -->
-{% block content %}{% endblock %}
-<!--=================================
- content -->
+    <div class="menu-responsive"><a href="#"> <b>TI VERDE</b></a> <a class="but" href="#"><span class="ti-menu"></span> </a></div>
 
+    <header id="left-header" class="header vertical-menu">
 
+        <!--=================================
+         mega menu -->
+
+        <div id="onepagenav" class="menu">
+            <!-- menu start -->
+            <nav id="menu" class="mega-menu" data-pos='vertical-left'>
+                <!-- menu list items container -->
+                <section class="menu-list-items">
+                    <!-- menu logo -->
+                    <ul class="menu-logo">
+                        <li>
+                            <a href="{% url 'home' %}"><img id="logo_img" src="{% static 'images/demandai/demandai-logo.png' %}" alt=""> </a>
+                        </li>
+                    </ul>
+                    <!-- menu links -->
+                    <div class="menu-bar">
+                        <ul class="menu-links">
+                            <li><a href="{% url 'prospeccao' %}"><i class="fa fa-list-alt"></i> Prospecção</a></li>
+                            <li><a href="#" class="text-danger"><i class="fa fa-sign-out"></i> Sair</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </nav>
+            <!-- menu end -->
+        </div>
+        <div class="menu-widgets text-white" align="center">
+            <div class="social-icons social-border rounded color-hover text-center">
+                <ul>
+                    <li class="social-facebook"><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li class="social-instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+
+    <!--=================================
+     header -->
+
+    <!--=================================
+     banner -->
+
+    {% block content %}{% endblock %}
+
+    <!--=================================
+     footer -->
+
+    <footer class="footer footer-topbar black-bg fixed-bottom" style="z-index: 100;">
+        <div class="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img class="img-fluid mb-10" id="logo-footer" src="images/logo.png" alt="">
+                        <div class="footer-text">
+                            <p> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#"> Galera do Estudo. </a> Todos os direitos reservados </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="footer-social">
+                            <ul class="text-left text-lg-right">
+                                <li class="list-inline-item"><a href="#">Termos & Condições </a> &nbsp;&nbsp;&nbsp;|</li>
+                            </ul></div>
+                        <div class="social-icons color-hover text-left text-lg-right mt-20">
+                            <ul class="clearfix">
+                                <li class="social-facebook"><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                <li class="social-twitter"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--=================================
+     footer -->
 
 </div>
+
+
+
 <div id="back-to-top"><a class="top arrow" href="#top"><i class="fa fa-angle-up"></i> <span>TOP</span></a></div>
+
 <!--=================================
  jquery -->
 
@@ -83,15 +159,7 @@
 
 <script src="{% static 'js/jquery.mask.min.js' %}"></script>
 
-<script type="application/javascript">
-    $(document).ready(function () {
-       $('#home-adm').click(function () {
-           window.location.href = "{% url 'home-adm' %}";
-       })
-    });
-</script>
+
 
 </body>
 </html>
-
-{% block script %}{% endblock %}

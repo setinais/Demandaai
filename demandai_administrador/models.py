@@ -1,5 +1,3 @@
-
-
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.db import models
@@ -73,7 +71,7 @@ class AccessControl(SafeDeleteModel):
 class Laboratory(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='laboratories', on_delete=models.PROTECT)
+    profile = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='laboratories', on_delete=models.PROTECT)
     telefone = models.CharField(max_length=14)
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
@@ -93,7 +91,7 @@ class Laboratory(SafeDeleteModel):
 class Equipment(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='equipments', on_delete=models.PROTECT)
+    profile = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='equipments', on_delete=models.PROTECT)
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
@@ -108,7 +106,7 @@ class Equipment(SafeDeleteModel):
 class Service(SafeDeleteModel):
     _safedelete_policy = HARD_DELETE_NOCASCADE
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='services', on_delete=models.PROTECT)
+    profile = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='services', on_delete=models.PROTECT)
     plataformas = models.TextField()
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
@@ -139,12 +137,12 @@ class Demand(SafeDeleteModel):
     action = models.CharField(max_length=3, choices=actions)
     action_id = models.IntegerField()
     nome = models.CharField(max_length=30)
-    telefone = models.CharField(max_length=30)
+    # telefone = models.CharField(max_length=30)
     codigo = models.CharField(max_length=6)
     email = models.EmailField(max_length=40)
     descricao = models.TextField()
-    cpf = models.CharField(max_length=20)
-    data_nascimento = models.DateField()
+    # cpf = models.CharField(max_length=20)
+    # data_nascimento = models.DateField()
     status = models.CharField(max_length=1, choices=status, default='S')
     visualizada = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
