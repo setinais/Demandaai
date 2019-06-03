@@ -3,7 +3,6 @@ import os
 from random import *
 from django.contrib.auth import authenticate, login
 
-
 import _thread
 from django.http import HttpResponseNotFound, HttpResponse
 from django.shortcuts import render, redirect
@@ -12,10 +11,10 @@ from demandai_administrador.models import Laboratory, Equipment, Service
 from .forms import *
 from django.views.decorators.http import require_http_methods
 
+
 # Create your views here.
 def start(request, template_name='site/index.html'):
-
-    servicos_id = sample(range(1,50),6)
+    servicos_id = sample(range(1, 50), 6)
     dados = {
         'servicos': Service.objects.count(),
         'laboratorios': Laboratory.objects.count(),
@@ -23,15 +22,15 @@ def start(request, template_name='site/index.html'):
         'profissionais': Profile.objects.filter(role='SE').count(),
         'lista_servicos': Service.objects.filter(pk__in=servicos_id),
         'lista_portifolio': {
-            'servicos': Service.objects.filter(pk__in=[1,2,3]),
-            'laboratorios': Laboratory.objects.filter(pk__in=[1,2,3]),
-            'equipamentos': Equipment.objects.filter(pk__in=[1,2,3]),
-            },
-        }
+            'servicos': Service.objects.filter(pk__in=[1, 2, 3]),
+            'laboratorios': Laboratory.objects.filter(pk__in=[1, 2, 3]),
+            'equipamentos': Equipment.objects.filter(pk__in=[1, 2, 3]),
+        },
+    }
     return render(request, template_name, {'dados': dados, 'user': request.user.is_authenticated})
 
-def about_portifolio(request, action, id):
 
+def about_portifolio(request, action, id):
     dados = {}
     template = ''
 
@@ -45,8 +44,8 @@ def about_portifolio(request, action, id):
             'plataformas': preparar_dados.plataformas,
             'estatistica': {
                 'demanda': Demand.objects.filter(action='SER', action_id=preparar_dados.id, status='S').count(),
-                'analise': Demand.objects.filter(action='SER', action_id=preparar_dados.id,status='E').count(),
-                'finalizada': Demand.objects.filter(action='SER', action_id=preparar_dados.id,status='F').count(),
+                'analise': Demand.objects.filter(action='SER', action_id=preparar_dados.id, status='E').count(),
+                'finalizada': Demand.objects.filter(action='SER', action_id=preparar_dados.id, status='F').count(),
             },
             'institution': {
                 'nome': preparar_dados.institution.nome,
@@ -113,6 +112,7 @@ def about_portifolio(request, action, id):
         return HttpResponseNotFound('<h1>Pagina não encontrada</h1>')
     return render(request, template, {'dados': dados})
 
+
 def demandarSelected(request, action, id):
     dados = {
         'ser': Service.objects.all(),
@@ -128,6 +128,7 @@ def demandarSelected(request, action, id):
         return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
     else:
         HttpResponseNotFound('<h1>Error 404 Not Found</h1>')
+
 
 def demandar(request):
     dados = {
@@ -146,7 +147,7 @@ def demandar(request):
             form.save()
             _thread.start_new_thread(form.send_mail, (request,))
             form = DemandForm()
-            return render(request, 'site/demandar.html',{'dados': dados,'form': form, 'message': post['codigo']})
+            return render(request, 'site/demandar.html', {'dados': dados, 'form': form, 'message': post['codigo']})
         return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
 
 
@@ -183,17 +184,24 @@ def login_in(request):
     else:
         return render(request, 'site/login.html', {'error': 'Email/Senha Incorretos!'})
 
-def search(request, text):
+
+def search(request):
+    if request.GET['text'] == '':
+        return redirect('home')
+
     lista_servicos = []
+
+    s_inicio = Service.objects.filter(nome__contains=request.GET['text'])
+    l_inicio = Laboratory.objects.filter(nome__contains=request.GET['text'])
+    e_inicio = Equipment.objects.filter(nome__contains=request.GET['text'])
+    s_des = Service.objects.filter(descricao__contains=request.GET['text'])
+    l_des = Laboratory.objects.filter(descricao__contains=request.GET['text'])
+    e_des = Equipment.objects.filter(descricao__contains=request.GET['text'])
+    lista_servicos.append(s_inicio)
+    lista_servicos.append(s_des)
+    return HttpResponse(lista_servicos[1][0].nome)
+
     i = 0
-
-    s_inicio = Service.objects.filter(nome__contains=text)
-    l_inicio = Laboratory.objects.filter(nome__contains=text)
-    e_inicio = Equipment.objects.filter(nome__contains=text)
-    s_des = Service.objects.filter(descricao__contains=text)
-    l_des = Laboratory.objects.filter(descricao__contains=text)
-    e_des = Equipment.objects.filter(descricao__contains=text)
-
     i_s = 0
     if len(s_inicio) > len(s_des):
         i_s = len(s_inicio)
@@ -207,19 +215,22 @@ def search(request, text):
                     prepare = {
                         'id': s_inicio[i].id,
                         'nome': s_inicio[i].nome,
-                        'descricao': s_inicio[i].descricao
+                        'descricao': s_inicio[i].descricao,
+                        'icon': 'fa fa-cogs'
                     }
                     lista_servicos.append(prepare)
                 else:
                     prepare = {
                         'id': s_inicio[i].id,
                         'nome': s_inicio[i].nome,
-                        'descricao': s_inicio[i].descricao
+                        'descricao': s_inicio[i].descricao,
+                        'icon': 'fa fa-cogs'
                     }
                     prepare2 = {
                         'id': s_des[i].id,
                         'nome': s_des[i].nome,
-                        'descricao': s_des[i].descricao
+                        'descricao': s_des[i].descricao,
+                        'icon': 'fa fa-cogs'
                     }
                     lista_servicos.append(prepare)
                     lista_servicos.append(prepare2)
@@ -227,20 +238,124 @@ def search(request, text):
                 prepare = {
                     'id': s_inicio[i].id,
                     'nome': s_inicio[i].nome,
-                    'descricao': s_inicio[i].descricao
+                    'descricao': s_inicio[i].descricao,
+                    'icon': 'fa fa-cogs'
                 }
                 lista_servicos.append(prepare)
         elif len(s_des) > i:
             prepare = {
                 'id': s_des[i].id,
                 'nome': s_des[i].nome,
-                'descricao': s_des[i].descricao
+                'descricao': s_des[i].descricao,
+                'icon': 'fa fa-cogs'
             }
             lista_servicos.append(prepare)
         # elif s_des is None:
         i += 1
-    i = 0
 
+    i = 0
+    i_s = 0
+    if len(l_inicio) > len(l_des):
+        i_s = len(l_inicio)
+    else:
+        i_s = len(l_des)
+
+    while i < i_s:
+        if len(l_inicio) > i:
+            if len(l_des) > i:
+                if l_inicio[i].id == l_des[i].id:
+                    prepare = {
+                        'id': l_inicio[i].id,
+                        'nome': l_inicio[i].nome,
+                        'descricao': l_inicio[i].descricao,
+                        'icon': 'ti-desktop'
+                    }
+                    lista_servicos.append(prepare)
+                else:
+                    prepare = {
+                        'id': l_inicio[i].id,
+                        'nome': l_inicio[i].nome,
+                        'descricao': l_inicio[i].descricao,
+                        'icon': 'ti-desktop'
+                    }
+                    prepare2 = {
+                        'id': l_des[i].id,
+                        'nome': l_des[i].nome,
+                        'descricao': l_des[i].descricao,
+                        'icon': 'ti-desktop'
+                    }
+                    lista_servicos.append(prepare)
+                    lista_servicos.append(prepare2)
+            else:
+                prepare = {
+                    'id': l_inicio[i].id,
+                    'nome': l_inicio[i].nome,
+                    'descricao': l_inicio[i].descricao,
+                    'icon': 'ti-desktop'
+                }
+                lista_servicos.append(prepare)
+        elif len(l_des) > i:
+            prepare = {
+                'id': l_des[i].id,
+                'nome': l_des[i].nome,
+                'descricao': l_des[i].descricao,
+                'icon': 'ti-desktop'
+            }
+            lista_servicos.append(prepare)
+        # elif s_des is None:
+        i += 1
+
+    i = 0
+    i_s = 0
+    if len(e_inicio) > len(e_des):
+        i_s = len(e_inicio)
+    else:
+        i_s = len(e_des)
+
+    while i < i_s:
+        if len(e_inicio) > i:
+            if len(e_des) > i:
+                if e_inicio[i].id == e_des[i].id:
+                    prepare = {
+                        'id': e_inicio[i].id,
+                        'nome': e_inicio[i].nome,
+                        'descricao': e_inicio[i].descricao,
+                        'icon': 'fa fa-cog'
+                    }
+                    lista_servicos.append(prepare)
+                else:
+                    prepare = {
+                        'id': e_inicio[i].id,
+                        'nome': e_inicio[i].nome,
+                        'descricao': e_inicio[i].descricao,
+                        'icon': 'fa fa-cog'
+                    }
+                    prepare2 = {
+                        'id': e_des[i].id,
+                        'nome': e_des[i].nome,
+                        'descricao': e_des[i].descricao,
+                        'icon': 'fa fa-cog'
+                    }
+                    lista_servicos.append(prepare)
+                    lista_servicos.append(prepare2)
+            else:
+                prepare = {
+                    'id': e_inicio[i].id,
+                    'nome': e_inicio[i].nome,
+                    'descricao': e_inicio[i].descricao,
+                    'icon': 'fa fa-cog'
+                }
+                lista_servicos.append(prepare)
+        elif len(e_des) > i:
+            prepare = {
+                'id': e_des[i].id,
+                'nome': e_des[i].nome,
+                'descricao': e_des[i].descricao,
+                'icon': 'fa fa-cog'
+            }
+            lista_servicos.append(prepare)
+        # elif s_des is None:
+        i += 1
     dados = {
         'lista_servicos': lista_servicos
     }

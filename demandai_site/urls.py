@@ -20,5 +20,6 @@ urlpatterns = [
     path('login', views.login_in, name='login'),
 
     # Consulta de relações
-    path('search/<str:text>', views.search, name='search'),
+    path('search', views.search, name='search'),
+    #path('search?text=<str:text>', views.search, name='search_val'),
 ]
