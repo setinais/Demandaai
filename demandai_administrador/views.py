@@ -29,6 +29,7 @@ def prospeccao(request):
             'status': demandas[i].get_status_display(),
             'created_at': demandas[i].created_at,
             'visualizada': demandas[i].visualizada,
+            'badge': badge_select(demandas[i].status),
             'action': {
                 'nome': action.nome,
                 'profile': {
@@ -42,3 +43,18 @@ def prospeccao(request):
         i += 1
 
     return render(request, 'administrador/prospeccao.html', {'dados': dados})
+
+def badge_select(val):
+    return {
+        'S': 'warning',
+        'E': 'info',
+        'R': 'danger',
+        'A': 'primary',
+        'P': 'secondary',
+        'F': 'success',
+    }[val]
+
+@login_required
+def encaminhar_demanda(request):
+    if
+    return render(request, )

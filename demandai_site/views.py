@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 from demandai_administrador.models import Laboratory, Equipment, Service
 from .forms import *
 from django.views.decorators.http import require_http_methods
-
+from pprint import pprint
 
 # Create your views here.
 def start(request, template_name='site/index.html'):
@@ -184,6 +184,16 @@ def login_in(request):
     else:
         return render(request, 'site/login.html', {'error': 'Email/Senha Incorretos!'})
 
+def dump(obj):
+  '''return a printable representation of an object for debugging'''
+  newobj=obj
+  if '__dict__' in dir(obj):
+    newobj=obj.__dict__
+    if ' object at ' in str(obj) and not newobj.has_key('__type__'):
+      newobj['__type__']=str(obj)
+    for attr in newobj:
+      newobj[attr]=dump(newobj[attr])
+  return newobj
 
 def search(request):
     if request.GET['text'] == '':
@@ -191,15 +201,14 @@ def search(request):
 
     lista_servicos = []
 
-    s_inicio = Service.objects.filter(nome__contains=request.GET['text'])
-    l_inicio = Laboratory.objects.filter(nome__contains=request.GET['text'])
-    e_inicio = Equipment.objects.filter(nome__contains=request.GET['text'])
-    s_des = Service.objects.filter(descricao__contains=request.GET['text'])
-    l_des = Laboratory.objects.filter(descricao__contains=request.GET['text'])
-    e_des = Equipment.objects.filter(descricao__contains=request.GET['text'])
-    lista_servicos.append(s_inicio)
-    lista_servicos.append(s_des)
-    return HttpResponse(lista_servicos[1][0].nome)
+    s_inicio = Service.objects.filter(nome__icontains=request.GET['text'])
+    l_inicio = Laboratory.objects.filter(nome__icontains=request.GET['text'])
+    e_inicio = Equipment.objects.filter(nome__icontains=request.GET['text'])
+    s_des = Service.objects.filter(descricao__icontains=request.GET['text'])
+    l_des = Laboratory.objects.filter(descricao__icontains=request.GET['text'])
+    e_des = Equipment.objects.filter(descricao__icontains=request.GET['text'])
+    # return HttpResponse([s_des.count(), s_inicio.count()])
+    # pprint(vars(s_inicio))
 
     i = 0
     i_s = 0
@@ -357,6 +366,8 @@ def search(request):
         # elif s_des is None:
         i += 1
     dados = {
-        'lista_servicos': lista_servicos
+        'lista_servicos': lista_servicos,
+        'text': request.GET['text']
     }
     return render(request, 'site/search.html', {'dados': dados})
+
