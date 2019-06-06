@@ -39,7 +39,7 @@
                                     Ações
                                   </button>
                                   <div class="dropdown-menu font-dropdown-acoes" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item text-info " style="font-size: 0.800rem;" href="#">Encaminhar para <i class="fa fa-angle-right"></i></a>
+                                    <a class="dropdown-item text-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action='SER' id=demanda.id %}">Encaminhar para <i class="fa fa-angle-right"></i></a>
                                     <a class="dropdown-item" style="font-size: 0.800rem;" href="#">Responde Solicitante</a>
                                     <a class="dropdown-item text-danger" style="font-size: 0.800rem;" href="#">Cancelar <i class="fa fa-times"></i></a>
                                   </div>

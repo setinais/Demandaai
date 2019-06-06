@@ -5,6 +5,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="dict.demanda" />
+          <option value="dict.actions" />
         </list>
       </option>
     </inspection_tool>
