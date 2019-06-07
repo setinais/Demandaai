@@ -55,46 +55,78 @@
 
     <section id="homesection"></section>
 
-    <div class="menu-responsive"><a href="#"> <b>TI VERDE</b></a> <a class="but" href="#"><span class="ti-menu"></span> </a></div>
-
-    <header id="left-header" class="header vertical-menu">
-
-        <!--=================================
-         mega menu -->
-
-        <div id="onepagenav" class="menu">
+{#    <div class="menu-responsive">#}
+{#        <a href="#"> <b>Area Administrativa</b></a>#}
+{#        <a class="but" href="#">#}
+{#            <span class="ti-menu"></span>#}
+{#        </a>#}
+{#    </div>#}
+{##}
+{#    <header id="left-header" class="header vertical-menu">#}
+{##}
+{#        <!--=================================#}
+{#         mega menu -->#}
+{##}
+{#        <div id="onepagenav" class="menu">#}
+{#            <!-- menu start -->#}
+{#            <nav id="menu" class="mega-menu" data-pos='vertical-left'>#}
+{#                <!-- menu list items container -->#}
+{#                <section class="menu-list-items">#}
+{#                    <!-- menu logo -->#}
+{#                    <ul class="menu-logo">#}
+{#                        <li>#}
+{#                            <a href="{% url 'home' %}" ><strong>Area Administrativa</strong> </a>#}
+{#                            <div class="menu-mobile-collapse-trigger">#}
+{#                                <span></span>#}
+{#                            </div>#}
+{#                        </li>#}
+{##}
+{#                    </ul>#}
+{#                    <!-- menu links -->#}
+{#                    <div class="menu-bar ">#}
+{#                        <ul class="menu-links border-top">#}
+{#                            <li><a href="{% url 'prospeccao' %}"><i class="fa fa-list-alt"></i> Prospecção</a></li>#}
+{#                            <li><a href="#" class="text-danger"><i class="fa fa-sign-out"></i> Sair</a></li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </section>#}
+{#            </nav>#}
+{#            <!-- menu end -->#}
+{#        </div>#}
+{#        <div class="menu-widgets text-white" align="center">#}
+{#            <div class="social-icons social-border rounded color-hover text-center">#}
+{#                <ul>#}
+{#                    <li class="social-facebook"><a href="#"><i class="fab fa-facebook"></i></a></li>#}
+{#                    <li class="social-instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </header>#}
+    <header id="header" class="header vertical-menu">
+        <div class="menu" id="onepagenav">
             <!-- menu start -->
-            <nav id="menu" class="mega-menu" data-pos='vertical-left'>
+            <nav id="menu" class="mega-menu" data-pos="vertical-left">
                 <!-- menu list items container -->
                 <section class="menu-list-items">
-                    <!-- menu logo -->
-                    <ul class="menu-logo">
-                        <li>
-                            <a href="{% url 'home' %}"><img id="logo_img" src="{% static 'images/demandai/demandai-logo.png' %}" alt=""> </a>
-                        </li>
-                    </ul>
-                    <!-- menu links -->
-                    <div class="menu-bar">
-                        <ul class="menu-links">
-                            <li><a href="{% url 'prospeccao' %}"><i class="fa fa-list-alt"></i> Prospecção</a></li>
-                            <li><a href="#" class="text-danger"><i class="fa fa-sign-out"></i> Sair</a></li>
-                        </ul>
-                    </div>
+                                <!-- menu logo -->
+                                <ul class="menu-logo">
+                                    <li>
+                                        <a href="{% url 'home' %}" ><strong>Area Administrativa</strong> </a>
+                                    </li>
+                                </ul>
+                                <!-- menu links -->
+                                <div class="menu-bar">
+                                    <ul class="menu-links border-top">
+                                        <li><a href="{% url 'prospeccao' %}"><i class="fa fa-list-alt"></i> Prospecção</a></li>
+                                         <li><a href="#" class="text-danger"><i class="fa fa-sign-out"></i> Sair</a></li>
+                                    </ul>
+                                </div>
                 </section>
             </nav>
             <!-- menu end -->
         </div>
-        <div class="menu-widgets text-white" align="center">
-            <div class="social-icons social-border rounded color-hover text-center">
-                <ul>
-                    <li class="social-facebook"><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li class="social-instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-            </div>
-        </div>
-
     </header>
-
     <!--=================================
      header -->
 

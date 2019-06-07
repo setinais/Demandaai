@@ -81,7 +81,7 @@ hr.light { margin: 0; padding: 0px; border-bottom:1px solid rgba(255,255,255,0.1
 Page section margin padding 
 ****************************/
 .page-section-ptb { padding: 80px 0; }
-.page-section-pt { padding: 80px 0 0; }
+.page-section-pt { padding: 30px 0 0; }
 .page-section-pb { padding: 0 0 80px; }
 
 .page-section-1-ptb { padding: 120px 0; }
@@ -148,7 +148,7 @@ section { background: #ffffff; }
 /*.mt-0 { margin-top: 0 !important; }*/
 .mt-10 { margin-top: 10px !important; }
 .mt-15 { margin-top: 15px !important; }
-.mt-20 { margin-top: 20px !important; }
+.mt-20 { margin-top: 10px !important; }
 .mt-30 { margin-top: 30px !important; }
 .mt-40 { margin-top: 40px !important; }
 .mt-50 { margin-top: 50px !important; }

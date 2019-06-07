@@ -1,0 +1,29 @@
+{% extends 'administrador/encaminhar_demanda.html' %}
+
+{% block title_em %}Serviços disponiveis{% endblock %}
+{% block lista %}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Responsalvel</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for action in dados.actions %}
+        <tr>
+            <td>{{ action.nome }}</td>
+            <td>{{ action.responsavel }}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-info btn-sm" type="button">
+                        Encaminhar <i class="fa fa-send"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

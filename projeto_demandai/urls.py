@@ -21,7 +21,7 @@ from projeto_demandai import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('administrador/', include('demandai_administrador.urls')),
+    path('adm/', include('demandai_administrador.urls')),
     path('', include('demandai_site.urls'))
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

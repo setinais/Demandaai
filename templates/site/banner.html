@@ -8,21 +8,25 @@
                     <div class="slider-content text-center">
                          <img src="{% static "images/demandai/demandai-logo.png" %}" style="height: 200px;" alt="">
                         <h1 class="text-white">Nós somos <span class="typer" data-delay="150"
-                                                               data-words="Educação, Ciência, Tecnologia, IFTO, Inovação, Empreendorimos, IFTO"
+                                                               data-words="Educação, Ciência, Tecnologia, IFTO, Inovação, Empreendedorismo, IFTO"
                                                                data-colors="#84ba3f,#84ba3f,#84ba3f,#84ba3f,#84ba3f,#84ba3f,#84ba3f"></span> <span
                                 class="cursor" data-cursorDisplay="|" data-owner="some-id"></span></h1>
                         {#           <p class="text-white mt-20">Nós resolveremos seus problemas</p>#}
-                        <div class="row justify-content-center">
-                            <div class="col-md-5 mb-15">
-                                <input type="search" class="form-control" placeholder="Descrição do problema...">
-                            </div>
-                            <div>
+                        <form action="{% url 'search' %}" method="GET">
+                            <div class="row justify-content-center">
 
-                                <a class="button btn-block" href="#"><i
-                                        class="fa fa-search"></i><span>  Buscar Solução</span></a>
+                                    <div class="col-md-5 mb-15">
+                                        <input name="text" type="search" class="form-control" placeholder="Descrição do problema...">
+                                    </div>
+                                    <div>
+
+                                        <button class="button btn-block" type="submit"><i
+                                                class="fa fa-search"></i><span>  Buscar Solução</span></button>
+                                    </div>
+
                             </div>
-                        </div>
-                        <a class="button move mt-15" href="{% url 'demandar' %}"> DEMANDAI </a>
+                        </form>
+                        <a class="button move mt-15" href="{% url 'demandar' %}"> DEMANDAÍ </a>
                     </div>
                 </div>
             </div>

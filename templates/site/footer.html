@@ -8,16 +8,15 @@
                 <div class="footer-useful-link footer-hedding">
                     <h6 class="text-white mb-30 mt-10 text-uppercase"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Navegação</font></font></h6>
                     <ul>
-                        <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Início</font></font></a></li>
-                        <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sobre</font></font></a></li>
-                        <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Serviços</font></font></a></li>
-                        <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Portifólio</font></font></a></li>
+                        <li><a href="#homesection"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Início</font></font></a></li>
+                        <li><a href="#services"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Serviços</font></font></a></li>
+                        <li><a href="#portfolio"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Portifólio</font></font></a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-2 col-sm-6 sm-mb-30">
                 <div class="footer-useful-link footer-hedding">
-                    <h6 class="text-white mb-30 mt-10 text-uppercase"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Link Útil</font></font></h6>
+                    <h6 class="text-white mb-30 mt-10 text-uppercase"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Links Úteis</font></font></h6>
                     <ul>
                         <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Como funciona</font></font></a></li>
                         <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Demandar</font></font></a></li>
@@ -28,27 +27,58 @@
             <div class="col-lg-4 col-sm-6 xs-mb-30">
                 <h6 class="text-white mb-30 mt-10 text-uppercase"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contate-Nos</font></font></h6>
                 <ul class="addresss-info">
-                    <li><i class="fa fa-map-marker"></i> <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Distrito Agroindustrial, BR 153, KM 480 </font></font></p> </li>
+                    <li><i class="fa fa-map-marker"></i> <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">BR 153, KM 480 - Distrito Agroindustrial, Paraíso do Tocantins - TO, 77600-000 </font></font></p> </li>
                     <li><i class="fa fa-phone"></i><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(63) 3361-0300  </font></font></span> </a> </li>
                     <li><i class="fa fa-envelope"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">suporte@demandai.com.br</font></font></li>
                 </ul>
             </div>
+            <div class="col-lg-4 col-sm-6">
+                <h6 class="text-white mb-30 mt-10 text-uppercase"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">Receba novidades do sistema</font></font></h6>
+                <!--                <p class="mb-30"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Receba novidades sobre novos serviços. </font></font></p> -->
+                <div class="footer-Newsletter">
+                    <div id="mc_embed_signup_scroll">
+                        <form action="php/mailchimp-action.php" method="POST" id="mc-embedded-subscribe-form"
+                              name="mc-embedded-subscribe-form" class="validate">
+                            <div id="msg"></div>
+                            <div id="mc_embed_signup_scroll_2">
+                                <input id="mce-EMAIL" class="form-control" type="text" placeholder="Digite seu e-mail"
+                                       name="email1" value="">
+                            </div>
+                            <div id="mce-responses" class="clear">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                <input type="text" name="b_b7ef45306f8b17781aa5ae58a_6b09f39a55" tabindex="-1" value="">
+                            </div>
+                            <div class="clear">
+                                <button type="submit" name="submitbtn" id="mc-embedded-subscribe"
+                                        class="button button-border mt-20 form-button"><font
+                                        style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Seja
+                                    notificado </font></font></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="footer-widget mt-20">
             <div class="row">
-                <div class="col-xl-6 col-md-10">
+                <div class="col-xl-1 col-md-10">
                     <img src="{% static "images/demandai/demandai-logo.png" %}" style="height: 100px" alt="">
-                    <div class="footer-text">
-                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">© Copyright </font><span id="copyright"><font style="vertical-align: inherit;"> </font></span><a href="#"><font style="vertical-align: inherit;"> Demandai</font></a><font style="vertical-align: inherit;"> Todos os direitos reservados</font></font><span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script><font style="vertical-align: inherit;"></font></span> <a href="#"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></p>
-                    </div>
-
                 </div>
-                <div class="col-lg-6 col-md-6 text-left text-md-right">
-                    <div class="social-icons color-hover mt-10">
-                        <ul>
+                <div class="col-xl-6 col-md-10">
+                    <div class="footer-text" align="">
+                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">© Copyright </font><span id="copyright"><font style="vertical-align: inherit;"> </font></span><a href="#"><font style="vertical-align: inherit;"> Demandai</font></a><font style="vertical-align: inherit;"> Todos os direitos reservados.</font></font><span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script><font style="vertical-align: inherit;"></font></span> <a href="#"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></p>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 text-left text-md-right">
+                    <div class="social-icons color-hover mt-10 footer-end">
+                        <ul align>
                             <li class="social-facebook"><a href="#"><i class="fab fa-facebook"></i></a></li>
-                            <li class="social-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li class="social-dribbble"><a href="#"><i class="fab fa-dribbble"></i> </a></li>
+                            <li class="social-instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
