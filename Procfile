@@ -1,1 +1,1 @@
-web: gunicorn tw_clientes.wsgi
+web: gunicorn projeto_demandai.wsgi

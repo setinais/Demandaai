@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09ca0bf2-d9fd-4ea0-9933-892866b4a5da" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projeto_demandai/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/projeto_demandai/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,10 +46,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/projeto_demandai/settings.py">
+        <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="166" column="32" selection-start-line="166" selection-start-column="32" selection-end-line="166" selection-end-column="32" />
+            <state>
+              <caret column="30" selection-start-column="30" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -135,6 +134,7 @@
         <option value="$PROJECT_DIR$/templates/site/base.html" />
         <option value="$PROJECT_DIR$/demandai_site/static/js/custom.js" />
         <option value="$PROJECT_DIR$/projeto_demandai/settings.py" />
+        <option value="$PROJECT_DIR$/Procfile" />
       </list>
     </option>
   </component>
@@ -156,11 +156,6 @@
           <expand>
             <path>
               <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
               <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -264,7 +259,7 @@
       <workItem from="1558995669617" duration="1272000" />
       <workItem from="1559229340701" duration="191000" />
       <workItem from="1559826592995" duration="14000" />
-      <workItem from="1559931863505" duration="863000" />
+      <workItem from="1559931863505" duration="1932000" />
     </task>
     <task id="LOCAL-00001" summary="Implementação de envio de email concluido">
       <created>1558718870706</created>
@@ -291,7 +286,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104994000" />
+    <option name="totallyTimeSpent" value="106063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -311,7 +306,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32843137" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.17156863" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.51960784" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32833335" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32833335" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -356,13 +351,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Correção problema no site" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/demandai_site/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/projeto_demandai/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -707,8 +695,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/projeto_demandai/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
+        <state relative-caret-position="2652">
           <caret line="166" column="32" selection-start-line="166" selection-start-column="32" selection-end-line="166" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
         </state>
       </provider>
     </entry>
