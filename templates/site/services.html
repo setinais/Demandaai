@@ -3,52 +3,58 @@
 <section id="services" class="page-section-ptb parallax" data-jarallax='{"speed": 0.6}'>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
-                <div class="section-title">
-                    <h6>Porque trabalhar conosco? </h6>
-                    <h2 class="title-effect">Nossos incríveis serviços</h2>
-                    <p>Os serviços com a maior qualidade que uma Instituição Federal pode oferecer, esta bem aqui
-                        pertinho de você.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6 col-sm-6">
-                <form action="{% url 'search' %}" method="GET" class="mb-50">
-                    <div class="row ">
-                        <div class="col-md-7 mb-15">
-                            <input name="text" value="{{ dados.text }}" type="search" class="form-control" placeholder="Descrição do problema...">
-                        </div>
-                        <div>
-                            <button class="button btn-block" type="submit"><i
-                                    class="fa fa-search"></i><span>  Buscar Solução</span></button>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="section-title">
+                            <h6>Porque trabalhar conosco? </h6>
+                            <h2 class="title-effect">Nossos incríveis serviços</h2>
+                            <p>Os serviços com a maior qualidade que uma Instituição Federal pode oferecer, esta bem
+                                aqui
+                                pertinho de você.
+                            </p>
                         </div>
                     </div>
-                </form>
-                {% if dados.lista_servicos|length > 0 %}
-                    {% for servico in dados.lista_servicos %}
-                        {{ servico.nome }}
-                        <a href="{% url 'about_portifolio' action='ser' id=servico.id %}">
-                            <div class="feature-text left-icon mb-40">
-                                <div class="feature-icon">
-                                    <span class="{{ servico.icon }} theme-color" aria-hidden="true"></span>
-                                </div>
+                </div>
 
-                                <div class="feature-info">
-                                    <h5 class="text-back">{{ servico.nome }}</h5>
-                                    <p>{{ servico.descricao|slice:"0:60" }} . . .</p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <form action="{% url 'search' %}" method="GET" class="mb-50">
+                            <div class="row ">
+                                <div class="col-md-7 mb-15">
+                                    <input name="text" value="{{ dados.text }}" type="search" class="form-control"
+                                           placeholder="Descrição do problema...">
+                                </div>
+                                <div>
+                                    <button class="button btn-block" type="submit"><i
+                                            class="fa fa-search"></i><span>  Buscar Solução</span></button>
                                 </div>
                             </div>
-                        </a>
-                    {% endfor %}
-                {% else %}
-                    <p>Nada encontrado para <strong>{{ dados.text }} . . .</strong></p>
-                {% endif %}
-            </div>
-            <div class="col-lg-6 col-sm-6">
-                <img src="{% static 'images/demandai/img-servico.png' %}" alt="" height="500px">
+                        </form>
+                        {% if dados.lista_servicos|length > 0 %}
+                            {% for servico in dados.lista_servicos %}
+                                {{ servico.nome }}
+                                <a href="{% url 'about_portifolio' action='ser' id=servico.id %}">
+                                    <div class="feature-text left-icon mb-40">
+                                        <div class="feature-icon">
+                                            <span class="{{ servico.icon }} theme-color" aria-hidden="true"></span>
+                                        </div>
+
+                                        <div class="feature-info">
+                                            <h5 class="text-back">{{ servico.nome }}</h5>
+                                            <p>{{ servico.descricao|slice:"0:60" }} . . .</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <p>Nada encontrado para <strong>{{ dados.text }} . . .</strong></p>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{% static 'images/demandai/img-servico.png' %}" alt="">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
