@@ -14,20 +14,24 @@ from pprint import pprint
 
 # Create your views here.
 def start(request, template_name='site/index.html'):
-    servicos_id = sample(range(1, 50), 6)
-    dados = {
-        'servicos': Service.objects.count(),
-        'laboratorios': Laboratory.objects.count(),
-        'equipamentos': Equipment.objects.count(),
-        'profissionais': Profile.objects.filter(role='SE').count(),
-        'lista_servicos': Service.objects.filter(pk__in=servicos_id),
-        'lista_portifolio': {
-            'servicos': Service.objects.filter(pk__in=[1, 2, 3]),
-            'laboratorios': Laboratory.objects.filter(pk__in=[1, 2, 3]),
-            'equipamentos': Equipment.objects.filter(pk__in=[1, 2, 3]),
-        },
-    }
-    return render(request, template_name, {'dados': dados, 'user': request.user.is_authenticated})
+    try:
+        servicos_id = sample(range(1, 50), 6)
+        dados = {
+            'servicos': Service.objects.count(),
+            'laboratorios': Laboratory.objects.count(),
+            'equipamentos': Equipment.objects.count(),
+            'profissionais': Profile.objects.filter(role='SE').count(),
+            'lista_servicos': Service.objects.filter(pk__in=servicos_id),
+            'lista_portifolio': {
+                'servicos': Service.objects.filter(pk__in=[1, 2, 3]),
+                'laboratorios': Laboratory.objects.filter(pk__in=[1, 2, 3]),
+                'equipamentos': Equipment.objects.filter(pk__in=[1, 2, 3]),
+            },
+        }
+        return render(request, template_name, {'dados': dados, 'user': request.user.is_authenticated})
+    except Exception:
+        return render(request, 'site/error.html')
+
 
 
 def about_portifolio(request, action, id):
@@ -153,23 +157,26 @@ def demandar(request):
 
 @require_http_methods(["GET"])
 def demandDetail(request):
-    demandas = Demand.objects.filter(email=request.GET['email'].strip(), codigo=request.GET['codigo'].strip())
-    demanda = demandas[0]
-    action = {}
-    if demanda.action == 'SER':
-        action = Service.objects.get(id=demanda.action_id)
-    elif demanda.action == 'LAB':
-        action = Laboratory.objects.get(id=demanda.action_id)
-    elif demanda.action == 'EQU':
-        action = Equipment.objects.get(id=demanda.action_id)
-    else:
-        return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
+    try:
+        demandas = Demand.objects.filter(email=request.GET['email'].strip(), codigo=request.GET['codigo'].strip())
+        demanda = demandas[0]
+        action = {}
+        if demanda.action == 'SER':
+            action = Service.objects.get(id=demanda.action_id)
+        elif demanda.action == 'LAB':
+            action = Laboratory.objects.get(id=demanda.action_id)
+        elif demanda.action == 'EQU':
+            action = Equipment.objects.get(id=demanda.action_id)
+        else:
+            return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
 
-    dados = {
-        'demanda': demanda,
-        'action': action
-    }
-    return render(request, 'site/visualizar_demanda.html', {'dados': dados})
+        dados = {
+            'demanda': demanda,
+            'action': action
+        }
+        return render(request, 'site/visualizar_demanda.html', {'dados': dados})
+    except Exception:
+        return render(request, 'site/error.html')
 
 
 def login_in(request):
