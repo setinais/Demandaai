@@ -14,7 +14,7 @@ urlpatterns = [
     path('demandar', views.demandar, name='demandar'),
 
     # Ver detalhes da demanda
-    path('demand/detail/<str:email>/<str:codigo>', views.demandDetail, name='demand_detail'),
+    path('demand/detail', views.demandDetail, name='demand_detail'),
 
     # Login
     path('login', views.login_in, name='login'),

@@ -74,12 +74,12 @@ modal -->
                             <div class="login-title text-center">
                                 <h2 class="text-white mb-0">Consultar Demanda</h2>
                             </div>
-                            <form action="{% url 'login' %}" method="post">
+                            <form action="{% url 'demand_detail' %}" method="get">
                                 {% csrf_token %}
                             <div class="login-form">
                                 <div class="form-row mb-20">
-                                    <label class="mb-10" for="name">CPF </label>
-                                    <input type="text" name="cpf" class="web form-control" placeholder="999.999.999-99" maxlength="15" id="id_cpf">
+                                    <label class="mb-10" for="email">E-mail </label>
+                                    <input type="email" name="email" class="web form-control" placeholder="example@example.com" id="email" required>
 
                                 </div>
                                 <div class="form-group mb-20">

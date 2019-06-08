@@ -152,8 +152,8 @@ def demandar(request):
 
 
 @require_http_methods(["GET"])
-def demandDetail(request, email, codigo):
-    demandas = Demand.objects.filter(email=email, codigo=codigo)
+def demandDetail(request):
+    demandas = Demand.objects.filter(email=request.GET['email'], codigo=request.GET['codigo'])
     demanda = demandas[0]
     action = {}
     if demanda.action == 'SER':
