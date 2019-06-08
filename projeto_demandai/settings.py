@@ -134,17 +134,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-MEDIA_ROOT = (
-  os.path.join(BASE_DIR, "media") #pasta media para abrigar os arquivos dos usuários
-)
 
+# STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles')
+#
 MEDIA_URL = '/media/' #endereço para acessar os arquivos
+
+MEDIA_ROOT = (
+  os.path.join(os.path.dirname(BASE_DIR), "media") #pasta media para abrigar os arquivos dos usuários
+)
 
 
 # Configuração de envio de email

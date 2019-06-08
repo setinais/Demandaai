@@ -1,12 +1,12 @@
+{% load staticfiles %}
 <!DOCTYPE html>
-{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>
         {% block title %}
-            {#O conteúdo definino no bloco title nos outros aquivos será carregado aqui!#}
+            O conteúdo definino no bloco title nos outros aquivos será carregado aqui!
         {% endblock %}
     </title>
 
@@ -14,7 +14,7 @@
     <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
 
     <!-- Plugins -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/plugins-css.css' %}"/>
+    <link rel="stylesheet" type="text/css" href='{% static "css/plugins-css.css"%}'/>
 
     <!-- Typography -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/typography.css' %}"/>
@@ -46,7 +46,7 @@
  preloader -->
 
 <div id="pre-loader">
-    <img src="images/pre-loader/loader-01.svg" alt="">
+    <img src="{% static 'images/pre-loader/gif-demandai.gif' %}" alt="">
 </div>
 
 <!--=================================
@@ -72,7 +72,7 @@
        </div>
        <div class="col-lg-6">
          <div class="error-image text-right">
-            <img class="img-fluid d-block" src="demo-specialty-pages/error-03/images/error.png" alt="">
+            <img class="img-fluid d-block" src="{% static 'images/error/error.png' %}" alt="">
          </div>
         </div>
        </div>
