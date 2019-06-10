@@ -11,15 +11,20 @@
     </tr>
     </thead>
     <tbody>
-    {% for action in dados.actions %}
+    {% for action in dados %}
         <tr>
             <td>{{ action.nome }}</td>
             <td>{{ action.responsavel }}</td>
             <td>
                 <div class="dropdown">
-                    <button class="btn btn-info btn-sm" type="button">
-                        Encaminhar <i class="fa fa-send"></i>
-                    </button>
+                    <form method="get" action="{% url 'encaminhar-d-action' %}">
+                        <input type="hidden" name="action" value="{{ action.action }}"/>
+                        <input type="hidden" name="id" value="{{ action.id }}"/>
+                        <input type="hidden" name="id_demanda" value="{{ id_demanda }}"/>
+                        <button class="btn btn-info btn-sm" type="submit">
+                            Encaminhar <i class="fa fa-send"></i>
+                        </button>
+                    </form>
                 </div>
             </td>
         </tr>

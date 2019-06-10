@@ -1,8 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render, redirect
-
+from django.views.decorators.http import require_http_methods
+import _thread
 from demandai_administrador.models import Demand, Service, Laboratory, Equipment
+from .forms import *
 
 @login_required
 def home(request):
@@ -11,7 +13,7 @@ def home(request):
 @login_required
 def prospeccao(request):
 
-    demandas = Demand.objects.filter(status='S').order_by('-created_at')
+    demandas = Demand.objects.filter(visualizada=0).order_by('-created_at')
     dados = []
     i = 0
     while i < len(demandas):
@@ -74,11 +76,35 @@ def encaminhar_demanda(request, action, id):
     while i < len(actions):
         prepare = {
             'id': actions[i].id,
+            'action': action,
             'nome': actions[i].nome,
             'responsavel': actions[i].profile.username,
-            'id_demanda': id
         }
         dados.append(prepare)
         i += 1
+    return render(request, template, {'dados': dados, 'id_demanda': id})
 
-    return render(request, template, {'dados': dados})
+@login_required
+@require_http_methods(["GET"])
+def encaminhar_demanda_acao(request):
+    try:
+        demanda = Demand.objects.get(id=request.GET['id_demanda'])
+        demanda.action_id = request.GET['id']
+        demanda.status = 'E'
+        demanda.save()
+        _thread.start_new_thread(send_mail(request), (request,))
+        return redirect('prospeccao')
+    except Exception:
+        return redirect('prospeccao')
+
+@login_required
+@require_http_methods(["GET"])
+def rejeitar_demanda(request):
+    try:
+        demanda = Demand.objects.get(id=request.GET['id'])
+        demanda.status = 'R'
+        demanda.save()
+        demanda.delete()
+        return redirect('prospeccao')
+    except Exception:
+        return render(request, 'site/error.html')

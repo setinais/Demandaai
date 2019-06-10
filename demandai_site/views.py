@@ -168,7 +168,7 @@ def demandDetail(request):
         elif demanda.action == 'EQU':
             action = Equipment.objects.get(id=demanda.action_id)
         else:
-            return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
+            return render(request, 'site/error.html')
 
         dados = {
             'demanda': demanda,
