@@ -1,35 +1,31 @@
 {% load static %}
 
-<section class="page-section-ptb bg-overlay-black-90 parallax">
+<section class="page-section-ptb parallax" style="background: url({% static 'images/demandai/etapas.png' %}); border-bottom: 2px solid #84ba3f; background-color: rgba(0,0,0, 0.3);">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-sm-6 sm-mb-30">
                 <div class="counter text-white">
                     <span class="icon ti-face-smile theme-color" aria-hidden="true"></span>
-                    <span class="timer" data-to="{{ dados.servicos }}" data-speed="2000">{{ dados.servicos }}</span>
-                    <label>Serviços</label>
+
                 </div>
 
             </div>
             <div class="col-lg-3 col-sm-6 sm-mb-30">
                 <div class="counter text-white">
                     <span class="icon ti-desktop theme-color" aria-hidden="true"></span>
-                    <span class="timer" data-to="{{ dados.laboratorios }}" data-speed="3000">{{ dados.laboratorios }}</span>
-                    <label>Laboratorios</label>
+
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 xx-mb-30">
                 <div class="counter text-white">
                     <span class="icon ti-check-box theme-color" aria-hidden="true"></span>
-                    <span class="timer" data-to="{{ dados.equipamentos }}" data-speed="4000">{{ dados.equipamentos }}</span>
-                    <label>Equipamentos</label>
+
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div class="counter text-white">
                     <span class="icon ti-user theme-color" aria-hidden="true"></span>
-                    <span class="timer" data-to="{{ dados.profissionais }}" data-speed="5000">{{ dados.profissionais }}</span>
-                    <label>Profissionais Capacitados</label>
+
                 </div>
             </div>
         </div>
