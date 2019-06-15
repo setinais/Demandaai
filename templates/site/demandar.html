@@ -7,89 +7,116 @@
     <div class="container">
         <div class="row mt-70">
             <div class="col-sm-12">
-            {% if message %}
-                <div class="alert alert-success" role="alert">
-                    Cadastrado com sucesso! Use este codigo <strong>{{ message }}</strong> para consultar sua demanda, foi lhe enviado um e-mail com todas informações. Obrigado!
-                </div>
-            {% endif %}
+                {% if message %}
+                    <div class="alert alert-success" role="alert">
+                        Cadastrado com sucesso! Use este codigo <strong>{{ message }}</strong> para consultar sua
+                        demanda, foi lhe enviado um e-mail com todas informações. Obrigado!
+                    </div>
+                {% endif %}
                 <form action="{% url 'demandar' %}" method="post">
                     {% csrf_token %}
                     {{ form.action }}
                     {{ form.action_id }}
                     <h3 class="mb-40">Cadastre sua Demanda</h3>
-                        <div class="form-row">
-                            <div class="form-group col-md-5">
-                                <label for="inputEmail4">Nome</label>
-                                {{ form.nome }}
-                                {% if form.nome.errors %}
-                                    <ol>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4">Nome</label>
+                            {{ form.nome }}
+                            {% if form.nome.errors %}
+                                <ol>
                                     {% for error in form.nome.errors %}
-                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong>
+                                        </li>
                                     {% endfor %}
-                                    </ol>
-                                {% endif %}
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inputAddress2">E-mail</label>
-                                {{ form.email }}
-                                {% if form.email.errors %}
-                                    <ol>
+                                </ol>
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputAddress2">E-mail</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <ol>
                                     {% for error in form.email.errors %}
-                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
+                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong>
+                                        </li>
                                     {% endfor %}
-                                    </ol>
-                                {% endif %}
-                            </div>
+                                </ol>
+                            {% endif %}
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="inputState">O que demandar?</label>
-                                <select id="select-action" class="form-control" style="height: auto;">
-                                    <option value="SER" {% if 'SER' == dados.action %}selected{% endif %}>Serviço</option>
-                                    <option value="LAB" {% if 'LAB' == dados.action %}selected{% endif %}>Laboratorio</option>
-                                    <option value="EQU" {% if 'EQU' == dados.action %}selected{% endif %}>Equipamento</option>
-                                </select>
-                            </div>
-
-                            <div id="ser-demand" class="form-group col-md-4">
-
-                                <label for="inputState">Onde Demandar?</label>
-                                <select onchange="changeSelectAction(this.value);" class="form-control" style="height: auto;">
-                                    {% for foo in dados.ser %}
-                                        <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div id="lab-demand" class="form-group col-md-4">
-                                <label for="inputState">Onde Demandar?</label>
-                                <select onchange="changeSelectAction(this.value);" class="form-control" style="height: auto;">
-                                    {% for foo in dados.lab %}
-                                        <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div id="equ-demand" class="form-group col-md-4">
-                                <label for="inputState">Onde Demandar?</label>
-                                <select onchange="changeSelectAction(this.value);" class="form-control" style="height: auto;">
-                                    {% for foo in dados.equ %}
-                                        <option value="{{ foo.id }}" {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-
+                         <div class="form-group col-md-4">
+                                  <label for="inputState">Telefone</label>
+                               {{ form.telefone }}
+                          </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputState">O que demandar?</label>
+                            <select id="select-action" class="form-control" style="height: auto;">
+                                <option value="SER" {% if 'SER' == dados.action %}selected{% endif %}>Serviço</option>
+                                <option value="LAB" {% if 'LAB' == dados.action %}selected{% endif %}>Laboratorio
+                                </option>
+                                <option value="EQU" {% if 'EQU' == dados.action %}selected{% endif %}>Equipamento
+                                </option>
+                            </select>
                         </div>
+
+                        <div id="ser-demand" class="form-group col-md-4">
+
+                            <label for="inputState">Onde Demandar?</label>
+                            <select onchange="changeSelectAction(this.value);" class="form-control"
+                                    style="height: auto;">
+                                {% for foo in dados.ser %}
+                                    <option value="{{ foo.id }}"
+                                            {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div id="lab-demand" class="form-group col-md-4">
+                            <label for="inputState">Onde Demandar?</label>
+                            <select onchange="changeSelectAction(this.value);" class="form-control"
+                                    style="height: auto;">
+                                {% for foo in dados.lab %}
+                                    <option value="{{ foo.id }}"
+                                            {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div id="equ-demand" class="form-group col-md-4">
+                            <label for="inputState">Onde Demandar?</label>
+                            <select onchange="changeSelectAction(this.value);" class="form-control"
+                                    style="height: auto;">
+                                {% for foo in dados.equ %}
+                                    <option value="{{ foo.id }}"
+                                            {% if foo.id == dados.action_id %}selected{% endif %}>{{ foo.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                           <div class="form-group col-md-4">
+                            <label class="mg-10" for="file">Enviar imagens e arquivos</label>
+                            {{ form.file }}
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="section-field col-md-12">
                             <div class="textarea">
                                 {{ form.descricao }}
                                 {% if form.descricao.errors %}
                                     <ol>
-                                    {% for error in form.descricao.errors %}
-                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong></li>
-                                    {% endfor %}
+                                        {% for error in form.descricao.errors %}
+                                            <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong>
+                                            </li>
+                                        {% endfor %}
                                     </ol>
                                 {% endif %}
                             </div>
+                        </div>
+                    </div>
 
-                            <button type="submit" class="btn btn-success mt-30 mb-100"><span> Demandar </span> <i class="fa fa-paper-plane"></i></button>
+                    <button type="submit" class="btn btn-success mt-30 mb-100"><span> Demandar </span> <i
+                            class="fa fa-paper-plane"></i></button>
 
                 </form>
 
@@ -116,33 +143,34 @@
                 changeSelect(selected);
             });
         });
-        function changeSelect(selected){
-            switch (selected) {
-                    case 'SER':
-                        $("#ser-demand").show();
-                        $("#lab-demand").hide();
-                        $("#equ-demand").hide();
-                        $("#id_action_id").val($("#ser-demand option:selected").val());
-                        $("#id_action").val('SER');
-                        break;
-                    case 'LAB':
-                        $("#ser-demand").hide();
-                        $("#lab-demand").show();
-                        $("#equ-demand").hide();
-                        $("#id_action").val('LAB');
-                        $("#id_action_id").val($("#lab-demand option:selected").val());
 
-                        break;
-                    case 'EQU':
-                        $("#ser-demand").hide();
-                        $("#lab-demand").hide();
-                        $("#equ-demand").show();
-                        $("#id_action_id").val($("#equ-demand option:selected").val());
-                        $("#id_action").val('EQU');
-                        break;
-                }
+        function changeSelect(selected) {
+            switch (selected) {
+                case 'SER':
+                    $("#ser-demand").show();
+                    $("#lab-demand").hide();
+                    $("#equ-demand").hide();
+                    $("#id_action_id").val($("#ser-demand option:selected").val());
+                    $("#id_action").val('SER');
+                    break;
+                case 'LAB':
+                    $("#ser-demand").hide();
+                    $("#lab-demand").show();
+                    $("#equ-demand").hide();
+                    $("#id_action").val('LAB');
+                    $("#id_action_id").val($("#lab-demand option:selected").val());
+
+                    break;
+                case 'EQU':
+                    $("#ser-demand").hide();
+                    $("#lab-demand").hide();
+                    $("#equ-demand").show();
+                    $("#id_action_id").val($("#equ-demand option:selected").val());
+                    $("#id_action").val('EQU');
+                    break;
+            }
         }
-        
+
         function changeSelectAction(id) {
             $("#id_action_id").val(id);
         }

@@ -6,9 +6,12 @@ from demandai_administrador.models import Demand, Profile, Action, Service, Labo
 from .mail import send_mail_template
 
 class DemandForm(forms.ModelForm):
+    file = forms.FileField(widget=forms.ClearableFileInput(attrs={'class': 'form-control'}), required=False)
+    telefone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'opcional'}), required=False)
+
     class Meta:
         model = Demand
-        fields = ['nome', 'email', 'descricao', 'action', 'action_id', 'codigo']
+        fields = ['nome', 'email', 'descricao', 'action', 'action_id', 'codigo', 'file', 'telefone']
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Informe o seu nome'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'exemplo@exemplo.com'}),

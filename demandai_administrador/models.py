@@ -137,14 +137,21 @@ class Demand(SafeDeleteModel):
     action = models.CharField(max_length=3, choices=actions)
     action_id = models.IntegerField()
     nome = models.CharField(max_length=30)
-    # telefone = models.CharField(max_length=30)
+    telefone = models.CharField(max_length=16, null=True, blank=True)
     codigo = models.CharField(max_length=6)
     email = models.EmailField(max_length=40)
     descricao = models.TextField()
     # cpf = models.CharField(max_length=20)
     # data_nascimento = models.DateField()
     status = models.CharField(max_length=1, choices=status, default='S')
+    file = models.FileField(upload_to="images/demand_files", null=True, blank=True)
     visualizada = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     _safedelete_policy = SOFT_DELETE_CASCADE
+
+
+class files(SafeDeleteModel):
+    demand_id = models.ForeignKey(Demand, related_name='files', on_delete=models.PROTECT)
+    nome = models.CharField(max_length=60)
+    path = models.FileField(upload_to="images/demand_files")
