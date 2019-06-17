@@ -80,7 +80,7 @@ AUTH_USER_MODEL = 'demandai_administrador.Profile'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-#
+
 # DATABASES = {
 #     'default': {
 #         'NAME': 'demandai',
