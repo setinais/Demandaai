@@ -44,30 +44,6 @@ class Profile(AbstractUser, SafeDeleteModel):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-class Action(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE_CASCADE
-
-    nome = models.CharField(max_length=30)
-    descricao = models.CharField(max_length=30)
-    icon = models.CharField(max_length=30)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-
-
-class AccessControl(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE_CASCADE
-
-    action = models.ForeignKey(Action, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    create = models.BooleanField()
-    update = models.BooleanField()
-    delete = models.BooleanField()
-    select = models.BooleanField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-
 class Laboratory(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 

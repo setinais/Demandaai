@@ -9,8 +9,3 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Institution)
 class InstitutionAdmin(admin.ModelAdmin):
     list_display = ['nome']
-
-
-@admin.register(Action)
-class ActionAdmin(admin.ModelAdmin):
-    list_display = ['nome']

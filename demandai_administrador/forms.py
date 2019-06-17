@@ -20,6 +20,7 @@ def send_mail(request):
         'descricao': demanda.descricao,
         'action': demanda.nome,
         'domain': get_current_site(request),
+        'id_demanda': demanda.id
     }
     message = message % context
 

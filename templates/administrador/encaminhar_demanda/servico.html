@@ -2,11 +2,12 @@
 
 {% block title_em %}Serviços disponíveis{% endblock %}
 {% block lista %}
-<table class="table table-hover">
+<table id="table_id" data-order='[[ 0, "desc" ]]' class="table table-hover">
     <thead>
     <tr>
         <th>Nome</th>
         <th>Responsalvel</th>
+        <th>Disponibilidade</th>
         <th></th>
     </tr>
     </thead>
@@ -15,6 +16,9 @@
         <tr>
             <td>{{ action.nome }}</td>
             <td>{{ action.responsavel }}</td>
+            <td class="{% if not action.status %}text-success {% else %} text-danger {% endif %}">
+                <i class="{% if not action.status %}fa fa-2x fa-check {% else %} fa fa-2x fa-times {% endif %}"></i>
+            </td>
             <td>
                 <div class="dropdown">
                     <form method="get" action="{% url 'encaminhar-d-action' %}">
@@ -31,4 +35,29 @@
     {% endfor %}
     </tbody>
 </table>
+{% endblock %}
+{% block javascript %}
+    <script type="application/javascript">
+        $(document).ready( function () {
+            $('#table_id').DataTable({
+                    paging: false,
+                    scrollY: 500,
+                    ordering: true,
+                    oLanguage: {
+                        sLengthMenu: "Mostrar _MENU_ registros por página",
+                        sZeroRecords: "Nenhum registro encontrado",
+                        sInfo: "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+                        sInfoEmpty: "Mostrando 0 / 0 de 0 registros",
+                        sInfoFiltered: "(filtrado de _MAX_ registros)",
+                        sSearch: "Pesquisar: ",
+                        oPaginate: {
+                            "sFirst": "Início",
+                            "sPrevious": "Anterior",
+                            "sNext": "Próximo",
+                            "sLast": "Último"
+                        }
+                    },
+            });
+        });
+    </script>
 {% endblock %}

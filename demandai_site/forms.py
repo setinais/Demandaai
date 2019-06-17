@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 
-from demandai_administrador.models import Demand, Profile, Action, Service, Laboratory, Equipment
+from demandai_administrador.models import Demand, Profile, Service, Laboratory, Equipment
 
 from .mail import send_mail_template
 

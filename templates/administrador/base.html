@@ -34,6 +34,7 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}" type="text/css"/>
 
+    <link rel="stylesheet" type="text/css" href="{% static 'js/datatables/datatables.min.css' %}"/>
 </head>
 
 <body>
@@ -43,8 +44,8 @@
     <!--=================================
      preloader -->
 
-    <div id="pre-loader">
-        <img src="images/pre-loader/loader-04.svg" alt="">
+    <div id="pre-loader" style="background: black;">
+        <img src="{% static 'images/pre-loader/gif-demandai.gif' %}" alt="">
     </div>
 
     <!--=================================
@@ -112,7 +113,7 @@
                                 <!-- menu logo -->
                                 <ul class="menu-logo">
                                     <li>
-                                        <a href="{% url 'home' %}" ><strong>Area Administrativa</strong> </a>
+                                         <img src="{% static "images/demandai/demandai-logo1.png" %}" style="height: 100px;" alt="">
                                     </li>
                                 </ul>
                                 <!-- menu links -->
@@ -191,7 +192,8 @@
 
 <script src="{% static 'js/jquery.mask.min.js' %}"></script>
 
+<script type="text/javascript" src="{% static 'js/datatables/datatables.min.js' %}"></script>
 
-
+{% block javascript %}{% endblock %}
 </body>
 </html>

@@ -37,7 +37,11 @@
                                 <a href="{% url 'about_portifolio' action='ser' id=servico.id %}">
                                     <div class="feature-text left-icon mb-40">
                                         <div class="feature-icon">
-                                            <span class="{{ servico.icon }} theme-color" aria-hidden="true"></span>
+                                            {% if dados.icon != "" %}
+                                                <span class="{{ dados.icon }} theme-color" aria-hidden="true"></span>
+                                            {% else %}
+                                                <span class="{{ servico.icon }} theme-color" aria-hidden="true"></span>
+                                            {% endif %}
                                         </div>
 
                                         <div class="feature-info">

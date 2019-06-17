@@ -9,14 +9,16 @@
                 </div>
             </div>
         </div>
+    <form action="{% url 'search' %}" method="GET">
         <div class="row justify-content-center pb-20 xs-mt-20">
             <div class="col-md-5">
-                <input type="search" class="form-control" placeholder="Busque algo de seu interesse">
+                <input type="search" name="text" class="form-control" placeholder="Busque algo de seu interesse">
             </div>
             <div class="col-md-2">
-                <a class="button btn-block" href="#">Buscar</a>
+                <button class="button btn-block" type="submit">Buscar</button>
             </div>
         </div>
+    </form>
         <div class="isotope-filters">
             <button data-filter="" class="active">Todos</button>
             <button data-filter=".ser">Serviços</button>
