@@ -131,3 +131,17 @@ class files(SafeDeleteModel):
     demand_id = models.ForeignKey(Demand, related_name='files', on_delete=models.PROTECT)
     nome = models.CharField(max_length=60)
     path = models.FileField(upload_to="images/demand_files")
+
+class DemandCallback(SafeDeleteModel):
+    actions = (
+        ('SER', 'Serviço'),
+        ('LAB', 'Laboratorio'),
+        ('EQU', 'Equipamento'),
+    )
+
+    demand = models.ForeignKey(Demand, related_name='demand_callback', on_delete=models.PROTECT)
+    action = models.CharField(max_length=3, choices=actions)
+    action_id = models.IntegerField()
+    feedback = models.TextField()
+    prazo_feedback = models.DateTimeField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)

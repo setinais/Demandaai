@@ -1,0 +1,54 @@
+{% extends 'administrador/base.html' %}
+{% load static %}
+{% block content %}
+    <section id="blog" class="our-blog page-section-ptb">
+        <div class="container-fluid">
+            <div class="blog-comments mt-40 col-md-12 col-lg-12">
+                <div class="comments-1">
+
+                    <div class="comments-info col-md-12 col-lg-12">
+                        <div class="port-post-social float-right">
+                            <span> Solicitada em {{ dados.demanda.created_at }}</span>
+                        </div>
+                        <h4 class="theme-color">Demanda do Sr(a) {{ dados.demanda.nome }} </h4>
+                        <p><strong>Email para contato:</strong> {{ dados.demanda.email }}</p>
+                        <p><strong>Telefone:</strong> {% if dados.demanda.telefone != "" %} {{ dados.demanda.telefone }} {% else %} Numero não registrado!{% endif %}</p>
+                        <p><strong>Descrição:</strong> {{ dados.demanda.descricao }}</p>
+                        <p><strong>Status: </strong><span class="badge badge-pill badge-info">{{ dados.demanda.status.titulo }}</span></p>
+                        <p><strong>Tempo de solicitação: </strong><span class="badge badge-pill badge-warning">{{ dados.demanda.tempo_solicitacao }} dias atrás</span></p>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                {#                    <h3 class="mb-30">Table hover </h3>#}
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Setor</th>
+                                        <th>Responsável</th>
+                                        <th>FeedBack</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for demandcallback in dados.demanda.demand_callbak %}
+                                        <tr>
+                                            <td>{{ demandcallback.created_at|date:"d/m/Y H:i" }}</td>
+                                            <td>{{ demandcallback.action.nome }}</td>
+                                            <td>{{ demandcallback.action.responsavel.nome }}</td>
+                                            <td>{{ demandcallback.feedback }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="port-post-social float-right">
+                            <span>Atualizado {{ dados.time_now }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascript %}
+{% endblock %}

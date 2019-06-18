@@ -7,4 +7,5 @@ urlpatterns = [
     path('prospeccao/encaminhar-demanda/<str:action>/<int:id>', views.encaminhar_demanda, name='encaminhar-demanda'),
     path('prospeccao/eda', views.encaminhar_demanda_acao, name='encaminhar-d-action'),
     path('prospeccao/rejeitar-demanda', views.rejeitar_demanda, name='rejeitar-demanda'),
+    path('prospeccao/detalhes-demanda/<int:id>', views.detalhes_demanda, name='detalhes-demanda'),
 ]

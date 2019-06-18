@@ -5,6 +5,7 @@ from django.views.decorators.http import require_http_methods
 import _thread
 from demandai_administrador.models import Demand, Service, Laboratory, Equipment
 from .forms import *
+from datetime import datetime, timedelta
 
 @login_required
 def home(request):
@@ -96,16 +97,25 @@ def encaminhar_demanda(request, action, id):
 @require_http_methods(["GET"])
 def encaminhar_demanda_acao(request):
     try:
+        action = {}
+        if request.GET['action'] == 'SER':
+            action = Service.objects.get(id=request.GET['id'])
+        elif request.GET['action'] == 'LAB':
+            action = Laboratory.objects.get(id=request.GET['id'])
+        elif request.GET['action'] == 'EQU':
+            action = Equipment.objects.get(id=request.GET['id'])
+        else:
+            return render(request, 'site/error.html')
         demanda = Demand.objects.get(id=request.GET['id_demanda'])
-        demanda.action_id = request.GET['id']
-        demanda.action = request.GET['action']
         demanda.visualizada = 0
         demanda.status = 'E'
         demanda.save()
+        demanda.demand_callback.create(action=request.GET['action'], action_id=request.GET['id'], feedback='Demanda encaminhada para "'+ action.nome+'", ficando em análise!', prazo_feedback=(datetime.today() + timedelta(days=2)))
+
         _thread.start_new_thread(send_mail, (request,))
         return redirect('prospeccao')
     except Exception:
-        return redirect('prospeccao')
+        return render(request, 'site/error.html')
 
 @login_required
 @require_http_methods(["GET"])
@@ -118,3 +128,54 @@ def rejeitar_demanda(request):
         return redirect('prospeccao')
     except Exception:
         return render(request, 'site/error.html')
+
+@login_required
+@require_http_methods(['GET'])
+def detalhes_demanda(request, id):
+    demanda = Demand.objects.get(id=id)
+    demand_callback = []
+    for callbacks in demanda.demand_callback.order_by('-created_at'):
+        action = {}
+        if callbacks.action == 'SER':
+            action = Service.objects.get(id=callbacks.action_id)
+        elif callbacks.action == 'LAB':
+            action = Laboratory.objects.get(id=callbacks.action_id)
+        elif callbacks.action == 'EQU':
+            action = Equipment.objects.get(id=callbacks.action_id)
+        demand_callback_dados = {
+            'feedback': callbacks.feedback,
+            'created_at': callbacks.created_at,
+            'action': {
+                'id': action.id,
+                'nome': action.nome,
+                'responsavel': {
+                    'nome': action.profile.username,
+                    'id': action.profile.id,
+                },
+            },
+            'id': callbacks.id
+        }
+        demand_callback.append(demand_callback_dados)
+    dados = {
+        'demanda': {
+            'id': demanda.id,
+            'action': demanda.action,
+            'action_name': demanda.get_action_display(),
+            'action_select': '',
+            'nome': demanda.nome,
+            'email': demanda.email,
+            'telefone': demanda.telefone,
+            'descricao': demanda.descricao,
+            'status': {
+                'titulo': demanda.get_status_display(),
+                'badge': badge_select(demanda.status)
+            },
+            'visualizada': demanda.visualizada,
+            'created_at': demanda.created_at,
+            'updated_at': demanda.updated_at,
+            'demand_callbak': demand_callback,
+            'tempo_solicitacao': abs((datetime.today() - demanda.created_at).days)
+        },
+        'time_now': datetime.now()
+    }
+    return render(request, 'administrador/demanda_detalhes.html', {'dados': dados})
