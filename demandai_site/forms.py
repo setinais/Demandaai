@@ -23,7 +23,6 @@ class DemandForm(forms.ModelForm):
 
     def send_mail(self, request):
         current_site = get_current_site(request)
-        print(current_site.domain)
         subject = 'Contato'
         message = 'Serviço'
         action = {}

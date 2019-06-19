@@ -1,15 +1,27 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 import _thread
-from demandai_administrador.models import Demand, Service, Laboratory, Equipment
+from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile
 from .forms import *
 from datetime import datetime, timedelta
+import os
+from django.conf import settings
 
 @login_required
 def home(request):
-    return render(request, 'administrador/home.html', {'user': request.user.is_authenticated})
+    try:
+        dados = {
+            'servicos': Service.objects.count(),
+            'laboratorios': Laboratory.objects.count(),
+            'equipamentos': Equipment.objects.count(),
+            'profissionais': Profile.objects.filter(role='SE').count(),
+        }
+        return render(request, 'administrador/home.html', {'dados': dados})
+    except Exception:
+        return render(request, 'site/error.html')
+
 
 @login_required
 def prospeccao(request):
@@ -161,9 +173,10 @@ def detalhes_demanda(request, id):
             'id': demanda.id,
             'action': demanda.action,
             'action_name': demanda.get_action_display(),
-            'action_select': '',
+            'action_select': demanda.action_id,
             'nome': demanda.nome,
             'email': demanda.email,
+            'file': demanda.file,
             'telefone': demanda.telefone,
             'descricao': demanda.descricao,
             'status': {
@@ -176,6 +189,26 @@ def detalhes_demanda(request, id):
             'demand_callbak': demand_callback,
             'tempo_solicitacao': abs((datetime.today() - demanda.created_at).days)
         },
-        'time_now': datetime.now()
+        'time_now': datetime.now(),
     }
     return render(request, 'administrador/demanda_detalhes.html', {'dados': dados})
+
+@login_required
+@require_http_methods(['GET'])
+def download_arquivos(request):
+    file_path = os.path.join(settings.MEDIA_ROOT, request.GET['path'])
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
+@login_required
+@require_http_methods(['POST'])
+def responder_solicitante(request):
+    _thread.start_new_thread(send_mail_responder_solicitante, (request,))
+    demanda = Demand.objects.get(id=request.POST['id'])
+    demanda.demand_callback.create(action=demanda.action, action_id=demanda.action_id, feedback=request.POST['texto'],
+                                   prazo_feedback=(datetime.today() + timedelta(days=2)))
+    return redirect('prospeccao')

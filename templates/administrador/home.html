@@ -1,4 +1,40 @@
 {% extends 'administrador/base.html' %}
 {% block title %}Acesso Administrativo{% endblock %}
 
-{% block content %} {{ user }} {% endblock %}
+{% block content %}
+    <section class="page-section-ptb parallax">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 sm-mb-30">
+                <div class="counter">
+                    <span class="icon ti-face-smile theme-color" aria-hidden="true"></span>
+                    <span class="timer" data-to="{{ dados.servicos }}" data-speed="2000">{{ dados.servicos }}</span>
+                    <label>Serviços</label>
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-sm-6 sm-mb-30">
+                <div class="counter">
+                    <span class="icon ti-desktop theme-color" aria-hidden="true"></span>
+                    <span class="timer" data-to="{{ dados.laboratorios }}" data-speed="3000">{{ dados.laboratorios }}</span>
+                    <label>Laboratorios</label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 xx-mb-30">
+                <div class="counter">
+                    <span class="icon ti-check-box theme-color" aria-hidden="true"></span>
+                    <span class="timer" data-to="{{ dados.equipamentos }}" data-speed="4000">{{ dados.equipamentos }}</span>
+                    <label>Equipamentos</label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="counter">
+                    <span class="icon ti-user theme-color" aria-hidden="true"></span>
+                    <span class="timer" data-to="{{ dados.profissionais }}" data-speed="5000">{{ dados.profissionais }}</span>
+                    <label>Profissionais Capacitados</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

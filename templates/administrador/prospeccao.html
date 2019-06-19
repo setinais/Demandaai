@@ -44,7 +44,7 @@
                                   <div class="dropdown-menu font-dropdown-acoes" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item text-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action='SER' id=demanda.id %}">Encaminhar para <i class="fa fa-angle-right"></i></a>
                                     <a class="dropdown-item" style="font-size: 0.800rem;" href="{% url 'detalhes-demanda' id=demanda.id %}">Detalhes</a>
-                                    <a class="dropdown-item" style="font-size: 0.800rem;" href="#">Responder Solicitante</a>
+                                      <button type="button" onclick="setIdDemanda({{ demanda.id }})" style="font-size: 0.800rem;cursor: pointer;" class="dropdown-item " data-toggle="modal" data-target="#exampleModal" >Responder Solicitante</button>
                                     <a class="dropdown-item text-danger" style="font-size: 0.800rem;" href="{% url 'rejeitar-demanda' %}?id={{ demanda.id }}">Rejeitar <i class="fa fa-times"></i></a>
                                   </div>
                                 </div>
@@ -57,6 +57,33 @@
             </div>
         </div>
     </section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Responder demanda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form method="post" action="{% url 'responder_solicitante' %}">
+      <div class="modal-body">
+          {% csrf_token %}
+            <input type="hidden" name="id" id="action_id"/>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Mensagem:</label>
+            <textarea class="form-control" name="texto" ></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-success">Enviar messagem</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block javascript %}
     <script type="application/javascript">
@@ -81,5 +108,8 @@
                 },
             });
         });
+        function setIdDemanda(id){
+            $('#action_id').val(id);
+        }
     </script>
 {% endblock %}

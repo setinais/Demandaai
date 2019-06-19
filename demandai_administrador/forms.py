@@ -25,3 +25,16 @@ def send_mail(request):
     message = message % context
 
     send_mail_template(subject, 'administrador/email_prospeccao.html', context, [action.profile.email])
+
+def send_mail_responder_solicitante(request):
+    subject = 'Demanda'
+    message = 'Serviço'
+    demanda = Demand.objects.get(id=request.POST['id'])
+    context = {
+        'nome': demanda.nome,
+        'domain': get_current_site(request),
+        'texto': request.POST['texto']
+    }
+    message = message % context
+
+    send_mail_template(subject, 'administrador/email_responder_solicitante.html', context, [demanda.email])
