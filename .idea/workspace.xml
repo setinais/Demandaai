@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3119d7ae-45cf-47ec-8671-4889fbfc1601" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demandai_administrador/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demandai_administrador/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projeto_demandai/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/projeto_demandai/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/demanda_detalhes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/demanda_detalhes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/encaminhar_demanda/equipamento.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/encaminhar_demanda/equipamento.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/encaminhar_demanda/laboratorio.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/encaminhar_demanda/laboratorio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/encaminhar_demanda/servico.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/encaminhar_demanda/servico.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/prospeccao.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/prospeccao.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/site/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/site/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/site/services.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/site/services.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +45,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demandai_administrador/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="866">
@@ -66,41 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/administrador/demanda_detalhes.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/site/services.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="18" column="193" selection-start-line="18" selection-start-column="193" selection-end-line="18" selection-end-column="193" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/site/about_portifolio.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="20" selection-start-line="6" selection-start-column="3" selection-end-line="8" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demandai_site/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/administrador/prospeccao.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="44" column="160" selection-start-line="44" selection-start-column="160" selection-end-line="44" selection-end-column="160" />
+            <state relative-caret-position="187">
+              <caret line="11" column="113" selection-start-line="11" selection-start-column="113" selection-end-line="11" selection-end-column="113" />
             </state>
           </provider>
         </entry>
@@ -176,7 +137,6 @@
         <option value="$PROJECT_DIR$/templates/site/counter.html" />
         <option value="$PROJECT_DIR$/templates/site/error.html" />
         <option value="$PROJECT_DIR$/templates/site/progress.html" />
-        <option value="$PROJECT_DIR$/templates/site/services.html" />
         <option value="$PROJECT_DIR$/templates/site/portfolio.html" />
         <option value="$PROJECT_DIR$/demandai_site/views.py" />
         <option value="$PROJECT_DIR$/demandai_administrador/admin.py" />
@@ -200,6 +160,7 @@
         <option value="$PROJECT_DIR$/templates/administrador/demanda_detalhes.html" />
         <option value="$PROJECT_DIR$/projeto_demandai/settings.py" />
         <option value="$PROJECT_DIR$/demandai_administrador/views.py" />
+        <option value="$PROJECT_DIR$/templates/site/services.html" />
       </list>
     </option>
   </component>
@@ -246,6 +207,13 @@
             <path>
               <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="demand_files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
               <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -258,6 +226,12 @@
               <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="administrador" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="site" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -371,7 +345,7 @@
       <workItem from="1560546654254" duration="646000" />
       <workItem from="1560618048779" duration="4396000" />
       <workItem from="1560640639876" duration="665000" />
-      <workItem from="1560971725434" duration="919000" />
+      <workItem from="1560971725434" duration="1010000" />
     </task>
     <task id="LOCAL-00001" summary="Implementação de envio de email concluido">
       <created>1558718870706</created>
@@ -398,13 +372,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161118000" />
+    <option name="totallyTimeSpent" value="161209000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-484" width="1096" height="1896" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24710424" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24710424" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -418,7 +392,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32843137" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3295519" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32898468" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32898468" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32785025" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.25326797" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -509,13 +483,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/demandai_site/static/images/portfolio/small/01.jpg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/site/services.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="62" selection-start-line="39" selection-start-column="62" selection-end-line="39" selection-end-column="62" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/site/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -784,6 +751,13 @@
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/site/services.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="113" selection-start-line="11" selection-start-column="113" selection-end-line="11" selection-end-column="113" />
         </state>
       </provider>
     </entry>
