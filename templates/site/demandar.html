@@ -13,7 +13,7 @@
                         demanda, foi lhe enviado um e-mail com todas informações. Obrigado!
                     </div>
                 {% endif %}
-                <form action="{% url 'demandar' %}" method="post">
+                <form action="{% url 'demandar' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.action }}
                     {{ form.action_id }}
@@ -95,6 +95,14 @@
                            <div class="form-group col-md-4">
                             <label class="mg-10" for="file">Enviar imagens e arquivos</label>
                             {{ form.file }}
+                            {% if form.file.errors %}
+                                <ul style="list-style-type:none">
+                                    {% for error in form.file.errors %}
+                                        <li class="text-danger text-errors-form"><strong>{{ error|escape }}</strong>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                         </div>
 
                     </div>

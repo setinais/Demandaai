@@ -20,6 +20,7 @@ class DemandForm(forms.ModelForm):
             'action_id': forms.TextInput(attrs={'class': 'form-control', 'type': 'hidden'})
         }
 
+
     def send_mail(self, request):
         current_site = get_current_site(request)
         print(current_site.domain)

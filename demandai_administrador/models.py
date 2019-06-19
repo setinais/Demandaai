@@ -1,10 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from safedelete.models import SafeDeleteModel
 from safedelete.models import SOFT_DELETE_CASCADE
 
 # Create your models here.
+from demandai_site.validators import validate_file_size
+
+
 class Institution(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
@@ -120,17 +124,11 @@ class Demand(SafeDeleteModel):
     # cpf = models.CharField(max_length=20)
     # data_nascimento = models.DateField()
     status = models.CharField(max_length=1, choices=status, default='S')
-    file = models.FileField(upload_to="images/demand_files", null=True, blank=True)
+    file = models.FileField(upload_to="images/demand_files", null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['zip']), validate_file_size])
     visualizada = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     _safedelete_policy = SOFT_DELETE_CASCADE
-
-
-class files(SafeDeleteModel):
-    demand_id = models.ForeignKey(Demand, related_name='files', on_delete=models.PROTECT)
-    nome = models.CharField(max_length=60)
-    path = models.FileField(upload_to="images/demand_files")
 
 class DemandCallback(SafeDeleteModel):
     actions = (

@@ -140,28 +140,28 @@ def demandarSelected(request, action, id):
     except Exception:
         return render(request, 'site/error.html')
 
+
 def demandar(request):
-    try:
-        dados = {
-            'ser': Service.objects.all(),
-            'lab': Laboratory.objects.all(),
-            'equ': Equipment.objects.all(),
-        }
-        if request.method == 'GET':
+    dados = {
+        'ser': Service.objects.all(),
+        'lab': Laboratory.objects.all(),
+        'equ': Equipment.objects.all(),
+    }
+    if request.method == 'GET':
+        form = DemandForm()
+        return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
+    else:
+        post = request.POST.copy()
+        post['codigo'] = binascii.hexlify(os.urandom(3)).decode().upper()
+        print(request.FILES)
+        form = DemandForm(post, request.FILES)
+        if form.is_valid():
+            form.save()
+            _thread.start_new_thread(form.send_mail, (request,))
             form = DemandForm()
-            return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
-        else:
-            post = request.POST.copy()
-            post['codigo'] = binascii.hexlify(os.urandom(3)).decode().upper()
-            form = DemandForm(post)
-            if form.is_valid():
-                form.save()
-                _thread.start_new_thread(form.send_mail, (request,))
-                form = DemandForm()
-                return render(request, 'site/demandar.html', {'dados': dados, 'form': form, 'message': post['codigo']})
-            return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
-    except Exception:
-        return render(request, 'site/error.html')
+            return render(request, 'site/demandar.html', {'dados': dados, 'form': form, 'message': post['codigo']})
+        return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
+
 
 @require_http_methods(["GET"])
 def demandDetail(request):
