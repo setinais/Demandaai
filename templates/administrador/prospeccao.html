@@ -42,7 +42,7 @@
                                     Ações
                                   </button>
                                   <div class="dropdown-menu font-dropdown-acoes" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item text-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action='SER' id=demanda.id %}">Encaminhar para <i class="fa fa-angle-right"></i></a>
+                                    <a class="dropdown-item text-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action=demanda.action_sel id=demanda.id %}">Encaminhar para <i class="fa fa-angle-right"></i></a>
                                     <a class="dropdown-item" style="font-size: 0.800rem;" href="{% url 'detalhes-demanda' id=demanda.id %}">Detalhes</a>
                                       <button type="button" onclick="setIdDemanda({{ demanda.id }})" style="font-size: 0.800rem;cursor: pointer;" class="dropdown-item " data-toggle="modal" data-target="#exampleModal" >Responder Solicitante</button>
                                     <a class="dropdown-item text-danger" style="font-size: 0.800rem;" href="{% url 'rejeitar-demanda' %}?id={{ demanda.id }}">Rejeitar <i class="fa fa-times"></i></a>

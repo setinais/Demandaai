@@ -124,7 +124,7 @@ class Demand(SafeDeleteModel):
     # cpf = models.CharField(max_length=20)
     # data_nascimento = models.DateField()
     status = models.CharField(max_length=1, choices=status, default='S')
-    file = models.FileField(upload_to="images/demand_files", null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['zip']), validate_file_size])
+    file = models.FileField(upload_to="images/demand_files", null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['zip', 'rar']), validate_file_size])
     visualizada = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

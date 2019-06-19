@@ -16,7 +16,7 @@
                         <p><strong>Descrição:</strong> {{ dados.demanda.descricao }}</p>
                         <p><strong>Status: </strong><span class="badge badge-pill badge-info">{{ dados.demanda.status.titulo }}</span></p>
                         <p><strong>Tempo de solicitação: </strong><span class="badge badge-pill badge-warning">{{ dados.demanda.tempo_solicitacao }} dias atrás</span></p>
-                        <p><strong>Documentos em anexo: </strong> <a href="{% url 'download_arquivos' %}?path={{ dados.demanda.file }}" target="_blank"><i class="fa fa-download"></i> clique aqui para baixar <i class="fa fa-download"></i></a></p>
+                        <p><strong>Documentos em anexo: </strong> <a href="{% url 'download_arquivos' %}?path={{ dados.demanda.id }}" target="_blank"><i class="fa fa-download"></i> clique aqui para baixar <i class="fa fa-download"></i></a></p>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 {#                    <h3 class="mb-30">Table hover </h3>#}

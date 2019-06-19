@@ -35,13 +35,14 @@
     {% endfor %}
     </tbody>
 </table>
+    <a href="{% url 'prospeccao' %}" class="btn btn-danger">Voltar</a>
 {% endblock %}
 {% block javascript %}
     <script type="application/javascript">
         $(document).ready( function () {
             $('#table_id').DataTable({
                     paging: false,
-                    scrollY: 500,
+                    scrollY: 300,
                     ordering: true,
                     oLanguage: {
                         sLengthMenu: "Mostrar _MENU_ registros por página",

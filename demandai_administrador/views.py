@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 import _thread
 from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile
@@ -46,6 +46,7 @@ def prospeccao(request):
                 'created_at': demandas[i].created_at,
                 'visualizada': demandas[i].visualizada,
                 'badge': badge_select(demandas[i].status),
+                'action_sel': demandas[i].action,
                 'action': {
                     'nome': action.nome,
                     'profile': {
@@ -74,7 +75,7 @@ def badge_select(val):
 
 @login_required
 def encaminhar_demanda(request, action, id):
-    try:
+    # try:
         template = ''
         actions = []
         if action == 'SER':
@@ -102,8 +103,8 @@ def encaminhar_demanda(request, action, id):
             dados.append(prepare)
             i += 1
         return render(request, template, {'dados': dados, 'id_demanda': id})
-    except Exception:
-        return render(request, 'site/error.html')
+    # except Exception:
+    #     return render(request, 'site/error.html')
 
 @login_required
 @require_http_methods(["GET"])
@@ -196,10 +197,11 @@ def detalhes_demanda(request, id):
 @login_required
 @require_http_methods(['GET'])
 def download_arquivos(request):
-    file_path = os.path.join(settings.MEDIA_ROOT, request.GET['path'])
+    demanda = Demand.objects.get(id=request.GET['path'])
+    file_path = os.path.join(settings.MEDIA_ROOT, demanda.file.name)
     if os.path.exists(file_path):
-        with open(file_path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+        with open(file_path, 'wb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/x-rar-compressed")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     raise Http404

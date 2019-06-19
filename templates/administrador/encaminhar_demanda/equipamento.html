@@ -1,45 +1,47 @@
 {% extends 'administrador/encaminhar_demanda' %}
-{% block title_em %}{% endblock %}
+{% block title_em %}Serviços disponíveis{% endblock %}
 {% block lista %}
-    <table id="table_id" class="table table-hover">
-        <thead>
+    <table id="table_id" data-order='[[ 0, "desc" ]]' class="table table-hover">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Responsalvel</th>
+        <th>Disponibilidade</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for action in dados %}
         <tr>
-            <th>Solicitada</th>
-            <th>Setor</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for demanda in dados %}
-            <tr>
-                <td>{{ demanda.created_at|date:"d/m/Y" }}</td>
-                <td>{{ demanda.action.nome }}</td>
-                <td>{{ demanda.action.profile.nome }}</td>
-                <td class="{% if demanda.visualizada %}text-success {% else %} text-danger {% endif %}"><i class="{% if demanda.visualizada %}fa fa-2x fa-check {% else %} fa fa-2x fa-times {% endif %}"></i></td>
-                <td><span class="badge badge-{{ demanda.badge }} badge-pill">{{ demanda.status }}</span></td>
-                <td>
-                    <div class="dropdown">
-                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Ações
+            <td>{{ action.nome }}</td>
+            <td>{{ action.responsavel }}</td>
+            <td class="{% if not action.status %}text-success {% else %} text-danger {% endif %}">
+                <i class="{% if not action.status %}fa fa-2x fa-check {% else %} fa fa-2x fa-times {% endif %}"></i>
+            </td>
+            <td>
+                <div class="dropdown">
+                    <form method="get" action="{% url 'encaminhar-d-action' %}">
+                        <input type="hidden" name="action" value="{{ action.action }}"/>
+                        <input type="hidden" name="id" value="{{ action.id }}"/>
+                        <input type="hidden" name="id_demanda" value="{{ id_demanda }}"/>
+                        <button class="btn btn-info btn-sm" type="submit">
+                            Encaminhar <i class="fa fa-send"></i>
                         </button>
-                        <div class="dropdown-menu font-dropdown-acoes" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item text-info " style="font-size: 0.800rem;" href="#">Encaminhar para <i class="fa fa-angle-right"></i></a>
-                            <a class="dropdown-item" style="font-size: 0.800rem;" href="#">Responde Solicitante</a>
-                            <a class="dropdown-item text-danger" style="font-size: 0.800rem;" href="#">Cancelar <i class="fa fa-times"></i></a>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    <a href="{% url 'prospeccao' %}" class="btn btn-danger">Voltar</a>
 {% endblock %}
 {% block javascript %}
     <script type="application/javascript">
         $(document).ready( function () {
             $('#table_id').DataTable({
                 paging: false,
-                scrollY: 500,
+                scrollY: 300,
                 oLanguage: {
                     sLengthMenu: "Mostrar _MENU_ registros por página",
                     sZeroRecords: "Nenhum registro encontrado",
