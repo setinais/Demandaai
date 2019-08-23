@@ -2,33 +2,33 @@
 
 {% load static %}
 <header id="header" class="header default">
-  <div class="menu" id="onepagenav">
-  <!-- menu start -->
-   <nav id="menu" class="mega-menu">
-    <!-- menu list items container -->
-    <section class="menu-list-items">
-     <div class="container">
-      <div class="row">
-       <div class="col-lg-12 col-md-12">
-        <!-- menu logo -->
-        <ul class="menu-logo">
-            <li>
-                  <a>
-                      <img id="logo_img"  class="img-fluid" src="{% static "images/demandai/demandai-logo4.png" %}" alt="">
-                  </a>
-            </li>
-        </ul>
-        <!-- menu links -->
-        <div class="menu-bar">
-         <ul class="menu-links">
-            <li class="active"><a href="#homesection">Inicio</a></li>
-            <li><a href="#about-us">Sobre</a></li>
-            <li><a href="#services">Serviços</a></li>
-            <li><a href="#portfolio">Portfólio</a></li>
-            <li><a href="#contact-us">Contato</a></li>
-            <li><a style="cursor:pointer;" data-toggle="modal" data-target="#consultarDemanda">Consultar Demanda</a></li>
-             {% if user %}
-                <li><div id="home-adm" class="text-success" style="margin: 0;
+    <div class="menu" id="onepagenav">
+        <!-- menu start -->
+        <nav id="menu" class="mega-menu">
+            <!-- menu list items container -->
+            <section class="menu-list-items">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <!-- menu logo -->
+                            <ul class="menu-logo">
+                                <li>
+                                    <a>
+                                        <img id="logo_img"  class="img-fluid" src="{% static "images/demandai/demandai-logo4.png" %}" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- menu links -->
+                            <div class="menu-bar">
+                                <ul class="menu-links">
+                                    <li class="active"><a href="#homesection">Inicio</a></li>
+                                    <li><a href="#about-us">Sobre</a></li>
+                                    <li><a href="#services">Serviços</a></li>
+                                    <li><a href="#portfolio">Portfólio</a></li>
+                                    <li><a href="#contact-us">Contato</a></li>
+                                    <li><a style="cursor:pointer;" data-toggle="modal" data-target="#consultarDemanda">Consultar Demanda</a></li>
+                                    {% if user %}
+                                        <li><div id="home-adm" class="text-success" style="margin: 0;
                                         padding: 0 13px;
                                         display: inline-block;
                                         float: none;
@@ -40,18 +40,18 @@
                                         padding: 10px;
                                         cursor:pointer;
                 ">Administrativo</div></li>
-             {% else %}
-                 <li><a style="cursor:pointer;" data-toggle="modal" data-target="#loginModal">Login</a></li>
-             {% endif %}
-          </ul>
-        </div>
-       </div>
-      </div>
-     </div>
-    </section>
-   </nav>
-  <!-- menu end -->
- </div>
+                                    {% else %}
+                                        <li><a style="cursor:pointer;" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </nav>
+        <!-- menu end -->
+    </div>
 </header>
 
 

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3119d7ae-45cf-47ec-8671-4889fbfc1601" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/site/services.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/site/services.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrador/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrador/prospeccao.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/prospeccao.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/site/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/site/header.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,22 +49,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demandai_administrador/views.py">
+        <entry file="file://$PROJECT_DIR$/templates/administrador/prospeccao.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="866">
-              <caret line="203" column="25" selection-start-line="203" selection-start-column="25" selection-end-line="203" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#57#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="663">
+              <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/site/services.html">
+        <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="113" selection-start-line="11" selection-start-column="113" selection-end-line="11" selection-end-column="113" />
+            <state relative-caret-position="916">
+              <caret line="151" column="69" selection-start-line="151" selection-start-column="69" selection-end-line="151" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -144,14 +144,11 @@
         <option value="$PROJECT_DIR$/demandai_site/forms.py" />
         <option value="$PROJECT_DIR$/templates/site/footer.html" />
         <option value="$PROJECT_DIR$/templates/site/banner.html" />
-        <option value="$PROJECT_DIR$/templates/site/header.html" />
         <option value="$PROJECT_DIR$/templates/site/base.html" />
-        <option value="$PROJECT_DIR$/templates/administrador/base.html" />
         <option value="$PROJECT_DIR$/templates/administrador/home.html" />
         <option value="$PROJECT_DIR$/demandai_administrador/urls.py" />
         <option value="$PROJECT_DIR$/templates/administrador/email_responder_solicitante.html" />
         <option value="$PROJECT_DIR$/demandai_administrador/forms.py" />
-        <option value="$PROJECT_DIR$/templates/administrador/prospeccao.html" />
         <option value="$PROJECT_DIR$/templates/administrador/encaminhar_demanda/equipamento.html" />
         <option value="$PROJECT_DIR$/templates/administrador/encaminhar_demanda/laboratorio.html" />
         <option value="$PROJECT_DIR$/templates/administrador/encaminhar_demanda/servico.html" />
@@ -161,14 +158,17 @@
         <option value="$PROJECT_DIR$/projeto_demandai/settings.py" />
         <option value="$PROJECT_DIR$/demandai_administrador/views.py" />
         <option value="$PROJECT_DIR$/templates/site/services.html" />
+        <option value="$PROJECT_DIR$/templates/site/header.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/prospeccao.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/base.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1812" />
-    <option name="y" value="-496" />
+    <option name="x" value="1761" />
+    <option name="y" value="-487" />
     <option name="width" value="1294" />
-    <option name="height" value="1047" />
+    <option name="height" value="579" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -191,29 +191,6 @@
             <path>
               <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
-              <item name="demandai_site" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-              <item name="demand_files" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
               <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -226,12 +203,6 @@
               <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="administrador" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="site" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -250,17 +221,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\suporte\Documents\projeto_demandai\demandai_site\static\js" />
-      <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\images\demandai" />
-      <recent name="$PROJECT_DIR$/demandai_site/static/css" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_site\static\images\demandai" />
       <recent name="C:\Users\suporte\Documents\projeto_demandai\demandai_site\static\images\portfolio\small" />
       <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_administrador" />
       <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\plugins\fontawesome" />
       <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\fonts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\suporte\Documents\projeto_demandai\demandai_site\static\js" />
+      <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\images\demandai" />
+      <recent name="$PROJECT_DIR$/demandai_site/static/css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -345,7 +316,12 @@
       <workItem from="1560546654254" duration="646000" />
       <workItem from="1560618048779" duration="4396000" />
       <workItem from="1560640639876" duration="665000" />
-      <workItem from="1560971725434" duration="1010000" />
+      <workItem from="1560971725434" duration="3404000" />
+      <workItem from="1565112648411" duration="352000" />
+      <workItem from="1565284538967" duration="4135000" />
+      <workItem from="1565890869969" duration="7569000" />
+      <workItem from="1565976266705" duration="3816000" />
+      <workItem from="1566582585616" duration="646000" />
     </task>
     <task id="LOCAL-00001" summary="Implementação de envio de email concluido">
       <created>1558718870706</created>
@@ -372,13 +348,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161209000" />
+    <option name="totallyTimeSpent" value="180121000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-484" width="1096" height="1896" extended-state="6" />
-    <editor active="true" />
+    <frame x="1912" y="-475" width="1096" height="1896" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24710424" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25675675" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -392,7 +367,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32843137" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3295519" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32898468" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32898468" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32785025" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.25326797" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -403,7 +378,7 @@
       <window_info anchor="right" id="Nativescript Palette" order="5" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28474903" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25675675" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -417,7 +392,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32843137" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3295519" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32932165" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32898468" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32785025" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.25326797" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -437,24 +412,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Correção problema no site" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://986fdd67-df65-4704-92ca-50758f507d08/schema/main/table/demandai_administrador_institution">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://986fdd67-df65-4704-92ca-50758f507d08/schema/main/table/django_content_type">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/986fdd67-df65-4704-92ca-50758f507d08/console.sql" />
     <entry file="file://$PROJECT_DIR$/templates/site/about.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -521,13 +478,6 @@
     <entry file="file://$PROJECT_DIR$/projeto_demandai/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/projeto_demandai/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/site/email_demanda.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="721">
@@ -582,45 +532,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/site/banner.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="76" selection-start-line="8" selection-start-column="76" selection-end-line="8" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/site/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="16" column="106" selection-start-line="16" selection-start-column="106" selection-end-line="16" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/site/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="49" column="60" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/site/counter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="10" lean-forward="true" selection-start-line="2" selection-end-line="36" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -638,13 +553,6 @@
           <folding>
             <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demandai_administrador/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -689,13 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demandai_administrador/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="127" column="52" lean-forward="true" selection-start-line="127" selection-start-column="52" selection-end-line="127" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/site/about_portifolio.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -723,13 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/prospeccao.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="160" selection-start-line="44" selection-start-column="160" selection-end-line="44" selection-end-column="160" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/administrador/demanda_detalhes.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -737,20 +631,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/site/banner.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="76" selection-start-line="8" selection-start-column="76" selection-end-line="8" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/site/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="74" column="37" lean-forward="true" selection-end-line="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="663">
+            <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/projeto_demandai/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/projeto_demandai/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
+        <state relative-caret-position="714">
           <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demandai_administrador/views.py">
+    <entry file="file://$PROJECT_DIR$/demandai_administrador/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="866">
-          <caret line="203" column="25" selection-start-line="203" selection-start-column="25" selection-end-line="203" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1666">
+          <caret line="127" column="52" lean-forward="true" selection-start-line="127" selection-start-column="52" selection-end-line="127" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -758,6 +680,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="113" selection-start-line="11" selection-start-column="113" selection-end-line="11" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demandai_administrador/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3451">
+          <caret line="203" column="25" selection-start-line="203" selection-start-column="25" selection-end-line="203" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demandai_administrador/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="15" lean-forward="true" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/site/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="55" selection-start-line="3" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/websterhtml-40/main-files/Template/header-vertical-left.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="71" column="32" selection-start-line="58" selection-end-line="71" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/prospeccao.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="916">
+          <caret line="151" column="69" selection-start-line="151" selection-start-column="69" selection-end-line="151" selection-end-column="69" />
         </state>
       </provider>
     </entry>

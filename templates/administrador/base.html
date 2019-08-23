@@ -35,6 +35,67 @@
     <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}" type="text/css"/>
 
     <link rel="stylesheet" type="text/css" href="{% static 'js/datatables/datatables.min.css' %}"/>
+
+    <style type="text/css">
+        ul#menu-lateral>li>a{
+            font-size: 15px;
+            font-family: "Times New Roman",sans-serif;
+            padding: 0px 10px;
+            height: 50px;
+            font-weight: 400;
+            border-right: 0 solid #22a7f0;
+            line-height: 50px;
+            display: block;
+            white-space: nowrap;
+        }
+        ul#menu-lateral>li>button{
+            font-size: 15px;
+            font-family: "Times New Roman",sans-serif;
+            padding: 0px 10px;
+            height: 50px;
+            font-weight: 400;
+            border-right: 0 solid #22a7f0;
+            line-height: 50px;
+            display: block;
+            white-space: nowrap;
+        }
+        .title-menu{
+            width: 0;
+            white-space: nowrap;
+            padding-left: 6px;
+            position: relative;
+            top: -4px;
+            display: inline-block;
+            box-sizing: border-box;
+
+        }
+        .icon-px{
+            margin-top: 2px;
+            font-size: 18px;
+            margin-left: 0;
+            width: 38px;
+            text-align: center;
+            display: inline-block;
+        }
+        .dropdown-container {
+          display: none;
+          background-color: #262626;
+          padding-left: 8px;
+        }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+          float: right;
+          padding-right: 8px;
+        }
+
+        div.drop-down .color-menu-drop{
+            color: #FFFFFF;
+        }
+        ul#dropdown-menu-per li.color-menu-drop-hover:hover{
+            color: blue;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,80 +117,60 @@
 
     <section id="homesection"></section>
 
-{#    <div class="menu-responsive">#}
-{#        <a href="#"> <b>Area Administrativa</b></a>#}
-{#        <a class="but" href="#">#}
-{#            <span class="ti-menu"></span>#}
-{#        </a>#}
-{#    </div>#}
-{##}
-{#    <header id="left-header" class="header vertical-menu">#}
-{##}
-{#        <!--=================================#}
-{#         mega menu -->#}
-{##}
-{#        <div id="onepagenav" class="menu">#}
-{#            <!-- menu start -->#}
-{#            <nav id="menu" class="mega-menu" data-pos='vertical-left'>#}
-{#                <!-- menu list items container -->#}
-{#                <section class="menu-list-items">#}
-{#                    <!-- menu logo -->#}
-{#                    <ul class="menu-logo">#}
-{#                        <li>#}
-{#                            <a href="{% url 'home' %}" ><strong>Area Administrativa</strong> </a>#}
-{#                            <div class="menu-mobile-collapse-trigger">#}
-{#                                <span></span>#}
-{#                            </div>#}
-{#                        </li>#}
-{##}
-{#                    </ul>#}
-{#                    <!-- menu links -->#}
-{#                    <div class="menu-bar ">#}
-{#                        <ul class="menu-links border-top">#}
-{#                            <li><a href="{% url 'prospeccao' %}"><i class="fa fa-list-alt"></i> Prospecção</a></li>#}
-{#                            <li><a href="#" class="text-danger"><i class="fa fa-sign-out"></i> Sair</a></li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                </section>#}
-{#            </nav>#}
-{#            <!-- menu end -->#}
-{#        </div>#}
-{#        <div class="menu-widgets text-white" align="center">#}
-{#            <div class="social-icons social-border rounded color-hover text-center">#}
-{#                <ul>#}
-{#                    <li class="social-facebook"><a href="#"><i class="fab fa-facebook"></i></a></li>#}
-{#                    <li class="social-instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>#}
-{#                </ul>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#    </header>#}
-    <header id="header" class="header vertical-menu">
-        <div class="menu" id="onepagenav">
-            <!-- menu start -->
-            <nav id="menu" class="mega-menu" data-pos="vertical-left">
-                <!-- menu list items container -->
-                <section class="menu-list-items">
-                                <!-- menu logo -->
-                                <ul class="menu-logo">
-                                    <li><a href="{% url 'home' %}">
-                                         <img src="{% static "images/demandai/demandai-logo4.png" %}" style="height: 100px;" alt="">
-                                        </a>
-                                    </li>
+    <header id="header" class="header vertical-menu" style="width: 240px">
+
+        <!--=================================
+         mega menu -->
+        <div class="menu">
+  <!-- menu start -->
+   <nav id="menu" class="mega-menu" data-pos='vertical-left'>
+    <!-- menu list items container -->
+    <section class="menu-list-items">
+        <!-- menu logo -->
+        <ul class="menu-logo">
+            <li style="margin-left: 20%">
+                <a href="{% url 'home' %}"><img src="{% static "images/demandai/demandai-logo4.png" %}" style="height: 100px;align-content: center" alt="" > </a>
+            </li>
+        </ul>
+        <!-- menu links -->
+        <div class="menu-bar">
+            <ul class="menu-links">
+                <li>
+                    <a href="{% url 'home-adm' %}">
+                        <span class="icon-px fa fa-list-alt"></span> <span class="title-menu">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"> <span class="icon-px fa fa-list-alt"></span><span class="title-menu">Prospecção</span>
+                        <i class="fa fa-angle-down fa-indicator"></i>
+                    </a>
+                    <!-- drop down full width -->
+                    <div class="drop-down grid-col-1" style="background-color: black; min-width: 200px">
+                        <!--grid row-->
+                        <div class="grid-row" >
+                                <ul>
+                                    <li class="color-menu-drop-hover"><a href="#" >
+                                        <span class="icon-px fa fa-list-alt color-menu-drop"></span> <span class="title-menu color-menu-drop">Home</span>
+                                    </a></li>
                                 </ul>
-                                <!-- menu links -->
-                                <div class="menu-bar">
-                                    <ul class="menu-links border-top">
-                                        <li><a href="{% url 'home-adm' %}"><i class="fa fa-list-alt"></i> Home</a></li>
-                                        <li><a href="{% url 'prospeccao' %}"><i class="fa fa-list-alt"></i> Prospecção</a></li>
-                                         <li><a href="#" class="text-danger"><i class="fa fa-sign-out"></i> Sair</a></li>
-                                    </ul>
-                                </div>
-                </section>
-            </nav>
-            <!-- menu end -->
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#" class="text-danger">
+                        <i class="icon-px fa fa-sign-out"></i> <span class="title-menu">Sair</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </header>
+        </div>
+</div>
+</section>
+</nav>
+<!-- menu end -->
+</div>
+</header>
     <!--=================================
      header -->
 
@@ -196,6 +237,24 @@
 
 <script type="text/javascript" src="{% static 'js/datatables/datatables.min.js' %}"></script>
 
+<script type="text/javascript">
+    var dropdown = document.getElementsByClassName("dp-menu");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
 {% block javascript %}{% endblock %}
 </body>
 </html>
+
+

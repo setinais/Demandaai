@@ -1,16 +1,12 @@
 {% extends 'administrador/base.html' %}
 {% load static %}
 {% block content %}
-<section id="blog" class="our-blog page-section-ptb">
+<section id="blog" class="our-blog page-section-ptb" >
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="section-title text-center">
-                        <h6></h6>
-                        <h2 class="title-effect">Demandas</h2>
-                    </div>
-                </div>
-            </div>
+            <h1 class="title-effect">Demandas</h1>
+            <a href=""></a>
+        </div>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
 {#                    <h3 class="mb-30">Table hover </h3>#}
@@ -21,7 +17,7 @@
                             <th>Setor</th>
                             <th>Responsável</th>
                             <th>Visualizada</th>
-                            <th>Status Atual</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -98,7 +94,7 @@
                     sInfo: "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
                     sInfoEmpty: "Mostrando 0 / 0 de 0 registros",
                     sInfoFiltered: "(filtrado de _MAX_ registros)",
-                    sSearch: "Pesquisar: ",
+                    sSearch: "Procurar: ",
                     oPaginate: {
                         "sFirst": "Início",
                         "sPrevious": "Anterior",
