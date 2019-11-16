@@ -8,6 +8,7 @@ from .forms import *
 from datetime import datetime, timedelta
 import os
 from django.conf import settings
+from django.views.generic import CreateView
 
 @login_required
 def home(request):
@@ -214,3 +215,35 @@ def responder_solicitante(request):
     demanda.demand_callback.create(action=demanda.action, action_id=demanda.action_id, feedback=request.POST['texto'],
                                    prazo_feedback=(datetime.today() + timedelta(days=2)))
     return redirect('prospeccao')
+
+@login_required
+@require_http_methods(['GET'])
+def servicos(request):
+    servicos = Service.objects.all()
+    return render(request,'administrador/servicos/home.html',{'servicos':servicos})
+@login_required
+def servicos_cadastro(request):
+    form = ServiceForm(request.POST or None)
+    if form.is_valid():
+        servico = form.save(commit=False)
+        servico.profile_id = request.user.id
+        servico.status = 1
+        servico.save()
+        return redirect('servicos')
+
+    return render(request,'administrador/servicos/cadastro.html',{'form': form})
+@login_required
+def servicos_editar(request, id):
+    servico = Service.objects.get(id=id)
+    form = ServiceForm(request.POST or None, instance=servico)
+
+    if form.is_valid():
+        form.save()
+        return redirect('servicos')
+
+    return render(request, 'administrador/servicos/cadastro.html', {'form': form,'servico': servico})
+@login_required
+def servicos_deletar(request, id):
+    servico = Service.objects.get(id=id)
+    servico.delete()
+    return redirect('servicos')

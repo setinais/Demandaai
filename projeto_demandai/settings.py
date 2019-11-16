@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'demandai_site',
     'django_seed',
     'widget_tweaks',
+    'crispy_forms',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

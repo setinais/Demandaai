@@ -10,4 +10,8 @@ urlpatterns = [
     path('prospeccao/detalhes-demanda/<int:id>', views.detalhes_demanda, name='detalhes-demanda'),
     path('prospeccao/download_arquivos', views.download_arquivos, name='download_arquivos'),
     path('prospeccao/responder_solicitante', views.responder_solicitante, name='responder_solicitante'),
+    path('servicos',views.servicos,name='servicos'),
+    path('servicos/cadastro',views.servicos_cadastro,name='servicos.cadastro'),
+    path('servicos/editar/<int:id>',views.servicos_editar,name='servicos.editar'),
+    path('servicos/deletar/<int:id>',views.servicos_deletar,name='servicos.deletar'),
 ]

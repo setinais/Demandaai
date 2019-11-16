@@ -1,0 +1,26 @@
+{% extends 'administrador/base.html' %}
+{% block title %}Acesso Administrativo{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row center">
+        <div class="col-md-8">
+            <div class="card">
+                <form class="form-horizontal" method="POST" action="{% url 'servicos.cadastro' %}">
+                    <div class="card-body">
+                        <h4 class="card-title">Adicionar/Editar Serviços</h4>
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                    </div>
+                    <div class="border-top">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                {% if servico %}
+                    <a href="{% url 'servicos.deletar' servico.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Excluir</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

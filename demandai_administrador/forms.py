@@ -38,3 +38,8 @@ def send_mail_responder_solicitante(request):
     message = message % context
 
     send_mail_template(subject, 'administrador/email_responder_solicitante.html', context, [demanda.email])
+
+class ServiceForm(forms.ModelForm):
+    class Meta:
+        model = Service
+        fields = ['nome','plataformas','descricao','servidores','desenvolvedores','departamentos']
