@@ -14,4 +14,8 @@ urlpatterns = [
     path('servicos/cadastro',views.servicos_cadastro,name='servicos.cadastro'),
     path('servicos/editar/<int:id>',views.servicos_editar,name='servicos.editar'),
     path('servicos/deletar/<int:id>',views.servicos_deletar,name='servicos.deletar'),
+    path('equipamentos', views.equipamentos, name='equipamentos'),
+    path('equipamentos/cadastro', views.equipamentos_cadastro, name='equipamentos.cadastro'),
+    path('equipamentos/editar/<int:id>', views.equipamentos_editar, name='equipamentos.editar'),
+    path('equipamentos/deletar/<int:id>', views.equipamentos_deletar, name='equipamentos.deletar'),
 ]

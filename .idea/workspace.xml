@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3119d7ae-45cf-47ec-8671-4889fbfc1601" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,21 +62,21 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/panorama-stitching" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/administrador" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_site\static\images\demandai" />
-      <recent name="C:\Users\suporte\Documents\projeto_demandai\demandai_site\static\images\portfolio\small" />
-      <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_administrador" />
-      <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\plugins\fontawesome" />
-      <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\fonts" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\suporte\Documents\projeto_demandai\demandai_site\static\js" />
       <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\images\demandai" />
       <recent name="$PROJECT_DIR$/demandai_site/static/css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\projeto_demandai\templates\administrador" />
+      <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_site\static\images\demandai" />
+      <recent name="C:\Users\suporte\Documents\projeto_demandai\demandai_site\static\images\portfolio\small" />
+      <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_administrador" />
+      <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\plugins\fontawesome" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -171,7 +170,7 @@
       <workItem from="1570035077058" duration="110000" />
       <workItem from="1570047686396" duration="834000" />
       <workItem from="1573595424937" duration="296000" />
-      <workItem from="1573917222267" duration="16882000" />
+      <workItem from="1573917222267" duration="20143000" />
     </task>
     <task id="LOCAL-00001" summary="Implementação de envio de email concluido">
       <created>1558718870706</created>

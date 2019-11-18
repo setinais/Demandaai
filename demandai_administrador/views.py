@@ -246,3 +246,36 @@ def servicos_deletar(request, id):
     servico = Service.objects.get(id=id)
     servico.delete()
     return redirect('servicos')
+
+
+@login_required
+@require_http_methods(['GET'])
+def equipamentos(request):
+    equipamentos = Equipment.objects.all()
+    return render(request,'administrador/equipamentos/home.html',{'equipamentos':equipamentos})
+@login_required
+def equipamentos_cadastro(request):
+    form = EquipamentForm(request.POST or None)
+    if form.is_valid():
+        equipamento = form.save(commit=False)
+        equipamento.profile_id = request.user.id
+        equipamento.status = 1
+        equipamento.save()
+        return redirect('equipamentos')
+
+    return render(request,'administrador/equipamentos/cadastro.html',{'form': form})
+@login_required
+def equipamentos_editar(request, id):
+    servico = Service.objects.get(id=id)
+    form = ServiceForm(request.POST or None, instance=servico)
+
+    if form.is_valid():
+        form.save()
+        return redirect('servicos')
+
+    return render(request, 'administrador/equipamentos/cadastro.html', {'form': form,'servico': servico})
+@login_required
+def equipamentos_deletar(request, id):
+    servico = Service.objects.get(id=id)
+    servico.delete()
+    return redirect('servicos')

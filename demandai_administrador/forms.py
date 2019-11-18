@@ -43,3 +43,8 @@ class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = ['nome','plataformas','descricao','servidores','desenvolvedores','departamentos','institution']
+
+class EquipamentForm(forms.ModelForm):
+    class Meta:
+        model = Equipment
+        fields = ['codigo','nome','descricao','institution','laboratory']

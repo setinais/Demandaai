@@ -215,10 +215,16 @@
                                 <li class="sidebar-item"><a href="{% url 'prospeccao' %}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Home</span></a></li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Serviços</span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Serviços</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{% url 'servicos' %}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Listar</span></a></li>
                                 <li class="sidebar-item"><a href="{% url 'servicos.cadastro' %}" class="sidebar-link"><i class="fa fa-plus"></i><span class="hide-menu">Cadastrar</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Equipamentos</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="{% url 'equipamentos' %}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Listar</span></a></li>
+                                <li class="sidebar-item"><a href="{% url 'equipamentos.cadastro' %}" class="sidebar-link"><i class="fa fa-plus"></i><span class="hide-menu">Cadastrar</span></a></li>
                             </ul>
                         </li>
                     </ul>
