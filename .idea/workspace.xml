@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3119d7ae-45cf-47ec-8671-4889fbfc1601" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demandai_administrador/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demandai_administrador/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/administrador/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/servicos/cadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/servicos/cadastro.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/servicos/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/servicos/home.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -175,7 +171,7 @@
       <workItem from="1570035077058" duration="110000" />
       <workItem from="1570047686396" duration="834000" />
       <workItem from="1573595424937" duration="296000" />
-      <workItem from="1573917222267" duration="15379000" />
+      <workItem from="1573917222267" duration="16882000" />
     </task>
     <task id="LOCAL-00001" summary="Implementação de envio de email concluido">
       <created>1558718870706</created>
