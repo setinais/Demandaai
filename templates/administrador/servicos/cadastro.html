@@ -5,7 +5,11 @@
     <div class="row justify-content-md-center">
         <div class="col-md-8">
             <div class="card">
-                <form class="form-horizontal" method="POST" action="{% url 'servicos.cadastro' %}">
+                {% if dados %}
+                    <form class="form-horizontal" method="POST" action="{% url 'servicos.editar' dados.id %}">
+                {% else %}
+                    <form class="form-horizontal" method="POST" action="{% url 'servicos.cadastro' %}">
+                {% endif %}
                     <div class="card-body">
                         <h4 class="card-title">Adicionar/Editar Serviços</h4>
                         {% csrf_token %}
@@ -17,8 +21,8 @@
                         </div>
                     </div>
                 </form>
-                {% if servico %}
-                    <a href="{% url 'servicos.deletar' servico.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Excluir</a>
+                {% if dados %}
+                    <a href="{% url 'servicos.deletar' dados.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Excluir</a>
                 {% endif %}
             </div>
         </div>

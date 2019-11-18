@@ -18,4 +18,8 @@ urlpatterns = [
     path('equipamentos/cadastro', views.equipamentos_cadastro, name='equipamentos.cadastro'),
     path('equipamentos/editar/<int:id>', views.equipamentos_editar, name='equipamentos.editar'),
     path('equipamentos/deletar/<int:id>', views.equipamentos_deletar, name='equipamentos.deletar'),
+    path('laboratorios', views.laboratorios, name='laboratorios'),
+    path('laboratorios/cadastro', views.laboratorios_cadastro, name='laboratorios.cadastro'),
+    path('laboratorios/editar/<int:id>', views.laboratorios_editar, name='laboratorios.editar'),
+    path('laboratorios/deletar/<int:id>', views.laboratorios_deletar, name='laboratorios.deletar'),
 ]

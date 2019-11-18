@@ -215,6 +215,7 @@ def responder_solicitante(request):
                                    prazo_feedback=(datetime.today() + timedelta(days=2)))
     return redirect('prospeccao')
 
+#CRUD SERVIÇOES
 @login_required
 @require_http_methods(['GET'])
 def servicos(request):
@@ -240,14 +241,15 @@ def servicos_editar(request, id):
         form.save()
         return redirect('servicos')
 
-    return render(request, 'administrador/servicos/cadastro.html', {'form': form,'servico': servico})
+    return render(request, 'administrador/servicos/cadastro.html', {'form': form,'dados': servico})
 @login_required
 def servicos_deletar(request, id):
     servico = Service.objects.get(id=id)
     servico.delete()
     return redirect('servicos')
+#END CRUD SERVIÇOS
 
-
+#CRUD EQUIPAMENTOS
 @login_required
 @require_http_methods(['GET'])
 def equipamentos(request):
@@ -266,16 +268,46 @@ def equipamentos_cadastro(request):
     return render(request,'administrador/equipamentos/cadastro.html',{'form': form})
 @login_required
 def equipamentos_editar(request, id):
-    servico = Service.objects.get(id=id)
-    form = ServiceForm(request.POST or None, instance=servico)
-
+    Equipmente = Equipment.objects.get(id=id)
+    form = EquipamentForm(request.POST or None, instance=Equipmente)
     if form.is_valid():
         form.save()
-        return redirect('servicos')
-
-    return render(request, 'administrador/equipamentos/cadastro.html', {'form': form,'servico': servico})
+        return redirect('equipamentos')
+    return render(request, 'administrador/equipamentos/cadastro.html', {'form': form,'dados': Equipmente})
 @login_required
 def equipamentos_deletar(request, id):
-    servico = Service.objects.get(id=id)
-    servico.delete()
-    return redirect('servicos')
+    equipamento = Equipment.objects.get(id=id)
+    equipamento.delete()
+    return redirect('equipamentos')
+#END CRUD EQUIPAMENTOS
+
+#CRUD LABORATORIO
+@login_required
+@require_http_methods(['GET'])
+def laboratorios(request):
+    laboratorios = Laboratory.objects.all()
+    return render(request,'administrador/laboratorios/home.html',{'laboratorios':laboratorios})
+@login_required
+def laboratorios_cadastro(request):
+    form = LaboratoryForm(request.POST or None)
+    if form.is_valid():
+        laboratorio = form.save(commit=False)
+        laboratorio.profile_id = request.user.id
+        laboratorio.status = 1
+        laboratorio.save()
+        return redirect('laboratorios')
+
+    return render(request,'administrador/laboratorios/cadastro.html',{'form': form})
+@login_required
+def laboratorios_editar(request, id):
+    lab = Laboratory.objects.get(id=id)
+    form = LaboratoryForm(request.POST or None, instance=lab)
+    if form.is_valid():
+        form.save()
+        return redirect('laboratorios')
+    return render(request, 'administrador/laboratorios/cadastro.html', {'form': form,'dados': lab})
+@login_required
+def laboratorios_deletar(request, id):
+    laboratorio = Laboratory.objects.get(id=id)
+    laboratorio.delete()
+    return redirect('laboratorios')

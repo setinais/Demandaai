@@ -48,3 +48,8 @@ class EquipamentForm(forms.ModelForm):
     class Meta:
         model = Equipment
         fields = ['codigo','nome','descricao','institution','laboratory']
+
+class LaboratoryForm(forms.ModelForm):
+    class Meta:
+        model = Laboratory
+        fields = ['nome','servidores','descricao','atividades_realizadas','endereco_sala','departamentos','cursos','institution']
