@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 
-from demandai_administrador.models import Service, Laboratory, Equipment, Demand
+from demandai_administrador.models import Service, Laboratory, Equipment, Demand, Institution
 from .mail import send_mail_template
 
 def send_mail(request):
@@ -42,4 +42,4 @@ def send_mail_responder_solicitante(request):
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
-        fields = ['nome','plataformas','descricao','servidores','desenvolvedores','departamentos']
+        fields = ['nome','plataformas','descricao','servidores','desenvolvedores','departamentos','institution']

@@ -8,7 +8,6 @@ from .forms import *
 from datetime import datetime, timedelta
 import os
 from django.conf import settings
-from django.views.generic import CreateView
 
 @login_required
 def home(request):

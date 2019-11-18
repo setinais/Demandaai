@@ -2,7 +2,7 @@
 {% block title %}Acesso Administrativo{% endblock %}
 
 {% block content %}
-    <div class="row">
+    <div class="row center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -17,6 +17,7 @@
                               <th scope="col">Servidores</th>
                               <th scope="col">Desenvolvedores</th>
                               <th scope="col">Departamentos</th>
+                              <th scope="col">Instituição</th>
                               <th scope="col"></th>
                             </tr>
                           </thead>
@@ -29,6 +30,7 @@
                               <td>{{ servico.servidores }}</td>
                               <td>{{ servico.desenvolvedores }}</td>
                               <td>{{ servico.departamentos }}</td>
+                              <td>{{ servico.institution.nome }}</td>
                               <td class="btn-group btn-group-toggle">
                                   <a href="{% url 'servicos.editar' servico.id %}" class="btn btn-warning"><i class="fa fa-edit"></i>Editar</a>
                                   <!--<a href="{% url 'servicos.deletar' servico.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Excluir</a>-->
