@@ -172,6 +172,7 @@ def demandDetail(request):
         demandas = Demand.objects.filter(email=request.GET['email'].strip(), codigo=request.GET['codigo'].strip())
         demanda = demandas[0]
         action = {}
+        demand_callback = []
         if demanda.action == 'SER':
             action = Service.objects.get(id=demanda.action_id)
         elif demanda.action == 'LAB':
@@ -180,12 +181,33 @@ def demandDetail(request):
             action = Equipment.objects.get(id=demanda.action_id)
         else:
             return render(request, 'site/error.html')
-
+        for callbacks in demanda.demand_callback.order_by('-created_at'):
+            action = {}
+            if callbacks.action == 'SER':
+                action = Service.objects.get(id=callbacks.action_id)
+            elif callbacks.action == 'LAB':
+                action = Laboratory.objects.get(id=callbacks.action_id)
+            elif callbacks.action == 'EQU':
+                action = Equipment.objects.get(id=callbacks.action_id)
+            demand_callback_dados = {
+                'feedback': callbacks.feedback,
+                'created_at': callbacks.created_at,
+                'action': {
+                    'id': action.id,
+                    'nome': action.nome,
+                    'responsavel': {
+                        'nome': action.profile.username,
+                        'id': action.profile.id,
+                    },
+                },
+                'id': callbacks.id
+            }
+            demand_callback.append(demand_callback_dados)
         dados = {
             'demanda': demanda,
             'action': action
         }
-        return render(request, 'site/visualizar_demanda.html', {'dados': dados})
+        return render(request, 'site/visualizar_demanda.html', {'dados': dados, 'callbacks': demand_callback})
     except Exception:
         return render(request, 'site/error.html')
 

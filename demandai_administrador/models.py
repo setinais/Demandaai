@@ -43,23 +43,29 @@ class Profile(AbstractUser, SafeDeleteModel):
     username = models.CharField(max_length=60, blank=True, null=True)
     email = models.CharField(max_length=60, unique=True)
     role = models.CharField(max_length=2, choices=roles, default='SE')
-    institution = models.ForeignKey(Institution, related_name='profile', on_delete=models.PROTECT, blank=True, null=True)
+    institution = models.ForeignKey(Institution, on_delete=models.PROTECT, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    def has_permission(self, codigo):
+        permissao = Permission.objects.filter(codigo=codigo)
+        permissions_user = UserPermission.objects.filter(user_id=self.id, permission_id=permissao.id)
+        return permissions_user.count() > 0
+
 class Laboratory(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
-    profile = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='laboratories', on_delete=models.PROTECT)
+    profile = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     telefone = models.CharField(max_length=14)
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
     atividades_realizadas = models.TextField()
     pesquisa_extensao = models.BooleanField()
-    institution = models.ForeignKey(Institution, related_name='laboratories', on_delete=models.PROTECT)
+    institution = models.ForeignKey(Institution, on_delete=models.PROTECT)
     endereco_sala = models.CharField(max_length=40)
     servidores = models.TextField()
     departamentos = models.TextField()
@@ -78,8 +84,8 @@ class Equipment(SafeDeleteModel):
     codigo = models.CharField(max_length=9)
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
-    institution = models.ForeignKey(Institution, related_name='equipments', on_delete=models.PROTECT)
-    laboratory = models.ForeignKey(Laboratory, related_name='equipments', on_delete=models.SET_NULL, null=True)
+    institution = models.ForeignKey(Institution, on_delete=models.PROTECT)
+    laboratory = models.ForeignKey(Laboratory, on_delete=models.SET_NULL, null=True)
     status = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -91,14 +97,14 @@ class Equipment(SafeDeleteModel):
 class Service(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
-    profile = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='services', on_delete=models.PROTECT)
+    profile = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     plataformas = models.TextField()
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
     servidores = models.TextField()
     desenvolvedores = models.TextField()
     departamentos = models.TextField()
-    institution = models.ForeignKey(Institution, related_name='services', on_delete=models.SET_NULL, null=True)
+    institution = models.ForeignKey(Institution,  on_delete=models.SET_NULL, null=True)
     status = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -150,3 +156,54 @@ class DemandCallback(SafeDeleteModel):
     feedback = models.TextField()
     prazo_feedback = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Content(SafeDeleteModel):
+    model = models.TextField()
+
+class Permission(SafeDeleteModel):
+
+    permissions = (
+
+        ('add_laboratory', 'Adicionar Laboratorio'),
+        ('view_laboratory', 'Listar Laboratorio'),
+        ('update_laboratory', 'Atualizar Laboratorio'),
+        ('delete_laboratory', 'Deletar Laboratorio'),
+
+        ('add_service', 'Adicionar Serviço'),
+        ('view_service', 'Listar Serviço'),
+        ('update_service', 'Atualizar Serviço'),
+        ('delete_service', 'Deletar Serviço'),
+
+        ('add_equipament', 'Adicionar Equipamento'),
+        ('view_equipament', 'Listar Equipamento'),
+        ('update_equipament', 'Atualizar Equipamento'),
+        ('delete_equipament', 'Deletar Equipamento'),
+
+        ('add_usuario', 'Adicionar Usuario'),
+        ('view_usuario', 'Listar Usuario'),
+        ('update_usuario', 'Atualizar Usuario'),
+        ('delete_usuario', 'Deletar Usuario'),
+
+        ('add_institution', 'Adicionar Instituição'),
+        ('view_institution', 'Listar Instituição'),
+        ('update_institution', 'Atualizar Instituição'),
+        ('delete_institution', 'Deletar Instituição'),
+
+        ('prospectar', 'Adicionar Instituição'),
+        ('view_demand', 'Listar Instituição'),
+        ('update_demand', 'Atualizar Instituição'),
+        ('delete_demand', 'Deletar Instituição'),
+
+        ('view_permission', 'Listar Instituição'),
+        ('update_permission', 'Atualizar Instituição'),
+        ('delete_institution', 'Deletar Instituição'),
+
+    )
+
+    name = models.TextField()
+    content_id = models.ForeignKey(Content, related_name='contents', on_delete=models.PROTECT)
+    codigo = models.CharField(max_length=100 ,choices=permissions)
+
+class UserPermission(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    permission = models.ForeignKey(Permission, on_delete=models.CASCADE)

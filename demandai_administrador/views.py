@@ -10,9 +10,9 @@ from datetime import datetime, timedelta
 import os
 from django.conf import settings
 
-def logut_s(request):
+def logout_in(request):
     logout(request)
-    redirect('home')
+    return redirect('home')
 
 @login_required
 def home(request):
@@ -216,8 +216,10 @@ def download_arquivos(request):
 def responder_solicitante(request):
     _thread.start_new_thread(send_mail_responder_solicitante, (request,))
     demanda = Demand.objects.get(id=request.POST['id'])
+    demanda.status = 'R'
     demanda.demand_callback.create(action=demanda.action, action_id=demanda.action_id, feedback=request.POST['texto'],
                                    prazo_feedback=(datetime.today() + timedelta(days=2)))
+    demanda.save()
     return redirect('prospeccao')
 
 #CRUD SERVIÇOES
@@ -226,6 +228,7 @@ def responder_solicitante(request):
 def servicos(request):
     servicos = Service.objects.all()
     return render(request,'administrador/servicos/home.html',{'servicos':servicos})
+
 @login_required
 def servicos_cadastro(request):
     form = ServiceForm(request.POST or None)
@@ -237,6 +240,7 @@ def servicos_cadastro(request):
         return redirect('servicos')
 
     return render(request,'administrador/servicos/cadastro.html',{'form': form})
+
 @login_required
 def servicos_editar(request, id):
     servico = Service.objects.get(id=id)
@@ -247,6 +251,7 @@ def servicos_editar(request, id):
         return redirect('servicos')
 
     return render(request, 'administrador/servicos/cadastro.html', {'form': form,'dados': servico})
+
 @login_required
 def servicos_deletar(request, id):
     servico = Service.objects.get(id=id)
@@ -260,6 +265,7 @@ def servicos_deletar(request, id):
 def equipamentos(request):
     equipamentos = Equipment.objects.all()
     return render(request,'administrador/equipamentos/home.html',{'equipamentos':equipamentos})
+
 @login_required
 def equipamentos_cadastro(request):
     form = EquipamentForm(request.POST or None)
@@ -271,6 +277,7 @@ def equipamentos_cadastro(request):
         return redirect('equipamentos')
 
     return render(request,'administrador/equipamentos/cadastro.html',{'form': form})
+
 @login_required
 def equipamentos_editar(request, id):
     Equipmente = Equipment.objects.get(id=id)
@@ -279,11 +286,13 @@ def equipamentos_editar(request, id):
         form.save()
         return redirect('equipamentos')
     return render(request, 'administrador/equipamentos/cadastro.html', {'form': form,'dados': Equipmente})
+
 @login_required
 def equipamentos_deletar(request, id):
     equipamento = Equipment.objects.get(id=id)
     equipamento.delete()
     return redirect('equipamentos')
+
 #END CRUD EQUIPAMENTOS
 
 #CRUD LABORATORIO
@@ -292,6 +301,7 @@ def equipamentos_deletar(request, id):
 def laboratorios(request):
     laboratorios = Laboratory.objects.all()
     return render(request,'administrador/laboratorios/home.html',{'laboratorios':laboratorios})
+
 @login_required
 def laboratorios_cadastro(request):
     form = LaboratoryForm(request.POST or None)
@@ -303,6 +313,7 @@ def laboratorios_cadastro(request):
         return redirect('laboratorios')
 
     return render(request,'administrador/laboratorios/cadastro.html',{'form': form})
+
 @login_required
 def laboratorios_editar(request, id):
     lab = Laboratory.objects.get(id=id)
@@ -311,6 +322,7 @@ def laboratorios_editar(request, id):
         form.save()
         return redirect('laboratorios')
     return render(request, 'administrador/laboratorios/cadastro.html', {'form': form,'dados': lab})
+
 @login_required
 def laboratorios_deletar(request, id):
     laboratorio = Laboratory.objects.get(id=id)

@@ -12,6 +12,31 @@
                     <p>Sua demanda no {{ dados.demanda.get_action_display }} <strong> {{ dados.action.nome }}</strong> foi entregue a nós!</p>
                     <p><strong>Descrição:</strong> {{ dados.demanda.descricao }}</p>
                     <p><strong>Status: </strong><span class="badge badge-pill badge-info">{{ dados.demanda.get_status_display }}</span></p>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            {#                    <h3 class="mb-30">Table hover </h3>#}
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Setor</th>
+                                    <th>Responsável</th>
+                                    <th>FeedBack</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for demandcallback in callbacks %}
+                                    <tr>
+                                        <td>{{ demandcallback.created_at|date:"d/m/Y H:i" }}</td>
+                                        <td>{{ demandcallback.action.nome }}</td>
+                                        <td>{{ demandcallback.action.responsavel.nome }}</td>
+                                        <td>{{ demandcallback.feedback }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div class="port-post-social float-right">
                         <span>Atualizado {{ dados.demanda.updated_at }}</span>
                     </div>

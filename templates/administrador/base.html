@@ -185,7 +185,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                                 <div class="dropdown-divider"></div>
                                 <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
                             </div>
@@ -252,15 +252,8 @@
              <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Home</h4>
-                        <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Admninstrador</li>
-                                </ol>
-                            </nav>
-                        </div>
+                        <h4 class="page-title">{% block title_view %}{% endblock %}</h4>
+
                     </div>
                 </div>
             </div>
@@ -279,13 +272,13 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center">
-                <div class="col-lg-6">
+            <footer class="footer text-center row">
+                <div class="col-md-6 col-sm-10 col-xl-4 col-lg-6">
                     <div class="footer-text">
                         <p> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#"> Galera do Estudo. </a> Todos os direitos reservados </p>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-md-6 col-sm-10 col-xl-4 col-lg-6">
                     <div class="footer-social">
                         <ul class="text-left text-lg-right">
                             <li class="list-inline-item"><a href="#">Termos & Condições </a> &nbsp;&nbsp;&nbsp;|</li>
