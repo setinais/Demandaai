@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect, get_object_or_404
@@ -8,6 +9,10 @@ from .forms import *
 from datetime import datetime, timedelta
 import os
 from django.conf import settings
+
+def logut_s(request):
+    logout(request)
+    redirect('home')
 
 @login_required
 def home(request):
