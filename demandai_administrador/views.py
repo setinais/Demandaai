@@ -16,7 +16,7 @@ def logout_in(request):
 
 @login_required
 def home(request):
-    try:
+    # try:
         dados = {
             'servicos': Service.objects.count(),
             'laboratorios': Laboratory.objects.count(),
@@ -24,8 +24,8 @@ def home(request):
             'profissionais': Profile.objects.filter(role='SE').count(),
         }
         return render(request, 'administrador/home.html', {'dados': dados})
-    except Exception:
-        return render(request, 'site/error.html')
+    # except Exception:
+    #     return render(request, 'site/error.html')
 
 
 @login_required

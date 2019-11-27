@@ -47,7 +47,6 @@ class Profile(AbstractUser, SafeDeleteModel):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
@@ -55,6 +54,15 @@ class Profile(AbstractUser, SafeDeleteModel):
         permissao = Permission.objects.filter(codigo=codigo)
         permissions_user = UserPermission.objects.filter(user_id=self.id, permission_id=permissao.id)
         return permissions_user.count() > 0
+
+    @property
+    def permissions_for_menu(self):
+        permissoes = UserContent.objects.filter(profile=self.id)
+        dados = []
+        for permissao in permissoes:
+            content = Content.objects.get(id=permissao.content_id)
+            dados.append(content)
+        return dados
 
 class Laboratory(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
@@ -159,6 +167,7 @@ class DemandCallback(SafeDeleteModel):
 
 class Content(SafeDeleteModel):
     model = models.TextField()
+    name = models.TextField()
 
 class Permission(SafeDeleteModel):
 
@@ -201,9 +210,13 @@ class Permission(SafeDeleteModel):
     )
 
     name = models.TextField()
-    content_id = models.ForeignKey(Content, related_name='contents', on_delete=models.PROTECT)
+    content = models.ForeignKey(Content, related_name='contents', on_delete=models.PROTECT)
     codigo = models.CharField(max_length=100 ,choices=permissions)
 
 class UserPermission(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     permission = models.ForeignKey(Permission, on_delete=models.CASCADE)
+
+class UserContent(models.Model):
+    profile = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.ForeignKey(Content, on_delete=models.CASCADE)
