@@ -1,0 +1,57 @@
+{% extends 'administrador/base.html' %}
+{% block title %}Acesso Administrativo{% endblock %}
+
+{% block content %}
+    <h2><i class="fa fa-lock"></i>  Permissões</h2>
+    <div class="row center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Permissões do <span class="badge badge-primary" style="font-size: 13pt"> {{ profile.username }} </span>
+                    </h5>
+                    {% for permissao in permissoes %}
+                    <div id="accordian-{{ permissao.model }}">
+                        <div class="card m-t-30 col-md-4 col-lg-3 col-sm-12">
+                            <div class="card-header row">
+                                <label class="customcheckbox m-b-20">
+                                    <input type="checkbox" id="mainCheckbox{{ permissao.model }}">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <a class="collapsed link" data-toggle="collapse" data-parent="#accordian-{{ permissao.model }}" href="#Toggle-{{ permissao.model }}" aria-expanded="false" aria-controls="Toggle-{{ permissao.model }}">
+                                    <span>{{ permissao.name }}</span>
+                                </a>
+                            </div>
+                            <div id="Toggle-{{ permissao.model }}" class="multi-collapse collapse" style="">
+                                <div class="card">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody class="customtable">
+                                            {% for atributo in permissao.permission %}
+                                            <tr>
+                                                <th>
+                                                    <label class="customcheckbox">
+                                                        <input type="checkbox" class="listCheckbox{{ permissao.model }}">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </th>
+                                                <td>{{ atributo }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

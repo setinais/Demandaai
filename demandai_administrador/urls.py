@@ -16,20 +16,29 @@ urlpatterns = [
     path('prospeccao/responder_solicitante', views.responder_solicitante, name='responder_solicitante'),
 
     # Serviços
-    path('service',views.servicos,name='servicos'),
-    path('service/cadastro',views.servicos_cadastro,name='servicos.cadastro'),
-    path('service/editar/<int:id>',views.servicos_editar,name='servicos.editar'),
-    path('service/deletar/<int:id>',views.servicos_deletar,name='servicos.deletar'),
+    path('service',views.servicos,name='service'),
+    path('service/cadastro',views.servicos_cadastro,name='service.cadastro'),
+    path('service/editar/<int:id>',views.servicos_editar,name='service.editar'),
+    path('service/deletar/<int:id>',views.servicos_deletar,name='service.deletar'),
 
     # Equipamentos
-    path('equipament', views.equipamentos, name='equipamentos'),
-    path('equipament/cadastro', views.equipamentos_cadastro, name='equipamentos.cadastro'),
-    path('equipament/editar/<int:id>', views.equipamentos_editar, name='equipamentos.editar'),
-    path('equipament/deletar/<int:id>', views.equipamentos_deletar, name='equipamentos.deletar'),
+    path('equipament', views.equipamentos, name='equipament'),
+    path('equipament/cadastro', views.equipamentos_cadastro, name='equipament.cadastro'),
+    path('equipament/editar/<int:id>', views.equipamentos_editar, name='equipament.editar'),
+    path('equipament/deletar/<int:id>', views.equipamentos_deletar, name='equipament.deletar'),
 
     # Laboratorios
-    path('laboratory', views.laboratorios, name='laboratorios'),
-    path('laboratory/cadastro', views.laboratorios_cadastro, name='laboratorios.cadastro'),
-    path('laboratory/editar/<int:id>', views.laboratorios_editar, name='laboratorios.editar'),
-    path('laboratory/deletar/<int:id>', views.laboratorios_deletar, name='laboratorios.deletar'),
+    path('laboratory', views.laboratorios, name='laboratory'),
+    path('laboratory/cadastro', views.laboratorios_cadastro, name='laboratory.cadastro'),
+    path('laboratory/editar/<int:id>', views.laboratorios_editar, name='laboratory.editar'),
+    path('laboratory/deletar/<int:id>', views.laboratorios_deletar, name='laboratory.deletar'),
+
+    # Controle de Acesso
+    path('permission/<int:id>', views.permission, name='permission'),
+
+    # Profile
+    path('profile',views.profile,name='profile'),
+    # path('profile/cadastro',views.profile_cadastro,name='profile.cadastro'),
+    # path('profile/editar/<int:id>',views.profile_editar,name='profile.editar'),
+    path('profile/deletar/<int:id>',views.profile_deletar,name='profile.deletar'),
 ]

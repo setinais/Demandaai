@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3119d7ae-45cf-47ec-8671-4889fbfc1601" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/demandai_administrador/migrations/dados de permissão.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/administrador/permission/permission.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demandai_administrador/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demandai_administrador/migrations/0002_auto_20191121_1713.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demandai_administrador/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demandai_administrador/migrations/dados de permissão.sql" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/migrations/dados de permissão.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demandai_administrador/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demandai_administrador/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demandai_administrador/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/administrador/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrador/equipamentos/cadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/equipamentos/cadastro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrador/equipamentos/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/equipamentos/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrador/laboratorios/cadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/laboratorios/cadastro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrador/laboratorios/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/laboratorios/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrador/prospeccao.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/prospeccao.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrador/servicos/cadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/servicos/cadastro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/administrador/servicos/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/servicos/home.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,13 +57,44 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/demandai_administrador/urls.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="612">
+                    <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+                    <folding>
+                      <element signature="e#0#28#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/demandai_administrador/migrations/dados de permissão.sql">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="102">
+                    <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demandai_administrador/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="8" />
+            <state relative-caret-position="795">
+              <caret line="372" column="26" lean-forward="true" selection-start-line="372" selection-start-column="26" selection-end-line="372" selection-end-column="26" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -64,11 +102,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/administrador/permission/permission.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="214" column="223" selection-start-line="214" selection-start-column="223" selection-end-line="214" selection-end-column="223" />
+            <state relative-caret-position="374">
+              <caret line="20" column="126" selection-start-line="20" selection-start-column="126" selection-end-line="20" selection-end-column="126" />
+              <folding>
+                <element signature="e#414#437#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/administrador/profile/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="31" column="153" selection-start-line="31" selection-start-column="153" selection-end-line="31" selection-end-column="153" />
             </state>
           </provider>
         </entry>
@@ -76,38 +126,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demandai_administrador/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="58" column="28" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="28" />
+            <state relative-caret-position="823">
+              <caret line="206" column="40" selection-start-line="206" selection-start-column="40" selection-end-line="206" selection-end-column="40" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
+                <element signature="e#394#1079#0" />
+                <element signature="e#2407#3187#0" />
+                <element signature="e#3228#3855#0" />
+                <element signature="e#3895#4532#0" />
+                <element signature="e#4571#5744#0" />
+                <element signature="e#5789#6239#0" />
+                <element signature="e#8014#8163#0" />
+                <element signature="e#8202#8348#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/utils/functional.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="256" selection-start-line="256" selection-end-line="256" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/template/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="854">
-              <caret line="866" selection-start-line="866" selection-end-line="866" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/logging/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="1613" selection-start-line="1613" selection-end-line="1613" />
             </state>
           </provider>
         </entry>
@@ -125,9 +156,15 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>logout</find>
+      <find>laboratorios.cadastro</find>
+      <find>'servicos</find>
+      <find>static/</find>
+      <find>laboratorios</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_administrador</dir>
+      <dir>C:\Users\Administrador\PycharmProjects\projeto_demandai\templates\administrador</dir>
+      <dir>C:\Users\Administrador\PycharmProjects\projeto_demandai</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -139,16 +176,26 @@
         <option value="$PROJECT_DIR$/media/images/.gitignore" />
         <option value="$PROJECT_DIR$/templates/site/visualizar_demanda.html" />
         <option value="$PROJECT_DIR$/templates/administrador/demanda_detalhes.html" />
-        <option value="$PROJECT_DIR$/templates/administrador/prospeccao.html" />
         <option value="$PROJECT_DIR$/demandai_administrador/admin.py" />
-        <option value="$PROJECT_DIR$/demandai_administrador/migrations/dados de permissão.sql" />
-        <option value="$PROJECT_DIR$/demandai_administrador/urls.py" />
         <option value="$PROJECT_DIR$/projeto_demandai/settings.py" />
         <option value="$PROJECT_DIR$/templates/administrador/menu.html" />
         <option value="$PROJECT_DIR$/demandai_site/views.py" />
-        <option value="$PROJECT_DIR$/demandai_administrador/views.py" />
-        <option value="$PROJECT_DIR$/demandai_administrador/models.py" />
+        <option value="$PROJECT_DIR$/templates/administrador/laboratorios/cadastro.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/equipamentos/cadastro.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/equipamentos/home.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/servicos/cadastro.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/servicos/home.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/laboratorios/home.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/access_control/home.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/prospeccao.html" />
+        <option value="$PROJECT_DIR$/demandai_administrador/migrations/dados de permissão.sql" />
+        <option value="$PROJECT_DIR$/demandai_administrador/forms.py" />
+        <option value="$PROJECT_DIR$/templates/administrador/profile/home.html" />
+        <option value="$PROJECT_DIR$/demandai_administrador/urls.py" />
         <option value="$PROJECT_DIR$/templates/administrador/base.html" />
+        <option value="$PROJECT_DIR$/templates/administrador/permission/permission.html" />
+        <option value="$PROJECT_DIR$/demandai_administrador/models.py" />
+        <option value="$PROJECT_DIR$/demandai_administrador/views.py" />
       </list>
     </option>
   </component>
@@ -165,7 +212,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -177,22 +223,6 @@
               <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
               <item name="demandai_administrador" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
-              <item name="demandai_administrador" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
-              <item name="demandai_site" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
-              <item name="projeto_demandai" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="projeto_demandai" type="b2602c69:ProjectViewProjectNode" />
@@ -209,6 +239,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -218,21 +249,21 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/administrador" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/administrador/profile" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\projeto_demandai\templates\administrador" />
-      <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_site\static\images\demandai" />
-      <recent name="C:\Users\suporte\Documents\projeto_demandai\demandai_site\static\images\portfolio\small" />
-      <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_administrador" />
-      <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\plugins\fontawesome" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\suporte\Documents\projeto_demandai\demandai_site\static\js" />
       <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\demandai_site\static\images\demandai" />
       <recent name="$PROJECT_DIR$/demandai_site/static/css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrador\PycharmProjects\projeto_demandai\templates\administrador\profile" />
+      <recent name="C:\xampp\htdocs\projeto_demandai\templates\administrador" />
+      <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_site\static\images\demandai" />
+      <recent name="C:\Users\suporte\Documents\projeto_demandai\demandai_site\static\images\portfolio\small" />
+      <recent name="C:\Users\Vinnicyus\PycharmProjects\projeto_demandai\demandai_administrador" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -328,6 +359,7 @@
       <workItem from="1573595424937" duration="296000" />
       <workItem from="1573917222267" duration="27622000" />
       <workItem from="1574357287949" duration="9494000" />
+      <workItem from="1574960046996" duration="11660000" />
     </task>
     <task id="LOCAL-00001" summary="Implementação de envio de email concluido">
       <created>1558718870706</created>
@@ -354,19 +386,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18261000" />
+    <option name="totallyTimeSpent" value="30005000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-518" width="1096" height="1896" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23359074" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23841698" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295519" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39988655" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39988655" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -374,7 +406,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32843137" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3295519" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.29381737" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.29381737" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32785025" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.25326797" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -451,6 +483,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="Correção problema no site" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/demandai_administrador/views.py</url>
+          <line>373</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
         <watch expression="request.user.usercontent_set.model" />
@@ -498,13 +539,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/prospeccao.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/site/header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
@@ -515,9 +549,7 @@
     <entry file="file://$PROJECT_DIR$/demandai_administrador/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/demandai_administrador/migrations/0002_auto_20191121_1713.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demandai_administrador/migrations/0002_auto_20191121_1713.py" />
     <entry file="file://$PROJECT_DIR$/demandai_administrador/migrations/dados das instituições">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
@@ -525,27 +557,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demandai_administrador/migrations/dados de permissão.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="34" lean-forward="true" selection-end-line="44" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/demandai.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
           <caret line="57" selection-start-line="57" selection-end-line="60" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demandai_administrador/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -598,13 +613,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/projeto_demandai/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/site/services.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -615,22 +623,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demandai_administrador/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/menu.html" />
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -654,13 +647,6 @@
             <element signature="e#7106#8926#0" />
             <element signature="e#9519#16477#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/logging/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="1613" selection-start-line="1613" selection-end-line="1613" />
         </state>
       </provider>
     </entry>
@@ -692,20 +678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/utils/functional.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="256" selection-start-line="256" selection-end-line="256" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/template/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="854">
-          <caret line="866" selection-start-line="866" selection-end-line="866" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/db/models/manager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -713,30 +685,141 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/utils/functional.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4267">
+          <caret line="256" selection-start-line="256" selection-end-line="256" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/template/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14433">
+          <caret line="866" selection-start-line="866" selection-end-line="866" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/logging/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27387">
+          <caret line="1613" selection-start-line="1613" selection-end-line="1613" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/equipamentos/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="33" selection-end-line="45" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/prospeccao.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="56" column="10" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demandai_administrador/migrations/dados de permissão.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/profile/del.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/profile/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="153" selection-start-line="31" selection-start-column="153" selection-end-line="31" selection-end-column="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demandai_administrador/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/laboratorios/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="45" selection-end-line="46" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demandai_administrador/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="54" selection-start-line="59" selection-start-column="54" selection-end-line="59" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/admin/locale/en/LC_MESSAGES/djangojs.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="91" selection-start-line="14" selection-start-column="91" selection-end-line="14" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/projeto_demandai/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1173">
+          <caret line="25" column="12" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/administrador/permission/permission.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="20" column="126" selection-start-line="20" selection-start-column="126" selection-end-line="20" selection-end-column="126" />
+          <folding>
+            <element signature="e#414#437#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/demandai_administrador/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="58" column="28" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="28" />
+        <state relative-caret-position="823">
+          <caret line="206" column="40" selection-start-line="206" selection-start-column="40" selection-end-line="206" selection-end-column="40" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#394#1079#0" />
+            <element signature="e#2407#3187#0" />
+            <element signature="e#3228#3855#0" />
+            <element signature="e#3895#4532#0" />
+            <element signature="e#4571#5744#0" />
+            <element signature="e#5789#6239#0" />
+            <element signature="e#8014#8163#0" />
+            <element signature="e#8202#8348#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demandai_administrador/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="8" />
+        <state relative-caret-position="795">
+          <caret line="372" column="26" lean-forward="true" selection-start-line="372" selection-start-column="26" selection-end-line="372" selection-end-column="26" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/administrador/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="214" column="223" selection-start-line="214" selection-start-column="223" selection-end-line="214" selection-end-column="223" />
         </state>
       </provider>
     </entry>

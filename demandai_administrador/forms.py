@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 
-from demandai_administrador.models import Service, Laboratory, Equipment, Demand, Institution
+from demandai_administrador.models import Service, Laboratory, Equipment, Demand, Profile
 from .mail import send_mail_template
 
 def send_mail(request):
@@ -52,4 +52,9 @@ class EquipamentForm(forms.ModelForm):
 class LaboratoryForm(forms.ModelForm):
     class Meta:
         model = Laboratory
-        fields = ['nome','servidores','descricao','atividades_realizadas','endereco_sala','departamentos','cursos','institution']
+        fields = ['nome','servidores', 'telefone','descricao','atividades_realizadas','endereco_sala','departamentos','cursos','institution']
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name', 'email', 'institution']

@@ -28,8 +28,6 @@ class Institution(SafeDeleteModel):
     def __str__(self):
         return self.nome
 
-
-
 class Profile(AbstractUser, SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
     roles = (
@@ -57,7 +55,7 @@ class Profile(AbstractUser, SafeDeleteModel):
 
     @property
     def permissions_for_menu(self):
-        permissoes = UserContent.objects.filter(profile=self.id)
+        permissoes = UserContent.objects.filter(profile=self.id).order_by('content')
         dados = []
         for permissao in permissoes:
             content = Content.objects.get(id=permissao.content_id)
@@ -84,7 +82,6 @@ class Laboratory(SafeDeleteModel):
     def __str__(self):
         return self.nome
 
-
 class Equipment(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
@@ -99,8 +96,6 @@ class Equipment(SafeDeleteModel):
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.nome
-
-
 
 class Service(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
@@ -118,8 +113,6 @@ class Service(SafeDeleteModel):
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.nome
-
-
 
 class Demand(SafeDeleteModel):
     actions = (
@@ -168,6 +161,7 @@ class DemandCallback(SafeDeleteModel):
 class Content(SafeDeleteModel):
     model = models.TextField()
     name = models.TextField()
+    icon = models.TextField(default=None)
 
 class Permission(SafeDeleteModel):
 
@@ -210,7 +204,7 @@ class Permission(SafeDeleteModel):
     )
 
     name = models.TextField()
-    content = models.ForeignKey(Content, related_name='contents', on_delete=models.PROTECT)
+    content = models.ForeignKey(Content, on_delete=models.PROTECT)
     codigo = models.CharField(max_length=100 ,choices=permissions)
 
 class UserPermission(models.Model):

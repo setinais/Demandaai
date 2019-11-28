@@ -6,9 +6,9 @@
         <div class="col-md-8">
             <div class="card">
                 {% if dados %}
-                    <form class="form-horizontal" method="POST" action="{% url 'equipamentos.editar' dados.id %}">
+                    <form class="form-horizontal" method="POST" action="{% url 'equipament.editar' dados.id %}">
                 {% else %}
-                    <form class="form-horizontal" method="POST" action="{% url 'equipamentos.cadastro' %}">
+                    <form class="form-horizontal" method="POST" action="{% url 'equipament.cadastro' %}">
                 {% endif %}
                     <div class="card-body">
                         <h4 class="card-title">Adicionar/Editar Equipamento</h4>
@@ -22,7 +22,7 @@
                     </div>
                 </form>
                 {% if dados %}
-                    <a href="{% url 'equipamentos.deletar' dados.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Excluir</a>
+                    <a href="{% url 'equipament.deletar' dados.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Excluir</a>
                 {% endif %}
             </div>
         </div>

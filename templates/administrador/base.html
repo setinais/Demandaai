@@ -12,6 +12,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="{% static 'adm/assets/extra-libs/multicheck/multicheck.css' %}" />
     <title>Matrix Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
     <link href="{% static 'adm/assets/libs/flot/css/float-chart.css' %}" rel="stylesheet">
@@ -209,33 +210,15 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'home-adm' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Home</span></a>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'home-adm' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Home</span></a>
                         </li>
+                        {% url 'home-adm' as url %}
                         {% for menu in user.permissions_for_menu %}
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">{{ menu.name }} </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="{% url 'prospeccao' %}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Home</span></a></li>
-                            </ul>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url }}{{ menu.model }}" aria-expanded="false"><i class="{{ menu.icon }}"></i><span class="hide-menu">{{ menu.name }}</span></a>
                         </li>
                         {% endfor %}
-{#                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Serviços</span></a>#}
-{#                            <ul aria-expanded="false" class="collapse  first-level">#}
-{#                                <li class="sidebar-item"><a href="{% url 'servicos' %}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Listar</span></a></li>#}
-{#                                <li class="sidebar-item"><a href="{% url 'servicos.cadastro' %}" class="sidebar-link"><i class="fa fa-plus"></i><span class="hide-menu">Cadastrar</span></a></li>#}
-{#                            </ul>#}
-{#                        </li>#}
-{#                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Equipamentos</span></a>#}
-{#                            <ul aria-expanded="false" class="collapse  first-level">#}
-{#                                <li class="sidebar-item"><a href="{% url 'equipamentos' %}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Listar</span></a></li>#}
-{#                                <li class="sidebar-item"><a href="{% url 'equipamentos.cadastro' %}" class="sidebar-link"><i class="fa fa-plus"></i><span class="hide-menu">Cadastrar</span></a></li>#}
-{#                            </ul>#}
-{#                        </li>#}
-{#                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-lightbulb"></i><span class="hide-menu">Laboratorios</span></a>#}
-{#                            <ul aria-expanded="false" class="collapse  first-level">#}
-{#                                <li class="sidebar-item"><a href="{% url 'laboratorios' %}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Listar</span></a></li>#}
-{#                                <li class="sidebar-item"><a href="{% url 'laboratorios.cadastro' %}" class="sidebar-link"><i class="fa fa-plus"></i><span class="hide-menu">Cadastrar</span></a></li>#}
-{#                            </ul>#}
-{#                        </li>#}
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -332,6 +315,8 @@
     <script src="{% static 'adm/assets/libs/flot/jquery.flot.crosshair.js' %}"></script>
     <script src="{% static 'adm/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js' %}"></script>
     <script src="{% static 'adm/dist/js/pages/chart/chart-page-init.js' %}"></script>
+    <script src="{% static 'adm/assets/extra-libs/multicheck/datatable-checkbox-init.js'%}"></script>
+    <script src="{% static 'adm/assets/extra-libs/multicheck/jquery.multicheck.js'%}"></script>
     <script src="{% static 'adm/assets/extra-libs/DataTables/datatables.min.js'%}"></script>
     <script>
         /****************************************

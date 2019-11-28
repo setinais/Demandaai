@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 import _thread
-from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile
+from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content
 from .forms import *
 from datetime import datetime, timedelta
 import os
@@ -237,7 +237,7 @@ def servicos_cadastro(request):
         servico.profile_id = request.user.id
         servico.status = 1
         servico.save()
-        return redirect('servicos')
+        return redirect('service')
 
     return render(request,'administrador/servicos/cadastro.html',{'form': form})
 
@@ -248,7 +248,7 @@ def servicos_editar(request, id):
 
     if form.is_valid():
         form.save()
-        return redirect('servicos')
+        return redirect('service')
 
     return render(request, 'administrador/servicos/cadastro.html', {'form': form,'dados': servico})
 
@@ -256,7 +256,7 @@ def servicos_editar(request, id):
 def servicos_deletar(request, id):
     servico = Service.objects.get(id=id)
     servico.delete()
-    return redirect('servicos')
+    return redirect('service')
 #END CRUD SERVIÇOS
 
 #CRUD EQUIPAMENTOS
@@ -274,7 +274,7 @@ def equipamentos_cadastro(request):
         equipamento.profile_id = request.user.id
         equipamento.status = 1
         equipamento.save()
-        return redirect('equipamentos')
+        return redirect('equipament')
 
     return render(request,'administrador/equipamentos/cadastro.html',{'form': form})
 
@@ -284,14 +284,14 @@ def equipamentos_editar(request, id):
     form = EquipamentForm(request.POST or None, instance=Equipmente)
     if form.is_valid():
         form.save()
-        return redirect('equipamentos')
+        return redirect('equipament')
     return render(request, 'administrador/equipamentos/cadastro.html', {'form': form,'dados': Equipmente})
 
 @login_required
 def equipamentos_deletar(request, id):
     equipamento = Equipment.objects.get(id=id)
     equipamento.delete()
-    return redirect('equipamentos')
+    return redirect('equipament')
 
 #END CRUD EQUIPAMENTOS
 
@@ -300,17 +300,18 @@ def equipamentos_deletar(request, id):
 @require_http_methods(['GET'])
 def laboratorios(request):
     laboratorios = Laboratory.objects.all()
-    return render(request,'administrador/laboratorios/home.html',{'laboratorios':laboratorios})
+    return render(request,'administrador/laboratorios/home.html',{'laboratorios': laboratorios})
 
 @login_required
 def laboratorios_cadastro(request):
     form = LaboratoryForm(request.POST or None)
     if form.is_valid():
         laboratorio = form.save(commit=False)
+        laboratorio.pesquisa_extensao = False
         laboratorio.profile_id = request.user.id
         laboratorio.status = 1
         laboratorio.save()
-        return redirect('laboratorios')
+        return redirect('laboratory')
 
     return render(request,'administrador/laboratorios/cadastro.html',{'form': form})
 
@@ -320,11 +321,57 @@ def laboratorios_editar(request, id):
     form = LaboratoryForm(request.POST or None, instance=lab)
     if form.is_valid():
         form.save()
-        return redirect('laboratorios')
+        return redirect('laboratory')
     return render(request, 'administrador/laboratorios/cadastro.html', {'form': form,'dados': lab})
 
 @login_required
 def laboratorios_deletar(request, id):
     laboratorio = Laboratory.objects.get(id=id)
     laboratorio.delete()
-    return redirect('laboratorios')
+    return redirect('laboratory')
+
+# CRUD PROFILE
+@login_required
+@require_http_methods(['GET'])
+def profile(request):
+    profile = Profile.objects.all()
+    return render(request,'administrador/profile/home.html',{'profiles': profile})
+
+def profile_cadastro(request):
+    form = ProfileForm(request.POST or None)
+    if form.is_valid():
+        profile = form.save(commit=False)
+        profile.set_password(profile.password)
+        profile.is_superuser = 0
+        profile.save()
+        return redirect('laboratory')
+
+    return render(request,'administrador/profile/cadastro.html',{'form': form})
+
+@login_required
+def profile_editar(request, id):
+    pro = Profile.objects.get(id=id)
+    form = ProfileForm(request.POST or None, instance=pro)
+    if form.is_valid():
+        form.save()
+        return redirect('laboratory')
+    return render(request, 'administrador/profile/cadastro.html', {'form': form,'dados': pro})
+
+@login_required
+def profile_deletar(request, id):
+    profile = Profile.objects.get(id=id)
+    profile.delete()
+    return redirect('laboratory')
+
+# Permissões
+
+@login_required
+def permission(request, id):
+    profile = Profile.objects.get(id=id)
+    permissoes = Content.objects.order_by('id')
+    for p in permissoes:
+        tes = p.permission
+    return render(request, 'administrador/permission/permission.html', {'profile': profile, 'permissoes': permissoes})
+
+def permission_edit(request, id):
+    return redirect('profile')

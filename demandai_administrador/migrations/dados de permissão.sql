@@ -1,11 +1,11 @@
 
 INSERT INTO `demandai_administrador_content`(`id`, `model`, `name`) VALUES
-    (1, 'laboratory', 'Laboratorios'),
+    (1, 'prospeccao', 'Prospecção'),
     (2, 'service', 'Serviços'),
-    (3, 'equipament', 'Equipamentos'),
-    (4, 'usuario', 'Usuarios'),
-    (5 ,'institution', 'Instituições'),
-    (6, 'prospeccao', 'Prospecção'),
+    (3, 'laboratory', 'Laboratorios'),
+    (4, 'equipament', 'Equipamentos'),
+    (5, 'profile', 'Usuarios'),
+    (6 ,'institution', 'Instituições'),
     (7, 'permission', 'Permissões');
 
 INSERT INTO `demandai_administrador_permission`(`codigo`, `name`, `content_id`) VALUES
