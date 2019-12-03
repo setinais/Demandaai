@@ -369,8 +369,8 @@ def profile_deletar(request, id):
 def permission(request, id):
     profile = Profile.objects.get(id=id)
     permissoes = Content.objects.order_by('id')
-    for p in permissoes:
-        tes = p.permission
+    # for p in permissoes:
+    #     tes = p.permission
     return render(request, 'administrador/permission/permission.html', {'profile': profile, 'permissoes': permissoes})
 
 def permission_edit(request, id):
