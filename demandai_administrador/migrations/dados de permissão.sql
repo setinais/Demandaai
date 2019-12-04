@@ -1,12 +1,13 @@
 
-INSERT INTO `demandai_administrador_content`(`id`, `model`, `name`) VALUES
-    (1, 'prospeccao', 'Prospecção'),
-    (2, 'service', 'Serviços'),
-    (3, 'laboratory', 'Laboratorios'),
-    (4, 'equipament', 'Equipamentos'),
-    (5, 'profile', 'Usuarios'),
-    (6 ,'institution', 'Instituições'),
-    (7, 'permission', 'Permissões');
+INSERT INTO `demandai_administrador_content`(`id`, `model`, `name`, `icon`) VALUES
+    (1, 'prospeccao', 'Prospecção', 'mdi mdi-receipt'),
+    (2, 'service', 'Serviços', 'fa fa-suitcase'),
+    (3, 'laboratory', 'Laboratorios', 'fa fa-lightbulb'),
+    (4, 'equipament', 'Equipamentos', 'fa fa-cogs'),
+    (5, 'profile', 'Usuarios', 'fa fa-user'),
+    (6 ,'institution', 'Instituições', 'fa fa-university'),
+    (7, 'permission', 'Permissões', 'fa fa-lock'),
+    (8 ,'demand', 'Demandas', 'fa fa-newspaper'),;
 
 INSERT INTO `demandai_administrador_permission`(`codigo`, `name`, `content_id`) VALUES
 
@@ -31,9 +32,9 @@ INSERT INTO `demandai_administrador_permission`(`codigo`, `name`, `content_id`) 
         ('delete_institution', 'Deletar Instituição', 6),
 
         ('prospectar', 'Prospectar', 1),
-        ('view_demand', 'Listar Demandas', 1),
-        ('update_demand', 'Atualizar Demandas', 1),
         ('delete_demand', 'Deletar Demandas', 1),
 
         ('view_permission', 'Listar Permissões', 7),
         ('update_permission', 'Atualizar Permissões', 7),
+
+        ('update_demand', 'Atualizar Demandas', 8);

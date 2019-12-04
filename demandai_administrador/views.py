@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 import _thread
 from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content, UserPermission, \
-    Permission, UserContent
+    Permission, UserContent, UserService, Institution, DemandCallback
 from .forms import *
 from datetime import datetime, timedelta
 import os
@@ -19,10 +19,12 @@ def logout_in(request):
 def home(request):
     # try:
         dados = {
-            'servicos': Service.objects.count(),
-            'laboratorios': Laboratory.objects.count(),
-            'equipamentos': Equipment.objects.count(),
-            'profissionais': Profile.objects.filter(role='SE').count(),
+            'Total_servicos': Service.objects.count(),
+            'Total_laboratorios': Laboratory.objects.count(),
+            'Total_equipamentos': Equipment.objects.count(),
+            'Total_profissionais': Profile.objects.filter(role='SE').count(),
+            'servicos': Service.objects.all(),
+            'userservice': UserService.objects.all(),
         }
         return render(request, 'administrador/home.html', {'dados': dados})
     # except Exception:
@@ -77,11 +79,13 @@ def badge_select(val):
         'A': 'primary',
         'P': 'secondary',
         'F': 'success',
+        'V': 'light',
+        'B': 'dark',
     }[val]
 
 @login_required
 def encaminhar_demanda(request, action, id):
-    # try:
+    try:
         template = ''
         actions = []
         if action == 'SER':
@@ -109,8 +113,8 @@ def encaminhar_demanda(request, action, id):
             dados.append(prepare)
             i += 1
         return render(request, template, {'dados': dados, 'id_demanda': id})
-    # except Exception:
-    #     return render(request, 'site/error.html')
+    except Exception:
+        return render(request, 'site/error.html')
 
 @login_required
 @require_http_methods(["GET"])
@@ -217,7 +221,7 @@ def download_arquivos(request):
 def responder_solicitante(request):
     _thread.start_new_thread(send_mail_responder_solicitante, (request,))
     demanda = Demand.objects.get(id=request.POST['id'])
-    demanda.status = 'R'
+    demanda.status = 'B'
     demanda.demand_callback.create(action=demanda.action, action_id=demanda.action_id, feedback=request.POST['texto'],
                                    prazo_feedback=(datetime.today() + timedelta(days=2)))
     demanda.save()
@@ -423,3 +427,42 @@ def permission_edit(request, id):
             content_tirar.delete()
 
     return redirect('profile')
+
+# CRUD INSTITUIÇÂO
+@login_required
+@require_http_methods(['GET'])
+def institution(request):
+    institution = Institution.objects.all()
+    return render(request,'administrador/institution/home.html',{'institutions': institution})
+
+def institution_cadastro(request):
+    form = InstitutionForm(request.POST or None)
+    if form.is_valid():
+        institution = form.save(commit=False)
+        institution.set_password(profile.password)
+        institution.is_superuser = 0
+        institution.save()
+        return redirect('institution')
+
+    return render(request,'administrador/institution/cadastro.html',{'form': form})
+
+@login_required
+def institution_editar(request, id):
+    pro = Institution.objects.get(id=id)
+    form = InstitutionForm(request.POST or None, instance=pro)
+    if form.is_valid():
+        form.save()
+        return redirect('institution')
+    return render(request, 'administrador/institution/cadastro.html', {'form': form,'dados': pro})
+
+@login_required
+def institution_deletar(request, id):
+    institution = Institution.objects.get(id=id)
+    institution.delete()
+    return redirect('institution')
+
+@login_required
+def demand(request):
+    # profile = request.user.
+    institution = DemandCallback.objects.filter(action='')
+    return render(request, 'administrador/demands/home.html', {'institutions': institution})

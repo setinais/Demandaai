@@ -9,32 +9,82 @@
             <div class="col-lg-3 col-sm-6 sm-mb-30">
                 <div class="box bg-info text-center">
                     <h1 class="font-light text-white"><i class="fa fa-smile"></i></h1>
-                    <span class="timer text-white" data-to="{{ dados.servicos }}" data-speed="2000">{{ dados.servicos }}</span>
+                    <span class="timer text-white" data-to="{{ dados.Total_servicos }}" data-speed="2000">{{ dados.Total_servicos }}</span>
                     <h6 class="text-white">Serviços</h6>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 sm-mb-30">
                 <div class="box bg-success text-center">
                     <h1 class="font-light text-white"><i class="fa fa-desktop"></i></h1>
-                    <span class="timer text-white" data-to="{{ dados.laboratorios }}" data-speed="3000">{{ dados.laboratorios }}</span>
+                    <span class="timer text-white" data-to="{{ dados.Total_laboratorios }}" data-speed="3000">{{ dados.Total_laboratorios }}</span>
                     <h6 class="text-white">Laboratorios</h6>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 xx-mb-30">
                  <div class="box bg-danger text-center">
                     <h1 class="font-light text-white"><i class="fa fa-check-circle"></i></h1>
-                    <span class="timer text-white" data-to="{{ dados.equipamentos }}" data-speed="4000">{{ dados.equipamentos }}</span>
+                    <span class="timer text-white" data-to="{{ dados.Total_equipamentos }}" data-speed="4000">{{ dados.Total_equipamentos }}</span>
                     <h6 class="text-white">Equipamentos</h6>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6">
                  <div class="box bg-warning text-center">
                     <h1 class="font-light text-white"><i class="fa fa-user"></i></h1>
-                    <span class="timer text-white" data-to="{{ dados.profissionais }}" data-speed="5000">{{ dados.profissionais }}</span>
+                    <span class="timer text-white" data-to="{{ dados.Total_profissionais }}" data-speed="5000">{{ dados.Total_profissionais }}</span>
                     <h6 class="text-white">Profissionais Capacitados</h6>
                 </div>
             </div>
         </div>
+        <br>
+        <!-- SERVICOS -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">SERVIÇOS OFERTADOS</h5>
+                    </div>
+                    <table id="zero_config" class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nome</th>
+                          <th scope="col">Descrição</th>
+                          <th scope="col">Servidores</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for servico in dados.servicos %}
+                            <tr>
+                              <th scope="row">{{servico.nome}}</th>
+                              <td>{{servico.descricao}}</td>
+                              <td>
+                                  {% for userr in dados.userservice %}
+                                      {% if userr.service_id == servico.id %}
+                                        <b>{{ userr.profile.username }}</b><br>
+                                      {% endif %}
+                                  {% endfor %}
+                              </td>
+                              <td>
+                                  <div class="custom-control custom-switch">
+                                      <input type="checkbox" class="custom-control-input services" name="{{ servico.id }}" value="{{ servico.id }}" id="customSwitch1" checked>
+                                      <label class="custom-control-label" for="customSwitch1">Receber Demanda</label>
+                                  </div>
+                              </td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END_SERVICOS -->
     </div>
 </section>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.services').each(function () {
+
+            })
+        })
+    </script>
 {% endblock %}

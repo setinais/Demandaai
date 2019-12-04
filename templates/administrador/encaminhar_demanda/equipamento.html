@@ -1,63 +1,50 @@
 {% extends 'administrador/encaminhar_demanda' %}
-{% block title_em %}Serviços disponíveis{% endblock %}
+{% block title_em %}<i class="fa fa-cogs"></i>  Equipamentos disponíveis{% endblock %}
 {% block lista %}
-    <table id="table_id" data-order='[[ 0, "desc" ]]' class="table table-hover">
-    <thead>
-    <tr>
-        <th>Nome</th>
-        <th>Responsalvel</th>
-        <th>Disponibilidade</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for action in dados %}
-        <tr>
-            <td>{{ action.nome }}</td>
-            <td>{{ action.responsavel }}</td>
-            <td class="{% if not action.status %}text-success {% else %} text-danger {% endif %}">
-                <i class="{% if not action.status %}fa fa-2x fa-check {% else %} fa fa-2x fa-times {% endif %}"></i>
-            </td>
-            <td>
-                <div class="dropdown">
-                    <form method="get" action="{% url 'encaminhar-d-action' %}">
-                        <input type="hidden" name="action" value="{{ action.action }}"/>
-                        <input type="hidden" name="id" value="{{ action.id }}"/>
-                        <input type="hidden" name="id_demanda" value="{{ id_demanda }}"/>
-                        <button class="btn btn-info btn-sm" type="submit">
-                            Encaminhar <i class="fa fa-send"></i>
-                        </button>
-                    </form>
+    <div class="row center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped table-bordered" style="width:100%">
+                          <thead class="thead-dark">
+                            <tr>
+
+                              <th scope="col">Nome</th>
+                              <th scope="col">Responsavel</th>
+                              <th scope="col">Disponibilidade</th>
+                              <th scope="col"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for lab in dados %}
+                            <tr>
+                              <td>{{ lab.nome }}</td>
+                              <td>{{ lab.responsavel }}</td>
+                              <td class="{% if lab.status %}text-success {% else %} text-danger {% endif %}">
+                                  <i class="{% if lab.status %}fa fa-2x fa-check {% else %} fa fa-2x fa-times {% endif %}"></i>
+                              </td>
+                              <td class="btn-group btn-group-toggle">
+                                <div class="dropdown">
+                                    <form method="get" action="{% url 'encaminhar-d-action' %}">
+                                        <input type="hidden" name="action" value="{{ lab.action }}"/>
+                                        <input type="hidden" name="id" value="{{ lab.id }}"/>
+                                        <input type="hidden" name="id_demanda" value="{{ id_demanda }}"/>
+                                        <button class="btn btn-info btn-sm" type="submit">
+                                            Encaminhar <i class="fa fa-send"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                              </td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+
                 </div>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+            </div>
+        </div>
+    </div>
     <a href="{% url 'prospeccao' %}" class="btn btn-danger">Voltar</a>
-{% endblock %}
-{% block javascript %}
-    <script type="application/javascript">
-        $(document).ready( function () {
-            $('#table_id').DataTable({
-                paging: false,
-                scrollY: 300,
-                oLanguage: {
-                    sLengthMenu: "Mostrar _MENU_ registros por página",
-                    sZeroRecords: "Nenhum registro encontrado",
-                    sInfo: "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
-                    sInfoEmpty: "Mostrando 0 / 0 de 0 registros",
-                    sInfoFiltered: "(filtrado de _MAX_ registros)",
-                    sSearch: "Pesquisar: ",
-                    oPaginate: {
-                        "sFirst": "Início",
-                        "sPrevious": "Anterior",
-                        "sNext": "Próximo",
-                        "sLast": "Último"
-                    }
-                },
-                "aaSorting": [[0, 'desc']],
-            });
-        });
-    </script>
 {% endblock %}
