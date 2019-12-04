@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 03-Dez-2019 às 00:00
+-- Generation Time: 04-Dez-2019 às 21:42
 -- Versão do servidor: 5.7.24
 -- versão do PHP: 7.2.14
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   KEY `auth_permission_content_type_id_2f476e4b` (`content_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `auth_permission`
@@ -115,30 +115,34 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (38, 'Can change permission', 10, 'change_permission'),
 (39, 'Can delete permission', 10, 'delete_permission'),
 (40, 'Can view permission', 10, 'view_permission'),
-(41, 'Can add user permission', 11, 'add_userpermission'),
-(42, 'Can change user permission', 11, 'change_userpermission'),
-(43, 'Can delete user permission', 11, 'delete_userpermission'),
-(44, 'Can view user permission', 11, 'view_userpermission'),
-(45, 'Can add user content', 12, 'add_usercontent'),
-(46, 'Can change user content', 12, 'change_usercontent'),
-(47, 'Can delete user content', 12, 'delete_usercontent'),
-(48, 'Can view user content', 12, 'view_usercontent'),
-(49, 'Can add service', 13, 'add_service'),
-(50, 'Can change service', 13, 'change_service'),
-(51, 'Can delete service', 13, 'delete_service'),
-(52, 'Can view service', 13, 'view_service'),
-(53, 'Can add laboratory', 14, 'add_laboratory'),
-(54, 'Can change laboratory', 14, 'change_laboratory'),
-(55, 'Can delete laboratory', 14, 'delete_laboratory'),
-(56, 'Can view laboratory', 14, 'view_laboratory'),
-(57, 'Can add equipment', 15, 'add_equipment'),
-(58, 'Can change equipment', 15, 'change_equipment'),
-(59, 'Can delete equipment', 15, 'delete_equipment'),
-(60, 'Can view equipment', 15, 'view_equipment'),
-(61, 'Can add demand callback', 16, 'add_demandcallback'),
-(62, 'Can change demand callback', 16, 'change_demandcallback'),
-(63, 'Can delete demand callback', 16, 'delete_demandcallback'),
-(64, 'Can view demand callback', 16, 'view_demandcallback');
+(41, 'Can add service', 11, 'add_service'),
+(42, 'Can change service', 11, 'change_service'),
+(43, 'Can delete service', 11, 'delete_service'),
+(44, 'Can view service', 11, 'view_service'),
+(45, 'Can add user service', 12, 'add_userservice'),
+(46, 'Can change user service', 12, 'change_userservice'),
+(47, 'Can delete user service', 12, 'delete_userservice'),
+(48, 'Can view user service', 12, 'view_userservice'),
+(49, 'Can add user permission', 13, 'add_userpermission'),
+(50, 'Can change user permission', 13, 'change_userpermission'),
+(51, 'Can delete user permission', 13, 'delete_userpermission'),
+(52, 'Can view user permission', 13, 'view_userpermission'),
+(53, 'Can add user content', 14, 'add_usercontent'),
+(54, 'Can change user content', 14, 'change_usercontent'),
+(55, 'Can delete user content', 14, 'delete_usercontent'),
+(56, 'Can view user content', 14, 'view_usercontent'),
+(57, 'Can add laboratory', 15, 'add_laboratory'),
+(58, 'Can change laboratory', 15, 'change_laboratory'),
+(59, 'Can delete laboratory', 15, 'delete_laboratory'),
+(60, 'Can view laboratory', 15, 'view_laboratory'),
+(61, 'Can add equipment', 16, 'add_equipment'),
+(62, 'Can change equipment', 16, 'change_equipment'),
+(63, 'Can delete equipment', 16, 'delete_equipment'),
+(64, 'Can view equipment', 16, 'view_equipment'),
+(65, 'Can add demand callback', 17, 'add_demandcallback'),
+(66, 'Can change demand callback', 17, 'change_demandcallback'),
+(67, 'Can delete demand callback', 17, 'delete_demandcallback'),
+(68, 'Can view demand callback', 17, 'view_demandcallback');
 
 -- --------------------------------------------------------
 
@@ -154,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_content` (
   `name` longtext NOT NULL,
   `icon` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `demandai_administrador_content`
@@ -167,7 +171,8 @@ INSERT INTO `demandai_administrador_content` (`id`, `deleted`, `model`, `name`, 
 (5, NULL, 'profile', 'Usuarios', 'fa fa-user'),
 (6, NULL, 'institution', 'Instituições', 'fa fa-university'),
 (1, NULL, 'prospeccao', 'Prospecção', 'mdi mdi-receipt'),
-(7, NULL, 'permission', 'Permissões', 'fa fa-lock');
+(7, NULL, 'permission', 'Permissões', 'fa fa-lock'),
+(8, NULL, 'demand', 'Demandas', 'fa fa-newspaper');
 
 -- --------------------------------------------------------
 
@@ -199,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_demand` (
 --
 
 INSERT INTO `demandai_administrador_demand` (`id`, `deleted`, `action`, `action_id`, `nome`, `telefone`, `codigo`, `email`, `descricao`, `status`, `file`, `visualizada`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'LAB', 1, 'gregre', '(43) 5 4354-3543', '2E9AA8', 'vynny.cg@gmail.com', 'bhrteshhtr', 'R', '', 0, '2019-11-28 15:43:45.462415', '2019-12-02 20:46:52.353414');
+(1, NULL, 'LAB', 1, 'gregre', '(43) 5 4354-3543', '2E9AA8', 'vynny.cg@gmail.com', 'bhrteshhtr', 'E', '', 0, '2019-11-28 15:43:45.462415', '2019-12-04 17:43:59.067982');
 
 -- --------------------------------------------------------
 
@@ -219,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_demandcallback` (
   `demand_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `demandai_administrador_demandcallback_demand_id_93b0ba0b` (`demand_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `demandai_administrador_demandcallback`
@@ -227,7 +232,10 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_demandcallback` (
 
 INSERT INTO `demandai_administrador_demandcallback` (`id`, `deleted`, `action`, `action_id`, `feedback`, `prazo_feedback`, `created_at`, `demand_id`) VALUES
 (1, NULL, 'LAB', 1, '', '2019-11-30 15:47:42.191252', '2019-11-28 15:47:42.192251', 1),
-(2, NULL, 'LAB', 1, 'o saymon é gay\r\ne grilinho', '2019-12-04 20:46:52.314256', '2019-12-02 20:46:52.314256', 1);
+(2, NULL, 'LAB', 1, 'o saymon é gay\r\ne grilinho', '2019-12-04 20:46:52.314256', '2019-12-02 20:46:52.314256', 1),
+(3, NULL, 'LAB', 1, 'Demanda encaminhada para \"Residencia em SI\", ficando em análise!', '2019-12-06 17:33:09.584615', '2019-12-04 17:33:09.584614', 1),
+(4, NULL, 'LAB', 1, 'Demanda encaminhada para \"Residencia em SI\", ficando em análise!', '2019-12-06 17:33:20.199726', '2019-12-04 17:33:20.199725', 1),
+(5, NULL, 'LAB', 1, 'Demanda encaminhada para \"Residencia em SI\", ficando em análise!', '2019-12-06 17:43:59.067983', '2019-12-04 17:43:59.068982', 1);
 
 -- --------------------------------------------------------
 
@@ -252,7 +260,14 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_equipment` (
   KEY `demandai_administrador_equipment_institution_id_1371fa41` (`institution_id`),
   KEY `demandai_administrador_equipment_laboratory_id_67a736fb` (`laboratory_id`),
   KEY `demandai_administrador_equipment_profile_id_99da16ad` (`profile_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `demandai_administrador_equipment`
+--
+
+INSERT INTO `demandai_administrador_equipment` (`id`, `deleted`, `codigo`, `descricao`, `nome`, `status`, `created_at`, `updated_at`, `institution_id`, `laboratory_id`, `profile_id`) VALUES
+(1, NULL, 'ahetaha', 'tannaethsth', 'gagvsth', 1, '2019-12-04 18:36:15.156424', '2019-12-04 18:36:15.156424', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -333,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_laboratory` (
 --
 
 INSERT INTO `demandai_administrador_laboratory` (`id`, `deleted`, `telefone`, `descricao`, `nome`, `atividades_realizadas`, `pesquisa_extensao`, `endereco_sala`, `servidores`, `departamentos`, `cursos`, `status`, `created_at`, `updated_at`, `institution_id`, `profile_id`) VALUES
-(1, NULL, '63999878410', 'Laboratorio destinado a produção de software', 'Residencia em SI', 'Banco de Dados; Produção de Software; Desenvolvimento Mobile', 0, 'Bloco C', 'Jonas Macedo', 'Nao sei', 'SI; ADM; TA', '1', '2019-11-28 14:43:39.234189', '2019-11-28 14:44:51.769643', 1, 1);
+(1, NULL, '63999878410', 'Laboratorio destinado a produção de software', 'Residencia em SI', 'Banco de Dados; Produção de Software; Desenvolvimento Mobile', 0, 'Bloco C', 'Jonas Macedo', 'Nao sei', 'SI; ADM; TA', '0', '2019-11-28 14:43:39.234189', '2019-11-28 14:44:51.769643', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -350,40 +365,33 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_permission` (
   `content_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `demandai_administrador_permission_content_id_acba12b9` (`content_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `demandai_administrador_permission`
 --
 
 INSERT INTO `demandai_administrador_permission` (`id`, `deleted`, `name`, `codigo`, `content_id`) VALUES
-(1, NULL, 'Adicionar Laboratorio', 'add_laboratory', 1),
-(2, NULL, 'Listar Laboratorio', 'view_laboratory', 1),
-(3, NULL, 'Atualizar Laboratorio', 'update_laboratory', 1),
-(4, NULL, 'Deletar Laboratorio', 'delete_laboratory', 1),
-(5, NULL, 'Adicionar Serviço', 'add_service', 2),
-(6, NULL, 'Listar Serviço', 'view_service', 2),
-(7, NULL, 'Atualizar Serviço', 'update_service', 2),
-(8, NULL, 'Deletar Serviço', 'delete_service', 2),
-(9, NULL, 'Adicionar Equipamento', 'add_equipament', 3),
-(10, NULL, 'Listar Equipamento', 'view_equipament', 3),
-(11, NULL, 'Atualizar Equipamento', 'update_equipament', 3),
-(12, NULL, 'Deletar Equipamento', 'delete_equipament', 3),
-(13, NULL, 'Adicionar Usuario', 'add_usuario', 4),
-(14, NULL, 'Listar Usuario', 'view_usuario', 4),
-(15, NULL, 'Atualizar Usuario', 'update_usuario', 4),
-(16, NULL, 'Deletar Usuario', 'delete_usuario', 4),
-(17, NULL, 'Adicionar Instituição', 'add_institution', 5),
-(18, NULL, 'Listar Instituição', 'view_institution', 5),
-(19, NULL, 'Atualizar Instituição', 'update_institution', 5),
-(20, NULL, 'Deletar Instituição', 'delete_institution', 5),
-(21, NULL, 'Adicionar Instituição', 'prospectar', 6),
-(22, NULL, 'Listar Instituição', 'view_demand', 6),
-(23, NULL, 'Atualizar Instituição', 'update_demand', 6),
-(24, NULL, 'Deletar Instituição', 'delete_demand', 6),
-(25, NULL, 'Listar Instituição', 'view_permission', 7),
-(26, NULL, 'Atualizar Instituição', 'update_permission', 7),
-(27, NULL, 'Deletar Instituição', 'delete_institution', 7);
+(1, NULL, 'Adicionar Laboratorio', 'add_laboratory', 3),
+(2, NULL, 'Atualizar Laboratorio', 'update_laboratory', 3),
+(3, NULL, 'Deletar Laboratorio', 'delete_laboratory', 3),
+(4, NULL, 'Adicionar Serviço', 'add_service', 2),
+(5, NULL, 'Atualizar Serviço', 'update_service', 2),
+(6, NULL, 'Deletar Serviço', 'delete_service', 2),
+(7, NULL, 'Adicionar Equipamento', 'add_equipament', 4),
+(8, NULL, 'Atualizar Equipamento', 'update_equipament', 4),
+(9, NULL, 'Deletar Equipamento', 'delete_equipament', 4),
+(10, NULL, 'Adicionar Usuario', 'add_usuario', 5),
+(11, NULL, 'Atualizar Usuario', 'update_usuario', 5),
+(12, NULL, 'Deletar Usuario', 'delete_usuario', 5),
+(13, NULL, 'Adicionar Instituição', 'add_institution', 6),
+(14, NULL, 'Atualizar Instituição', 'update_institution', 6),
+(15, NULL, 'Deletar Instituição', 'delete_institution', 6),
+(16, NULL, 'Prospectar', 'prospectar', 1),
+(17, NULL, 'Deletar Demandas', 'delete_demand', 1),
+(18, NULL, 'Listar Permissões', 'view_permission', 7),
+(19, NULL, 'Atualizar Permissões', 'update_permission', 7),
+(20, NULL, 'Atualizar Demandas', 'update_demand', 8);
 
 -- --------------------------------------------------------
 
@@ -419,7 +427,7 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_profile` (
 --
 
 INSERT INTO `demandai_administrador_profile` (`id`, `deleted`, `password`, `last_login`, `is_superuser`, `first_name`, `last_name`, `is_staff`, `is_active`, `date_joined`, `username`, `email`, `role`, `created_at`, `updated_at`, `institution_id`) VALUES
-(1, NULL, 'pbkdf2_sha256$150000$BMjzwqwPTd1p$e+U8XphEUKtTttIx8cPYlLjTDU4/C/GIX4aPu6PpsgI=', '2019-11-26 20:38:06.241712', 1, '', '', 1, 1, '2019-06-17 18:01:18.844660', 'vinnicyus', 'vynny.cg@gmail.com', 'SE', '2019-06-17 18:01:19.036175', '2019-06-17 18:01:19.036175', NULL),
+(1, NULL, 'pbkdf2_sha256$150000$BMjzwqwPTd1p$e+U8XphEUKtTttIx8cPYlLjTDU4/C/GIX4aPu6PpsgI=', '2019-12-04 18:42:28.624707', 1, '', '', 1, 1, '2019-06-17 18:01:18.844660', 'vinnicyus', 'vynny.cg@gmail.com', 'SE', '2019-06-17 18:01:19.036175', '2019-06-17 18:01:19.036175', NULL),
 (2, NULL, 'vinni123', NULL, 0, 'Vinnicyus', 'Carvalho', 0, 1, '2019-11-21 16:13:33.000000', 'setinais', 'vinnicyus.goncalves@estudante.ifto.edu.br', 'DI', '2019-11-21 16:14:47.275442', '2019-11-21 16:14:47.275442', 1);
 
 -- --------------------------------------------------------
@@ -480,7 +488,14 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_service` (
   PRIMARY KEY (`id`),
   KEY `demandai_administrador_service_institution_id_307faeb4` (`institution_id`),
   KEY `demandai_administrador_service_profile_id_fe11bf6b` (`profile_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `demandai_administrador_service`
+--
+
+INSERT INTO `demandai_administrador_service` (`id`, `deleted`, `plataformas`, `descricao`, `nome`, `servidores`, `desenvolvedores`, `departamentos`, `status`, `created_at`, `updated_at`, `institution_id`, `profile_id`) VALUES
+(1, NULL, 'htehrtwh', 'hyehrth', 'grege', 'wrhbtwrshtr', 'htrhrte', 'hwtrhrt', 1, '2019-12-04 18:36:04.370959', '2019-12-04 18:36:04.371983', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -496,16 +511,22 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_usercontent` (
   PRIMARY KEY (`id`),
   KEY `demandai_administrador_usercontent_content_id_3b947944` (`content_id`),
   KEY `demandai_administrador_usercontent_profile_id_73ac83cd` (`profile_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `demandai_administrador_usercontent`
 --
 
 INSERT INTO `demandai_administrador_usercontent` (`id`, `content_id`, `profile_id`) VALUES
-(1, 1, 1),
-(3, 5, 1),
-(4, 3, 1);
+(50, 4, 1),
+(30, 5, 1),
+(54, 6, 1),
+(32, 7, 1),
+(53, 3, 1),
+(52, 2, 1),
+(51, 1, 1),
+(55, 1, 2),
+(56, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -521,6 +542,48 @@ CREATE TABLE IF NOT EXISTS `demandai_administrador_userpermission` (
   PRIMARY KEY (`id`),
   KEY `demandai_administrador_userpermission_permission_id_9e535858` (`permission_id`),
   KEY `demandai_administrador_userpermission_user_id_6d743b50` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `demandai_administrador_userpermission`
+--
+
+INSERT INTO `demandai_administrador_userpermission` (`id`, `permission_id`, `user_id`) VALUES
+(1, 16, 1),
+(2, 17, 1),
+(3, 4, 1),
+(4, 5, 1),
+(5, 6, 1),
+(6, 1, 1),
+(7, 2, 1),
+(8, 3, 1),
+(9, 7, 1),
+(10, 8, 1),
+(11, 9, 1),
+(12, 10, 1),
+(13, 11, 1),
+(14, 12, 1),
+(15, 13, 1),
+(16, 14, 1),
+(17, 15, 1),
+(18, 18, 1),
+(19, 19, 1),
+(20, 20, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `demandai_administrador_userservice`
+--
+
+DROP TABLE IF EXISTS `demandai_administrador_userservice`;
+CREATE TABLE IF NOT EXISTS `demandai_administrador_userservice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `profile_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `demandai_administrador_userservice_profile_id_0bf2a3c6` (`profile_id`),
+  KEY `demandai_administrador_userservice_service_id_d5b5c420` (`service_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -557,7 +620,7 @@ CREATE TABLE IF NOT EXISTS `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `django_content_type`
@@ -574,12 +637,13 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (8, 'demandai_administrador', 'demand'),
 (9, 'demandai_administrador', 'institution'),
 (10, 'demandai_administrador', 'permission'),
-(11, 'demandai_administrador', 'userpermission'),
-(12, 'demandai_administrador', 'usercontent'),
-(13, 'demandai_administrador', 'service'),
-(14, 'demandai_administrador', 'laboratory'),
-(15, 'demandai_administrador', 'equipment'),
-(16, 'demandai_administrador', 'demandcallback');
+(11, 'demandai_administrador', 'service'),
+(12, 'demandai_administrador', 'userservice'),
+(13, 'demandai_administrador', 'userpermission'),
+(14, 'demandai_administrador', 'usercontent'),
+(15, 'demandai_administrador', 'laboratory'),
+(16, 'demandai_administrador', 'equipment'),
+(17, 'demandai_administrador', 'demandcallback');
 
 -- --------------------------------------------------------
 
@@ -594,32 +658,31 @@ CREATE TABLE IF NOT EXISTS `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `django_migrations`
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2019-11-26 19:48:27.983098'),
-(2, 'contenttypes', '0002_remove_content_type_name', '2019-11-26 19:48:28.114747'),
-(3, 'auth', '0001_initial', '2019-11-26 19:48:28.303552'),
-(4, 'auth', '0002_alter_permission_name_max_length', '2019-11-26 19:48:28.946817'),
-(5, 'auth', '0003_alter_user_email_max_length', '2019-11-26 19:48:28.951775'),
-(6, 'auth', '0004_alter_user_username_opts', '2019-11-26 19:48:28.957787'),
-(7, 'auth', '0005_alter_user_last_login_null', '2019-11-26 19:48:28.962773'),
-(8, 'auth', '0006_require_contenttypes_0002', '2019-11-26 19:48:28.964768'),
-(9, 'auth', '0007_alter_validators_add_error_messages', '2019-11-26 19:48:28.968757'),
-(10, 'auth', '0008_alter_user_username_max_length', '2019-11-26 19:48:28.972749'),
-(11, 'auth', '0009_alter_user_last_name_max_length', '2019-11-26 19:48:28.977733'),
-(12, 'auth', '0010_alter_group_name_max_length', '2019-11-26 19:48:29.052541'),
-(13, 'auth', '0011_update_proxy_permissions', '2019-11-26 19:48:29.060514'),
-(14, 'demandai_administrador', '0001_initial', '2019-11-26 19:48:30.319549'),
-(15, 'admin', '0001_initial', '2019-11-26 19:48:33.034151'),
-(16, 'admin', '0002_logentry_remove_auto_add', '2019-11-26 19:48:33.200701'),
-(17, 'admin', '0003_logentry_add_action_flag_choices', '2019-11-26 19:48:33.212701'),
-(18, 'sessions', '0001_initial', '2019-11-26 19:48:33.256581'),
-(19, 'demandai_administrador', '0002_content_icon', '2019-11-28 14:26:39.675026');
+(1, 'contenttypes', '0001_initial', '2019-12-04 18:38:49.334939'),
+(2, 'contenttypes', '0002_remove_content_type_name', '2019-12-04 18:38:49.444289'),
+(3, 'auth', '0001_initial', '2019-12-04 18:38:49.616124'),
+(4, 'auth', '0002_alter_permission_name_max_length', '2019-12-04 18:38:50.208227'),
+(5, 'auth', '0003_alter_user_email_max_length', '2019-12-04 18:38:50.213213'),
+(6, 'auth', '0004_alter_user_username_opts', '2019-12-04 18:38:50.219203'),
+(7, 'auth', '0005_alter_user_last_login_null', '2019-12-04 18:38:50.225180'),
+(8, 'auth', '0006_require_contenttypes_0002', '2019-12-04 18:38:50.226178'),
+(9, 'auth', '0007_alter_validators_add_error_messages', '2019-12-04 18:38:50.231173'),
+(10, 'auth', '0008_alter_user_username_max_length', '2019-12-04 18:38:50.236152'),
+(11, 'auth', '0009_alter_user_last_name_max_length', '2019-12-04 18:38:50.241148'),
+(12, 'auth', '0010_alter_group_name_max_length', '2019-12-04 18:38:50.321209'),
+(13, 'auth', '0011_update_proxy_permissions', '2019-12-04 18:38:50.328188'),
+(14, 'demandai_administrador', '0001_initial', '2019-12-04 18:38:51.428054'),
+(15, 'admin', '0001_initial', '2019-12-04 18:38:54.368751'),
+(16, 'admin', '0002_logentry_remove_auto_add', '2019-12-04 18:38:54.671670'),
+(17, 'admin', '0003_logentry_add_action_flag_choices', '2019-12-04 18:38:54.682671'),
+(18, 'sessions', '0001_initial', '2019-12-04 18:38:54.745882');
 
 -- --------------------------------------------------------
 
@@ -641,7 +704,7 @@ CREATE TABLE IF NOT EXISTS `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('lq877aye6vqzndvqaxtjl69fx4r26edw', 'Nzc4MDMyZmM1ZjM0OGJjNDhkNzA0NTEyMjFlNzZkOTk5NGZjOTVkZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI0NDUwMmJlOTBhMWM0ZjJlODA5MDQxM2EwZjk1NmFjMGIzMmM2NjU5In0=', '2019-12-10 20:38:06.243733');
+('tbt69nfn5sn5k2o9ncdkgq2waoi1ni9g', 'Nzc4MDMyZmM1ZjM0OGJjNDhkNzA0NTEyMjFlNzZkOTk5NGZjOTVkZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI0NDUwMmJlOTBhMWM0ZjJlODA5MDQxM2EwZjk1NmFjMGIzMmM2NjU5In0=', '2019-12-18 18:42:28.625706');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

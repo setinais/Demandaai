@@ -463,6 +463,39 @@ def institution_deletar(request, id):
 
 @login_required
 def demand(request):
-    # profile = request.user.
-    institution = DemandCallback.objects.filter(action='')
-    return render(request, 'administrador/demands/home.html', {'institutions': institution})
+    try:
+        demandas = Demand.objects.filter(visualizada=0).order_by('-created_at')
+        dados = []
+        i = 0
+        while i < len(demandas):
+            action = {}
+            demanda = {}
+            if demandas[i].action == 'SER':
+                action = Service.objects.get(id=demandas[i].action_id)
+            elif demandas[i].action == 'LAB':
+                action = Laboratory.objects.get(id=demandas[i].action_id)
+            elif demandas[i].action == 'EQU':
+                action = Equipment.objects.get(id=demandas[i].action_id)
+            else:
+                return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
+            demanda = {
+                'id': demandas[i].id,
+                'status': demandas[i].get_status_display(),
+                'created_at': demandas[i].created_at,
+                'visualizada': demandas[i].visualizada,
+                'badge': badge_select(demandas[i].status),
+                'action_sel': demandas[i].action,
+                'action': {
+                    'nome': action.nome,
+                    'profile': {
+                        'nome': action.profile.username,
+                        'id': action.profile.id
+                    },
+                    'instituicao': action.institution.nome,
+                }
+            }
+            dados.append(demanda)
+            i += 1
+        return render(request, 'administrador/demands/home.html', {'institutions': institution})
+    except Exception:
+        return render(request, 'site/error.html')
