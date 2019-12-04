@@ -5,17 +5,27 @@
     <h2><i class="fa fa-lock"></i>  Permissões</h2>
     <div class="row center">
         <div class="col-md-12">
+        <form method="POST" action="{% url 'permission.edit' profile.id %}">
+
             <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">
+                <div class="card-body row">
+                    <h5 class="card-title row col-md-12 col-lg-12 col-sm-12">
                         Permissões do <span class="badge badge-primary" style="font-size: 13pt"> {{ profile.username }} </span>
                     </h5>
                     {% for permissao in permissoes %}
-                    <div id="accordian-{{ permissao.model }}">
-                        <div class="card m-t-30 col-md-4 col-lg-3 col-sm-12">
+                    <div id="accordian-{{ permissao.model }}" class="col-md-4 col-lg-3 col-sm-12">
+                        <div class="card m-t-30">
                             <div class="card-header row">
-                                <label class="customcheckbox m-b-20">
-                                    <input type="checkbox" id="mainCheckbox{{ permissao.model }}">
+                                <label class="customcheckbox m-b-20" >
+                                    <input type="checkbox"
+                                           {% for all in profile.my_permissions %}
+                                                {% for content in all %}
+                                                    {% if content == permissao.model %}
+                                                        {{ 'checked' }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                           {% endfor %}
+                                           id="mainCheckbox-{{ permissao.model }}" >
                                     <span class="checkmark"></span>
                                 </label>
                                 <a class="collapsed link" data-toggle="collapse" data-parent="#accordian-{{ permissao.model }}" href="#Toggle-{{ permissao.model }}" aria-expanded="false" aria-controls="Toggle-{{ permissao.model }}">
@@ -27,15 +37,23 @@
                                     <div class="table-responsive">
                                         <table class="table">
                                             <tbody class="customtable">
-                                            {% for atributo in permissao.permission %}
+                                            {% for atributo in permissao.permission_set.all %}
                                             <tr>
                                                 <th>
                                                     <label class="customcheckbox">
-                                                        <input type="checkbox" class="listCheckbox{{ permissao.model }}">
+                                                        <input type="checkbox"
+                                                               {% for all in profile.my_permissions %}
+                                                {% for content in all %}
+                                                    {% if content == atributo.codigo %}
+                                                        {{ 'checked' }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                           {% endfor %}
+                                                               class="listCheckbox-{{ permissao.model }}"  name="{{ atributo.id }}">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </th>
-                                                <td>{{ atributo }}</td>
+                                                <td>{{ atributo.name }}</td>
                                             </tr>
                                             {% endfor %}
                                             </tbody>
@@ -47,7 +65,10 @@
                     </div>
                     {% endfor %}
                 </div>
+            {% csrf_token %}
+            <Button class="btn btn-success" type="submit">Salvar</Button>
             </div>
+        </form>
         </div>
     </div>
 

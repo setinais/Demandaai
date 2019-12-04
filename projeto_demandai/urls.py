@@ -21,7 +21,7 @@ from django.urls import path, include
 from projeto_demandai import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('adm/', include('demandai_administrador.urls')),
     path('', include('demandai_site.urls'))
 ]

@@ -54,6 +54,23 @@ class Profile(AbstractUser, SafeDeleteModel):
         return permissions_user.count() > 0
 
     @property
+    def my_permissions(self):
+        grop = []
+        p = []
+        dados = []
+        contents = UserContent.objects.filter(profile=self.id).order_by('content')
+        permissoes = UserPermission.objects.filter(user=self.id).order_by('permission')
+        for cont in contents:
+            content = Content.objects.get(id=cont.content_id)
+            grop.append(content.model)
+
+        for per in permissoes:
+            permissao = Permission.objects.get(id=per.permission_id)
+            grop.append(permissao.codigo)
+        dados.append(grop)
+        dados.append(p)
+        return dados
+    @property
     def permissions_for_menu(self):
         permissoes = UserContent.objects.filter(profile=self.id).order_by('content')
         dados = []
@@ -206,6 +223,9 @@ class Permission(SafeDeleteModel):
     name = models.TextField()
     content = models.ForeignKey(Content, on_delete=models.PROTECT)
     codigo = models.CharField(max_length=100 ,choices=permissions)
+
+    class Meta:
+        ordering = ['id']
 
 class UserPermission(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

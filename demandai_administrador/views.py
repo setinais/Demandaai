@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 import _thread
-from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content
+from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content, UserPermission, Permission
 from .forms import *
 from datetime import datetime, timedelta
 import os
@@ -369,9 +369,19 @@ def profile_deletar(request, id):
 def permission(request, id):
     profile = Profile.objects.get(id=id)
     permissoes = Content.objects.order_by('id')
-    # for p in permissoes:
-    #     tes = p.permission
     return render(request, 'administrador/permission/permission.html', {'profile': profile, 'permissoes': permissoes})
 
 def permission_edit(request, id):
+    dados = request.POST
+    menu = []
+    for d in dados:
+        if 'csrfmiddlewaretoken' != d:
+            if 1 <= int(d):
+                if int(d) <= 26:
+                    u = UserPermission.objects.filter(user_id=id, permission_id=d)
+                    if u.count() == 0:
+                        u = UserPermission(user_id=id, permission_id=d)
+                        # u.save()
+                        menu.append(u.permission.content.id)
+    menu.sort()
     return redirect('profile')

@@ -1,9 +1,23 @@
+
+// function checkbox(model){
+//     $('#mainCheckbox'+model).multicheck($('.listCheckbox'+model));
+// }
+
+function setChecks(codigo) {
+    $('[name='+codigo+']').prop('checked', true);
+}
 $(function() {
     //multicheckbox check for static table no padding
-    $('#mainCheckbox').multicheck($('.listCheckbox'));
+    $('#mainCheckbox-prospeccao').multicheck($('.listCheckbox-prospeccao'));
+    $('#mainCheckbox-service').multicheck($('.listCheckbox-service'));
+    $('#mainCheckbox-laboratory').multicheck($('.listCheckbox-laboratory'));
+    $('#mainCheckbox-equipament').multicheck($('.listCheckbox-equipament'));
+    $('#mainCheckbox-profile').multicheck($('.listCheckbox-profile'));
+    $('#mainCheckbox-institution').multicheck($('.listCheckbox-institution'));
+    $('#mainCheckbox-permission').multicheck($('.listCheckbox-permission'));
 
     //multicheckbox check for static table with padding
-    $('#mainCheckbox1').multicheck($('.listCheckbox1'));
+    // $('#mainCheckbox1').multicheck($('.listCheckbox1'));
 
     /*var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-36251023-1']);
