@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 import _thread
-from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content, UserPermission, Permission
+from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content, UserPermission, Permission, UserService
 from .forms import *
 from datetime import datetime, timedelta
 import os
@@ -18,10 +18,12 @@ def logout_in(request):
 def home(request):
     # try:
         dados = {
-            'servicos': Service.objects.count(),
-            'laboratorios': Laboratory.objects.count(),
-            'equipamentos': Equipment.objects.count(),
-            'profissionais': Profile.objects.filter(role='SE').count(),
+            'Total_servicos': Service.objects.count(),
+            'Total_laboratorios': Laboratory.objects.count(),
+            'Total_equipamentos': Equipment.objects.count(),
+            'Total_profissionais': Profile.objects.filter(role='SE').count(),
+            'servicos': Service.objects.all(),
+            'userservice': UserService.objects.all(),
         }
         return render(request, 'administrador/home.html', {'dados': dados})
     # except Exception:

@@ -234,3 +234,6 @@ class UserPermission(models.Model):
 class UserContent(models.Model):
     profile = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
+class UserService(models.Model):
+    profile = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
