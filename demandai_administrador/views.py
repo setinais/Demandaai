@@ -4,7 +4,8 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 import _thread
-from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content, UserPermission, Permission
+from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content, UserPermission, \
+    Permission, UserContent
 from .forms import *
 from datetime import datetime, timedelta
 import os
@@ -372,8 +373,10 @@ def permission(request, id):
     return render(request, 'administrador/permission/permission.html', {'profile': profile, 'permissoes': permissoes})
 
 def permission_edit(request, id):
+    # Adicionar as permissões selecionadas
     dados = request.POST
     menu = []
+    check_qntd_permissions = []
     for d in dados:
         if 'csrfmiddlewaretoken' != d:
             if 1 <= int(d):
@@ -381,7 +384,42 @@ def permission_edit(request, id):
                     u = UserPermission.objects.filter(user_id=id, permission_id=d)
                     if u.count() == 0:
                         u = UserPermission(user_id=id, permission_id=d)
-                        # u.save()
+                        u.save()
                         menu.append(u.permission.content.id)
-    menu.sort()
+                        check_qntd_permissions.append(u.permission_id)
+                    else:
+                        menu.append(u[0].permission.content.id)
+                        check_qntd_permissions.append(u[0].permission_id)
+    l = []
+    for i in menu:
+        if i not in l:
+            l.append(i)
+    l.sort()
+
+    for m in l:
+        c = UserContent.objects.filter(profile_id=id, content_id=m)
+        if c.count() == 0:
+            c = UserContent(profile_id=id, content_id=m)
+            c.save()
+
+    all_permission_now = UserPermission.objects.filter(user_id=id)
+    # Apagar permissões retiradas
+    for permissao_tirar in all_permission_now:
+        check = True
+        for permissao_atual in check_qntd_permissions:
+            if permissao_tirar.permission.id == int(permissao_atual):
+                check = False
+                break
+        if check:
+            permissao_tirar.delete()
+
+    all_content_now = UserContent.objects.filter(profile_id=id)
+    for content_tirar in all_content_now:
+        check = True
+        for content_atual in l:
+            if content_tirar.content.id == int(content_atual):
+                check = False
+        if check:
+            content_tirar.delete()
+
     return redirect('profile')
