@@ -5,7 +5,6 @@ urlpatterns = [
 
     path('', views.home, name='home-adm'),
     path('logout', views.logout_in, name='logout'),
-<<<<<<< HEAD
 
     # Prospecção
     path('prospeccao', views.prospeccao, name='prospeccao'),
@@ -45,6 +44,8 @@ urlpatterns = [
     # path('profile/cadastro',views.profile_cadastro,name='profile.cadastro'),
     # path('profile/editar/<int:id>',views.profile_editar,name='profile.editar'),
     path('profile/deletar/<int:id>',views.profile_deletar,name='profile.deletar'),
+    ]
+'''
 =======
     # Administrativo
         # Prospecção
@@ -94,4 +95,5 @@ urlpatterns = [
         # Demanda
         path('demand', views.demand, name='demand'),
 >>>>>>> 73b9c31a4d6b47d0010fafedb6de3781b670a218
-]
+
+'''
