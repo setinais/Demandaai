@@ -5,6 +5,7 @@ urlpatterns = [
 
     path('', views.home, name='home-adm'),
     path('logout', views.logout_in, name='logout'),
+
     # Administrativo
         # Prospecção
         path('prospeccao', views.prospeccao, name='prospeccao'),
@@ -20,6 +21,8 @@ urlpatterns = [
         path('service/cadastro',views.servicos_cadastro,name='service.cadastro'),
         path('service/editar/<int:id>',views.servicos_editar,name='service.editar'),
         path('service/deletar/<int:id>',views.servicos_deletar,name='service.deletar'),
+        path('service/receber/<int:id>',views.servicos_receber,name='service.receber'),
+        path('service/cancelar/<int:id>',views.servicos_cancelar,name='service.cancelar'),
 
         # Equipamentos
         path('equipament', views.equipamentos, name='equipament'),
@@ -48,6 +51,7 @@ urlpatterns = [
         path('institution/cadastro', views.institution_cadastro, name='institution.cadastro'),
         path('institution/editar/<int:id>', views.institution_editar, name='institution.editar'),
         path('institution/deletar/<int:id>', views.institution_deletar, name='institution.deletar'),
+
 
     # Users
         # Demanda

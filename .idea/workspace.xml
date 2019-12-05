@@ -4,12 +4,15 @@
     <list default="true" id="ffe47345-3dd2-4b73-8793-97663bd411c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/demandai_administrador/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/urls.py" afterDir="false" />
+=======
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/demandai_administrador/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/views.py" afterDir="false" />
 =======
       <change beforePath="$PROJECT_DIR$/demandai_administrador/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/migrations/0001_initial.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demandai_administrador/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/models.py" afterDir="false" />
+>>>>>>> 73b9c31a4d6b47d0010fafedb6de3781b670a218
       <change beforePath="$PROJECT_DIR$/demandai_administrador/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/administrador/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/home.html" afterDir="false" />
 >>>>>>> 8d592633a699d1e49f140d562b48c8d1fdc72020
     </list>
@@ -489,10 +492,14 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/demandai_administrador/views.py</url>
 <<<<<<< HEAD
+          <line>405</line>
+=======
+<<<<<<< HEAD
           <line>406</line>
           <option name="timeStamp" value="38" />
 =======
           <line>388</line>
+>>>>>>> 73b9c31a4d6b47d0010fafedb6de3781b670a218
           <option name="timeStamp" value="28" />
 >>>>>>> 8d592633a699d1e49f140d562b48c8d1fdc72020
         </line-breakpoint>

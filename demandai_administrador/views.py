@@ -118,7 +118,7 @@ def encaminhar_demanda(request, action, id):
 @login_required
 @require_http_methods(["GET"])
 def encaminhar_demanda_acao(request):
-    # try:
+    try:
         action = {}
         if request.GET['action'] == 'SER':
             action = Service.objects.get(id=request.GET['id'])
@@ -137,8 +137,8 @@ def encaminhar_demanda_acao(request):
 
         _thread.start_new_thread(send_mail, (request,))
         return redirect('prospeccao')
-    # except Exception:
-    #     return render(request, 'site/error.html')
+    except Exception:
+        return render(request, 'site/error.html')
 
 @login_required
 @require_http_methods(["GET"])
@@ -259,6 +259,23 @@ def servicos_deletar(request, id):
     servico = Service.objects.get(id=id)
     servico.delete()
     return redirect('service')
+
+@login_required
+def servicos_receber(request, id):
+    servico = Service.objects.get(id=id)
+    for us in UserService.objects.all():
+        if us.profile_id == request.user.id and servico.id == us.service_id:
+            return redirect('home-adm')
+    us = UserService.objects.create(profile_id=request.user.id,service_id=servico.id)
+    us.save()
+    return redirect('home-adm')
+
+def servicos_cancelar(request, id):
+    servico = Service.objects.get(id=id)
+    for us in UserService.objects.all():
+        if us.profile_id == request.user.id and servico.id == us.service_id:
+            us.delete()
+            return redirect('home-adm')
 #END CRUD SERVIÇOS
 
 #CRUD EQUIPAMENTOS

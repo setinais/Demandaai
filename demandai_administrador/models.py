@@ -189,7 +189,6 @@ class Demandcb(SafeDeleteModel):
     action = models.CharField(max_length=3, choices=actions, null=True)
     action_id = models.IntegerField(null=True)
 
-
 class DemandCallback(SafeDeleteModel):
     status = (
         ('S', 'Solicitado'),
@@ -272,3 +271,17 @@ class UserContent(models.Model):
 class UserService(models.Model):
     profile = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
+
+class Notification(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE_CASCADE
+
+    titulo  = models.CharField(max_length=30)
+    texto   = models.TextField()
+    icone   = models.CharField(max_length=30)
+    ulr     = models.TextField()
+    visualizada = models.BooleanField()
+    created_at  = models.DateTimeField(auto_now_add=True)
+    updated_at  = models.DateTimeField(auto_now=True)
+    profile     = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    def __str__(self):
+        return self.titulo
