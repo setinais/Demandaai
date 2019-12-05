@@ -15,6 +15,7 @@ $(function() {
     $('#mainCheckbox-profile').multicheck($('.listCheckbox-profile'));
     $('#mainCheckbox-institution').multicheck($('.listCheckbox-institution'));
     $('#mainCheckbox-permission').multicheck($('.listCheckbox-permission'));
+    $('#mainCheckbox-demand').multicheck($('.listCheckbox-demand'));
 
     //multicheckbox check for static table with padding
     // $('#mainCheckbox1').multicheck($('.listCheckbox1'));

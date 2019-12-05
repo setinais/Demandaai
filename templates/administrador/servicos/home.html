@@ -2,6 +2,7 @@
 {% block title %}Acesso Administrativo{% endblock %}
 
 {% block content %}
+    <h2><i class="fa fa-suitcase"></i>  Serviços</h2>
     <div class="row center">
         <div class="col-md-12">
             <div class="card">
@@ -33,7 +34,7 @@
                               <td>{{ servico.institution.nome }}</td>
                               <td class="btn-group btn-group-toggle">
                                   <a href="{% url 'service.editar' servico.id %}" class="btn btn-warning"><i class="fa fa-edit"></i>Editar</a>
-                                  <!--<a href="{% url 'service.deletar' servico.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Excluir</a>-->
+                                  <a href="{% url 'service.deletar' servico.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Desativar</a>
                               </td>
                             </tr>
                             {% endfor %}

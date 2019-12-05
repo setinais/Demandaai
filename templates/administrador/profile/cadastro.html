@@ -17,13 +17,11 @@
                     </div>
                     <div class="border-top">
                         <div class="card-body">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-success">Salvar</button>
+                            <a href="{% url 'profile' %}" class="btn btn-danger">Voltar</a>
                         </div>
                     </div>
                 </form>
-                {% if dados %}
-                    <a href="{% url 'laboratory.deletar' dados.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i>Excluir</a>
-                {% endif %}
             </div>
         </div>
     </div>
