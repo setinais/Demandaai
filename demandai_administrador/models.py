@@ -79,6 +79,21 @@ class Profile(AbstractUser, SafeDeleteModel):
             dados.append(content)
         return dados
 
+    def create_user(self, email, date_of_birth, password=None):
+
+        # user = self.model(
+        #     email=self.normalize_email(email),
+        #     date_of_birth=date_of_birth,
+        # )
+        #
+        # user.set_password(password)
+        # user.save(using=self._db)
+        # return user
+        return 1
+
+    def __str__(self):
+        return self.first_name +' '+ self.last_name
+
 class Laboratory(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
@@ -163,17 +178,33 @@ class Demand(SafeDeleteModel):
     updated_at = models.DateTimeField(auto_now=True)
     _safedelete_policy = SOFT_DELETE_CASCADE
 
-
-class DemandCallback(SafeDeleteModel):
+class Demandcb(SafeDeleteModel):
     actions = (
         ('SER', 'Serviço'),
         ('LAB', 'Laboratorio'),
         ('EQU', 'Equipamento'),
     )
 
-    demand = models.ForeignKey(Demand, related_name='demand_callback', on_delete=models.PROTECT)
-    action = models.CharField(max_length=3, choices=actions)
-    action_id = models.IntegerField()
+    demand = models.ForeignKey(Demand, on_delete=models.PROTECT)
+    action = models.CharField(max_length=3, choices=actions, null=True)
+    action_id = models.IntegerField(null=True)
+
+
+class DemandCallback(SafeDeleteModel):
+    status = (
+        ('S', 'Solicitado'),
+        ('E', 'Analise'),
+        ('R', 'Recusada'),
+        ('A', 'Aceita'),
+        ('P', 'Produção'),
+        ('V', 'Vinculada'),
+        ('B', 'FeedBack'),
+        ('F', 'Finalizada'),
+    )
+
+    demand = models.ForeignKey(Demand, on_delete=models.CASCADE, default=None)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=None)
+    status = models.CharField(choices=status, max_length=1, default='S')
     feedback = models.TextField()
     prazo_feedback = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)

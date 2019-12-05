@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 import _thread
 from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content, UserPermission, \
-    Permission, UserContent, UserService, Institution, DemandCallback
+    Permission, UserContent, UserService, Institution, DemandCallback, Demandcb
 from .forms import *
 from datetime import datetime, timedelta
 import os
@@ -29,7 +29,6 @@ def home(request):
         return render(request, 'administrador/home.html', {'dados': dados})
     # except Exception:
     #     return render(request, 'site/error.html')
-
 
 @login_required
 def prospeccao(request):
@@ -70,7 +69,6 @@ def prospeccao(request):
     except Exception:
         return render(request, 'site/error.html')
 
-
 def badge_select(val):
     return {
         'S': 'warning',
@@ -109,6 +107,7 @@ def encaminhar_demanda(request, action, id):
                 'nome': actions[i].nome,
                 'status': actions[i].status,
                 'responsavel': actions[i].profile.username,
+                'unidade': actions[i].institution.nome,
             }
             dados.append(prepare)
             i += 1
@@ -119,7 +118,7 @@ def encaminhar_demanda(request, action, id):
 @login_required
 @require_http_methods(["GET"])
 def encaminhar_demanda_acao(request):
-    try:
+    # try:
         action = {}
         if request.GET['action'] == 'SER':
             action = Service.objects.get(id=request.GET['id'])
@@ -133,12 +132,13 @@ def encaminhar_demanda_acao(request):
         demanda.visualizada = 0
         demanda.status = 'E'
         demanda.save()
-        demanda.demand_callback.create(action=request.GET['action'], action_id=request.GET['id'], feedback='Demanda encaminhada para "'+ action.nome+'", ficando em análise!', prazo_feedback=(datetime.today() + timedelta(days=2)))
+
+        demanda.demandcallback_set.create(status='E', profile_id=request.user.id, feedback='Demanda encaminhada para "'+ action.nome+'", ficando em "análise"!', prazo_feedback=(datetime.today() + timedelta(days=2)))
 
         _thread.start_new_thread(send_mail, (request,))
         return redirect('prospeccao')
-    except Exception:
-        return render(request, 'site/error.html')
+    # except Exception:
+    #     return render(request, 'site/error.html')
 
 @login_required
 @require_http_methods(["GET"])
@@ -157,26 +157,20 @@ def rejeitar_demanda(request):
 def detalhes_demanda(request, id):
     demanda = Demand.objects.get(id=id)
     demand_callback = []
-    for callbacks in demanda.demand_callback.order_by('-created_at'):
-        action = {}
-        if callbacks.action == 'SER':
-            action = Service.objects.get(id=callbacks.action_id)
-        elif callbacks.action == 'LAB':
-            action = Laboratory.objects.get(id=callbacks.action_id)
-        elif callbacks.action == 'EQU':
-            action = Equipment.objects.get(id=callbacks.action_id)
+    action = {}
+    if demanda.action == 'SER':
+        action = Service.objects.get(id=demanda.action_id)
+    elif demanda.action == 'LAB':
+        action = Laboratory.objects.get(id=demanda.action_id)
+    elif demanda.action == 'EQU':
+        action = Equipment.objects.get(id=demanda.action_id)
+    for feedbc in demanda.demandcallback_set.order_by('-created_at'):
         demand_callback_dados = {
-            'feedback': callbacks.feedback,
-            'created_at': callbacks.created_at,
-            'action': {
-                'id': action.id,
-                'nome': action.nome,
-                'responsavel': {
-                    'nome': action.profile.username,
-                    'id': action.profile.id,
-                },
-            },
-            'id': callbacks.id
+            'feedback': feedbc.feedback,
+            'created_at': feedbc.created_at,
+            'status': feedbc.get_status_display(),
+            'badge': badge_select(feedbc.status),
+            'id': feedbc.id
         }
         demand_callback.append(demand_callback_dados)
     dados = {
@@ -185,6 +179,10 @@ def detalhes_demanda(request, id):
             'action': demanda.action,
             'action_name': demanda.get_action_display(),
             'action_select': demanda.action_id,
+            'setor': {
+                'nome': action.nome,
+                'responsavel': action.profile.__str__
+            },
             'nome': demanda.nome,
             'email': demanda.email,
             'file': demanda.file,
@@ -222,9 +220,9 @@ def responder_solicitante(request):
     _thread.start_new_thread(send_mail_responder_solicitante, (request,))
     demanda = Demand.objects.get(id=request.POST['id'])
     demanda.status = 'B'
-    demanda.demand_callback.create(action=demanda.action, action_id=demanda.action_id, feedback=request.POST['texto'],
-                                   prazo_feedback=(datetime.today() + timedelta(days=2)))
     demanda.save()
+    demanda.demandcallback_set.create(status='B', profile_id=request.user.id, feedback=request.POST['texto']+' ---- Aguardo do "FeedBack" do demandante!', prazo_feedback=(datetime.today() + timedelta(days=2)))
+
     return redirect('prospeccao')
 
 #CRUD SERVIÇOES
@@ -239,8 +237,7 @@ def servicos_cadastro(request):
     form = ServiceForm(request.POST or None)
     if form.is_valid():
         servico = form.save(commit=False)
-        servico.profile_id = request.user.id
-        servico.status = 1
+        servico.status = 0
         servico.save()
         return redirect('service')
 
@@ -276,8 +273,7 @@ def equipamentos_cadastro(request):
     form = EquipamentForm(request.POST or None)
     if form.is_valid():
         equipamento = form.save(commit=False)
-        equipamento.profile_id = request.user.id
-        equipamento.status = 1
+        equipamento.status = 0
         equipamento.save()
         return redirect('equipament')
 
@@ -313,8 +309,7 @@ def laboratorios_cadastro(request):
     if form.is_valid():
         laboratorio = form.save(commit=False)
         laboratorio.pesquisa_extensao = False
-        laboratorio.profile_id = request.user.id
-        laboratorio.status = 1
+        laboratorio.status = 0
         laboratorio.save()
         return redirect('laboratory')
 
@@ -470,14 +465,9 @@ def demand(request):
         while i < len(demandas):
             action = {}
             demanda = {}
-            if demandas[i].action == 'SER':
-                action = Service.objects.get(id=demandas[i].action_id)
-            elif demandas[i].action == 'LAB':
-                action = Laboratory.objects.get(id=demandas[i].action_id)
-            elif demandas[i].action == 'EQU':
-                action = Equipment.objects.get(id=demandas[i].action_id)
-            else:
-                return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
+            services = Service.objects.get(id=demandas[i].action_id)
+            laboratorys = Laboratory.objects.get(id=demandas[i].action_id)
+            equipments = Equipment.objects.get(id=demandas[i].action_id)
             demanda = {
                 'id': demandas[i].id,
                 'status': demandas[i].get_status_display(),

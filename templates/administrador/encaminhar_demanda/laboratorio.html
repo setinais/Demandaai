@@ -10,8 +10,9 @@
                           <thead class="thead-dark">
                             <tr>
 
-                              <th scope="col">Nome</th>
-                              <th scope="col">Responsavel</th>
+                              <th scope="col">Unidade</th>
+                              <th scope="col">Laboratório</th>
+                              <th scope="col">Responsável</th>
                               <th scope="col">Disponibilidade</th>
                               <th scope="col"></th>
                             </tr>
@@ -19,6 +20,7 @@
                           <tbody>
                             {% for lab in dados %}
                             <tr>
+                              <td>{{ lab.unidade }}</td>
                               <td>{{ lab.nome }}</td>
                               <td>{{ lab.responsavel }}</td>
                               <td class="{% if lab.status %}text-success {% else %} text-danger {% endif %}">

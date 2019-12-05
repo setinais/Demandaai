@@ -7,7 +7,7 @@ import _thread
 from django.http import HttpResponseNotFound, HttpResponse
 from django.shortcuts import render, redirect
 
-from demandai_administrador.models import Laboratory, Equipment, Service
+from demandai_administrador.models import Laboratory, Equipment, Service, Demandcb
 from .forms import *
 from django.views.decorators.http import require_http_methods
 from pprint import pprint
@@ -32,8 +32,6 @@ def start(request, template_name='site/index.html'):
         return render(request, template_name, {'dados': dados, 'user': request.user.is_authenticated})
     except Exception:
         return render(request, 'site/error.html')
-
-
 
 def about_portifolio(request, action, id):
     try:
@@ -120,7 +118,6 @@ def about_portifolio(request, action, id):
     except Exception:
         return render(request, 'site/error.html')
 
-
 def demandarSelected(request, action, id):
     try:
         dados = {
@@ -140,7 +137,6 @@ def demandarSelected(request, action, id):
     except Exception:
         return render(request, 'site/error.html')
 
-
 def demandar(request):
     try:
         dados = {
@@ -154,7 +150,6 @@ def demandar(request):
         else:
             post = request.POST.copy()
             post['codigo'] = binascii.hexlify(os.urandom(3)).decode().upper()
-            print(request.FILES)
             form = DemandForm(post, request.FILES)
             if form.is_valid():
                 form.save()
@@ -164,7 +159,6 @@ def demandar(request):
             return render(request, 'site/demandar.html', {'dados': dados, 'form': form})
     except Exception:
         return render(request, 'site/error.html')
-
 
 @require_http_methods(["GET"])
 def demandDetail(request):
@@ -211,7 +205,6 @@ def demandDetail(request):
     except Exception:
         return render(request, 'site/error.html')
 
-
 def login_in(request):
     try:
         if request.method == 'GET':
@@ -226,6 +219,7 @@ def login_in(request):
             return render(request, 'site/login.html', {'error': 'Email/Senha Incorretos!'})
     except Exception:
         return render(request, 'site/error.html')
+
 def search(request):
     try:
         if request.GET['text'] == '':
