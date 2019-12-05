@@ -259,6 +259,23 @@ def servicos_deletar(request, id):
     servico = Service.objects.get(id=id)
     servico.delete()
     return redirect('service')
+
+@login_required
+def servicos_receber(request, id):
+    servico = Service.objects.get(id=id)
+    for us in UserService.objects.all():
+        if us.profile_id == request.user.id and servico.id == us.service_id:
+            return redirect('home-adm')
+    us = UserService.objects.create(profile_id=request.user.id,service_id=servico.id)
+    us.save()
+    return redirect('home-adm')
+
+def servicos_cancelar(request, id):
+    servico = Service.objects.get(id=id)
+    for us in UserService.objects.all():
+        if us.profile_id == request.user.id and servico.id == us.service_id:
+            us.delete()
+            return redirect('home-adm')
 #END CRUD SERVIÇOS
 
 #CRUD EQUIPAMENTOS

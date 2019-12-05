@@ -48,27 +48,29 @@
                         <tr>
                           <th scope="col">Nome</th>
                           <th scope="col">Descrição</th>
-                          <th scope="col">Servidores</th>
-                          <th scope="col">Action</th>
+                          <th scope="col">Servidores que recebem essa demanda</th>
+                          <th scope="col">#</th>
                         </tr>
                       </thead>
                       <tbody>
                         {% for servico in dados.servicos %}
                             <tr>
-                              <th scope="row">{{servico.nome}}</th>
+                              <th scope="row"><b>{{servico.nome}}</b></th>
                               <td>{{servico.descricao}}</td>
                               <td>
                                   {% for userr in dados.userservice %}
                                       {% if userr.service_id == servico.id %}
-                                        <b>{{ userr.profile.username }}</b><br>
+                                        <b>{{ userr.profile.username }}, </b><br>
                                       {% endif %}
                                   {% endfor %}
                               </td>
                               <td>
-                                  <div class="custom-control custom-switch">
-                                      <input type="checkbox" class="custom-control-input services" name="{{ servico.id }}" value="{{ servico.id }}" id="customSwitch1" checked>
-                                      <label class="custom-control-label" for="customSwitch1">Receber Demanda</label>
-                                  </div>
+                                  <a href="{% url 'service.receber' servico.id %}" class="btn btn-success">Receber demandas</a><br>
+                                  {% for userr in dados.userservice %}
+                                      {% if userr.service_id == servico.id and userr.profile_id == user.id %}
+                                          <a href="{% url 'service.cancelar' servico.id %}" class="badge badge-danger">Cancelar recebimento</a>
+                                      {% endif %}
+                                  {% endfor %}
                               </td>
                             </tr>
                         {% endfor %}

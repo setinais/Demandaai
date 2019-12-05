@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ffe47345-3dd2-4b73-8793-97663bd411c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demandai_administrador/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demandai_administrador/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demandai_administrador/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demandai_administrador/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/demandai_administrador/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/administrador/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/administrador/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/administrador/home.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -246,7 +244,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/demandai_administrador/views.py</url>
-          <line>388</line>
+          <line>405</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>

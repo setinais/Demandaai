@@ -20,6 +20,8 @@ urlpatterns = [
     path('service/cadastro',views.servicos_cadastro,name='service.cadastro'),
     path('service/editar/<int:id>',views.servicos_editar,name='service.editar'),
     path('service/deletar/<int:id>',views.servicos_deletar,name='service.deletar'),
+    path('service/receber/<int:id>',views.servicos_receber,name='service.receber'),
+    path('service/cancelar/<int:id>',views.servicos_cancelar,name='service.cancelar'),
 
     # Equipamentos
     path('equipament', views.equipamentos, name='equipament'),
