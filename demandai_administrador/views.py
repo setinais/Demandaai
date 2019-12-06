@@ -473,36 +473,68 @@ def institution_deletar(request, id):
     institution.delete()
     return redirect('institution')
 
+# Demands
 @login_required
 def demand(request):
     try:
-        demandas = Demand.objects.filter(visualizada=0).order_by('-created_at')
-        dados = []
-        i = 0
-        while i < len(demandas):
-            action = {}
-            demanda = {}
-            services = Service.objects.get(id=demandas[i].action_id)
-            laboratorys = Laboratory.objects.get(id=demandas[i].action_id)
-            equipments = Equipment.objects.get(id=demandas[i].action_id)
-            demanda = {
-                'id': demandas[i].id,
-                'status': demandas[i].get_status_display(),
-                'created_at': demandas[i].created_at,
-                'visualizada': demandas[i].visualizada,
-                'badge': badge_select(demandas[i].status),
-                'action_sel': demandas[i].action,
-                'action': {
-                    'nome': action.nome,
-                    'profile': {
-                        'nome': action.profile.username,
-                        'id': action.profile.id
-                    },
-                    'instituicao': action.institution.nome,
+        services = Service.objects.filter(profile_id=request.user.id)
+        laboratorys = Laboratory.objects.filter(profile_id=request.user.id)
+        equipments = Equipment.objects.filter(profile_id=request.user.id)
+        s =[]
+        l = []
+        e = []
+
+        # Get Demandas vinculadas aos serviços
+        for service in services:
+            demandcbs = Demandcb.objects.filter(action='SER', action_id=service.id, aceita_rejeita=None)
+            for demandcb in demandcbs:
+                dados = {
+                    'id': demandcb.demand.id,
+                    'id_cb': demandcb.id,
+                    'setor': service.nome,
+                    'ar': demandcb.aceita_rejeita,
+                    'nome': demandcb.demand.nome,
+                    'descricao': demandcb.demand.descricao,
+                    'created_at': demandcb.demand.created_at,
                 }
-            }
-            dados.append(demanda)
-            i += 1
-        return render(request, 'administrador/demands/home.html', {'institutions': institution})
+                s.append(dados)
+
+                # Get Demandas vinculadas aos Laboratorios
+        for laboratory in laboratorys:
+            demandcbs = Demandcb.objects.filter(action='LAB', action_id=laboratory.id, aceita_rejeita=None)
+            for demandcb in demandcbs:
+                dados = {
+                    'id': demandcb.demand.id,
+                    'id_cb': demandcb.id,
+                    'setor': laboratory.nome,
+                    'ar': demandcb.aceita_rejeita,
+                    'nome': demandcb.demand.nome,
+                    'descricao': demandcb.demand.descricao,
+                    'created_at': demandcb.demand.created_at,
+                }
+                l.append(dados)
+
+        # Get Demandas vinculadas aos Equipamentos
+        for equipment in equipments:
+            demandcbs = Demandcb.objects.filter(action='EQU', action_id=equipment.id, aceita_rejeita=None)
+            for demandcb in demandcbs:
+                dados = {
+                    'id': demandcb.demand.id,
+                    'id_cb': demandcb.id,
+                    'ar': demandcb.aceita_rejeita,
+                    'setor': equipment.nome,
+                    'nome': demandcb.demand.nome,
+                    'descricao': demandcb.demand.descricao,
+                    'created_at': demandcb.demand.created_at,
+                }
+                e.append(dados)
+        return render(request, 'administrador/demands/home.html', {'services': s, 'laboratorys': l, 'equipments': e})
     except Exception:
         return render(request, 'site/error.html')
+
+@login_required
+def demand_ar(request, ar, id):
+    demandcb = Demandcb.objects.get(id=id)
+    demandcb.aceita_rejeita = ar
+    demandcb.save()
+    return redirect('demand')

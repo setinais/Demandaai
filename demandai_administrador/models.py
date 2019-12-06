@@ -188,6 +188,7 @@ class Demandcb(SafeDeleteModel):
     demand = models.ForeignKey(Demand, on_delete=models.PROTECT)
     action = models.CharField(max_length=3, choices=actions, null=True)
     action_id = models.IntegerField(null=True)
+    aceita_rejeita = models.BooleanField(null=True, default=None)
 
 class DemandCallback(SafeDeleteModel):
     status = (

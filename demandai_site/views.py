@@ -6,8 +6,9 @@ from django.contrib.auth import authenticate, login
 import _thread
 from django.http import HttpResponseNotFound, HttpResponse
 from django.shortcuts import render, redirect
-
+from datetime import datetime, timedelta
 from demandai_administrador.models import Laboratory, Equipment, Service, Demandcb
+from demandai_administrador.views import badge_select
 from .forms import *
 from django.views.decorators.http import require_http_methods
 from pprint import pprint
@@ -162,48 +163,55 @@ def demandar(request):
 
 @require_http_methods(["GET"])
 def demandDetail(request):
-    try:
-        demandas = Demand.objects.filter(email=request.GET['email'].strip(), codigo=request.GET['codigo'].strip())
-        demanda = demandas[0]
-        action = {}
+    # try:
+        demanda = Demand.objects.filter(email=request.GET['email'].strip(), codigo=request.GET['codigo'].strip()).first()
         demand_callback = []
+        action = {}
         if demanda.action == 'SER':
             action = Service.objects.get(id=demanda.action_id)
         elif demanda.action == 'LAB':
             action = Laboratory.objects.get(id=demanda.action_id)
         elif demanda.action == 'EQU':
             action = Equipment.objects.get(id=demanda.action_id)
-        else:
-            return render(request, 'site/error.html')
-        for callbacks in demanda.demand_callback.order_by('-created_at'):
-            action = {}
-            if callbacks.action == 'SER':
-                action = Service.objects.get(id=callbacks.action_id)
-            elif callbacks.action == 'LAB':
-                action = Laboratory.objects.get(id=callbacks.action_id)
-            elif callbacks.action == 'EQU':
-                action = Equipment.objects.get(id=callbacks.action_id)
+        for feedbc in demanda.demandcallback_set.order_by('-created_at'):
             demand_callback_dados = {
-                'feedback': callbacks.feedback,
-                'created_at': callbacks.created_at,
-                'action': {
-                    'id': action.id,
-                    'nome': action.nome,
-                    'responsavel': {
-                        'nome': action.profile.username,
-                        'id': action.profile.id,
-                    },
-                },
-                'id': callbacks.id
+                'feedback': feedbc.feedback,
+                'created_at': feedbc.created_at,
+                'status': feedbc.get_status_display(),
+                'badge': badge_select(feedbc.status),
+                'id': feedbc.id
             }
             demand_callback.append(demand_callback_dados)
         dados = {
-            'demanda': demanda,
-            'action': action
+            'demanda': {
+                'id': demanda.id,
+                'action': demanda.action,
+                'action_name': demanda.get_action_display(),
+                'action_select': demanda.action_id,
+                'setor': {
+                    'nome': action.nome,
+                    'responsavel': action.profile.__str__
+                },
+                'nome': demanda.nome,
+                'email': demanda.email,
+                'file': demanda.file,
+                'telefone': demanda.telefone,
+                'descricao': demanda.descricao,
+                'status': {
+                    'titulo': demanda.get_status_display(),
+                    'badge': badge_select(demanda.status)
+                },
+                'visualizada': demanda.visualizada,
+                'created_at': demanda.created_at,
+                'updated_at': demanda.updated_at,
+                'demand_callbak': demand_callback,
+                'tempo_solicitacao': abs((datetime.today() - demanda.created_at).days)
+            },
+            'time_now': datetime.now(),
         }
         return render(request, 'site/visualizar_demanda.html', {'dados': dados, 'callbacks': demand_callback})
-    except Exception:
-        return render(request, 'site/error.html')
+    # except Exception:
+    #     return render(request, 'site/error.html')
 
 def login_in(request):
     try:

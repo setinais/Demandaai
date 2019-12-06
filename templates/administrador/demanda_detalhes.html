@@ -1,12 +1,15 @@
 {% extends 'administrador/base.html' %}
 {% load static %}
 {% block content %}
+
     <section id="blog" class="our-blog page-section-ptb">
+
         <div class="container-fluid">
             <div class="blog-comments mt-40 col-md-12 col-lg-12">
                 <div class="comments-1">
 
                     <div class="comments-info col-md-12 col-lg-12">
+
                         <div class="port-post-social float-right">
                             <span> Solicitada em {{ dados.demanda.created_at }}</span>
                         </div>
@@ -47,7 +50,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="{% url 'prospeccao' %}" class="btn btn-danger">Voltar</a>
+<a href="{% url 'prospeccao' %}" class="btn btn-danger ">Voltar</a>
+                        <a class="btn btn-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action=dados.demanda.action id=dados.demanda.id %}">Encaminhar para <i class="fa fa-angle-right"></i></a>
+
             </div>
         </div>
     </section>

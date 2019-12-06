@@ -9,9 +9,16 @@
                         <span> Solicitada em {{ dados.demanda.created_at }}</span>
                     </div>
                     <h4 class="theme-color">Olá Senhor(a) {{ dados.demanda.nome }} </h4>
+                    <p><strong>Email para contato:</strong> {{ dados.demanda.email }}</p>
+                        <p><strong>Telefone:</strong> {% if dados.demanda.telefone != "" %} {{ dados.demanda.telefone }} {% else %} Numero não registrado!{% endif %}</p>
                     <p>Sua demanda no {{ dados.demanda.get_action_display }} <strong> {{ dados.action.nome }}</strong> foi entregue a nós!</p>
                     <p><strong>Descrição:</strong> {{ dados.demanda.descricao }}</p>
-                    <p><strong>Status: </strong><span class="badge badge-pill badge-info">{{ dados.demanda.get_status_display }}</span></p>
+                   <p><strong>Status atual: </strong><span class="badge badge-pill badge-{{ dados.demanda.status.badge }}">{{ dados.demanda.status.titulo }}</span></p>
+                    <p><strong>Tempo de solicitação: </strong><span class="badge badge-pill badge-warning">{{ dados.demanda.tempo_solicitacao }} dias atrás</span></p>
+                        <p><strong>Documentos em anexo: </strong> <a href="{% url 'download_arquivos' %}?path={{ dados.demanda.id }}" target="_blank"><i class="fa fa-download"></i> clique aqui para baixar <i class="fa fa-download"></i></a></p>
+                        <p><strong>Setor: </strong>  {{ dados.demanda.setor.nome }}</p>
+                        <p><strong>Responsável: </strong>  {{ dados.demanda.setor.responsavel }}</p>
+
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             {#                    <h3 class="mb-30">Table hover </h3>#}

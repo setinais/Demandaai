@@ -56,4 +56,5 @@ urlpatterns = [
     # Users
         # Demanda
         path('demand', views.demand, name='demand'),
+        path('demand_ar/<str:ar>/<int:id>', views.demand_ar, name='demand_ar')
 ]
