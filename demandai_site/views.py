@@ -7,8 +7,8 @@ import _thread
 from django.http import HttpResponseNotFound, HttpResponse
 from django.shortcuts import render, redirect
 from datetime import datetime, timedelta
-from demandai_administrador.models import Laboratory, Equipment, Service, Demandcb
 from demandai_administrador.views import badge_select
+from demandai_administrador.models import Laboratory, Equipment, Service, Demandcb, UserService, Notification
 from .forms import *
 from django.views.decorators.http import require_http_methods
 from pprint import pprint
@@ -153,7 +153,18 @@ def demandar(request):
             post['codigo'] = binascii.hexlify(os.urandom(3)).decode().upper()
             form = DemandForm(post, request.FILES)
             if form.is_valid():
-                form.save()
+                #form.save()
+                if form.data['action'] == 'SER':
+                    service = Service.objects.get(id=form.data['action_id'])
+                    for us in UserService.objects.filter(service_id=form.data['action_id']):
+                        notif = Notification.objects.create(
+                            titulo='Uma nova demanada Solcitada.',
+                            texto='O serviço:<b>'+service.nome+'<b> foi demandado',
+                            icone='fa fa-suitcase',
+                            ulr='demand',
+                            visualizada=False,
+                            profile_id=us.profile.id,
+                        )
                 _thread.start_new_thread(form.send_mail, (request,))
                 form = DemandForm()
                 return render(request, 'site/demandar.html', {'dados': dados, 'form': form, 'message': post['codigo']})
