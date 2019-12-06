@@ -45,8 +45,9 @@ urlpatterns = [
         # Profile
         path('profile',views.profile,name='profile'),
         # path('profile/cadastro',views.profile_cadastro,name='profile.cadastro'),
-        # path('profile/editar/<int:id>',views.profile_editar,name='profile.editar'),
+        path('profile/editar',views.profile_editar,name='profile.editar'),
         path('profile/deletar/<int:id>',views.profile_deletar,name='profile.deletar'),
+        path('profile/desativar',views.profile_desativar(),name='profile.desativar'),
 
         # Instituições
         path('institution', views.institution, name='institution'),

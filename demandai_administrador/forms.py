@@ -55,9 +55,12 @@ class LaboratoryForm(forms.ModelForm):
         fields = ['nome','servidores', 'telefone','descricao','atividades_realizadas','endereco_sala','departamentos', 'cursos', 'institution', 'profile']
 
 class ProfileForm(forms.ModelForm):
+
+    password = forms.CharField(label='Nova Senha',widget=forms.PasswordInput())
+
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'email', 'institution']
+        fields = ['first_name', 'last_name', 'email', 'institution', 'password']
 
 class InstitutionForm(forms.ModelForm):
     class Meta:

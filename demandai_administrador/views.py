@@ -17,7 +17,7 @@ def logout_in(request):
 
 @login_required
 def home(request):
-    # try:
+    try:
         dados = {
             'Total_servicos': Service.objects.count(),
             'Total_laboratorios': Laboratory.objects.count(),
@@ -29,11 +29,15 @@ def home(request):
             'notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0)
         }
         return render(request, 'administrador/home.html', {'dados': dados})
-    # except Exception:
-    #     return render(request, 'site/error.html')
+    except Exception:
+        return render(request, 'site/error.html')
 
 @login_required
 def prospeccao(request):
+
+    if request.user.has_permission('prospectar'):
+        return redirect('home-adm')
+
     try:
         demandas = Demand.objects.filter(visualizada=0).order_by('-created_at')
         dados = []
@@ -85,6 +89,10 @@ def badge_select(val):
 
 @login_required
 def encaminhar_demanda(request, action, id):
+
+    if request.user.has_permission('prospectar'):
+        return redirect('home-adm')
+
     try:
         template = ''
         actions = []
@@ -120,6 +128,10 @@ def encaminhar_demanda(request, action, id):
 @login_required
 @require_http_methods(["GET"])
 def encaminhar_demanda_acao(request):
+
+    if request.user.has_permission('prospectar'):
+        return redirect('home-adm')
+
     try:
         action = {}
         if request.GET['action'] == 'SER':
@@ -145,6 +157,10 @@ def encaminhar_demanda_acao(request):
 @login_required
 @require_http_methods(["GET"])
 def rejeitar_demanda(request):
+
+    if request.user.has_permission('prospectar'):
+        return redirect('home-adm')
+
     try:
         demanda = Demand.objects.get(id=request.GET['id'])
         demanda.status = 'R'
@@ -157,6 +173,11 @@ def rejeitar_demanda(request):
 @login_required
 @require_http_methods(['GET'])
 def detalhes_demanda(request, id):
+
+    if request.user.has_permission('prospectar'):
+        if request.user.has_content('demand'):
+            return redirect('home-adm')
+
     demanda = Demand.objects.get(id=id)
     demand_callback = []
     action = {}
@@ -231,11 +252,19 @@ def responder_solicitante(request):
 @login_required
 @require_http_methods(['GET'])
 def servicos(request):
+
+    if request.user.has_content('service'):
+        return redirect('home-adm')
+
     servicos = Service.objects.all()
     return render(request,'administrador/servicos/home.html',{'servicos':servicos})
 
 @login_required
 def servicos_cadastro(request):
+
+    if request.user.has_permission('add_service'):
+        return redirect('home-adm')
+
     form = ServiceForm(request.POST or None)
     if form.is_valid():
         servico = form.save(commit=False)
@@ -247,6 +276,10 @@ def servicos_cadastro(request):
 
 @login_required
 def servicos_editar(request, id):
+
+    if request.user.has_permission('update_service'):
+        return redirect('home-adm')
+
     servico = Service.objects.get(id=id)
     form = ServiceForm(request.POST or None, instance=servico)
 
@@ -258,6 +291,10 @@ def servicos_editar(request, id):
 
 @login_required
 def servicos_deletar(request, id):
+
+    if request.user.has_permission('delete_service'):
+        return redirect('home-adm')
+
     servico = Service.objects.get(id=id)
     servico.delete()
     return redirect('service')
@@ -278,17 +315,24 @@ def servicos_cancelar(request, id):
         if us.profile_id == request.user.id and servico.id == us.service_id:
             us.delete()
             return redirect('home-adm')
-#END CRUD SERVIÇOS
 
 #CRUD EQUIPAMENTOS
 @login_required
 @require_http_methods(['GET'])
 def equipamentos(request):
+
+    if request.user.has_content('equipment'):
+        return redirect('home-adm')
+
     equipamentos = Equipment.objects.all()
     return render(request,'administrador/equipamentos/home.html',{'equipamentos':equipamentos})
 
 @login_required
 def equipamentos_cadastro(request):
+
+    if request.user.has_permission('add_equipment'):
+        return redirect('home-adm')
+
     form = EquipamentForm(request.POST or None)
     if form.is_valid():
         equipamento = form.save(commit=False)
@@ -300,6 +344,10 @@ def equipamentos_cadastro(request):
 
 @login_required
 def equipamentos_editar(request, id):
+
+    if request.user.has_permission('update_equipment'):
+        return redirect('home-adm')
+
     Equipmente = Equipment.objects.get(id=id)
     form = EquipamentForm(request.POST or None, instance=Equipmente)
     if form.is_valid():
@@ -309,21 +357,31 @@ def equipamentos_editar(request, id):
 
 @login_required
 def equipamentos_deletar(request, id):
+
+    if request.user.has_permission('delete_equipment'):
+        return redirect('home-adm')
+
     equipamento = Equipment.objects.get(id=id)
     equipamento.delete()
     return redirect('equipament')
-
-#END CRUD EQUIPAMENTOS
 
 #CRUD LABORATORIO
 @login_required
 @require_http_methods(['GET'])
 def laboratorios(request):
+
+    if request.user.has_content('laboratory'):
+        return redirect('home-adm')
+
     laboratorios = Laboratory.objects.all()
     return render(request,'administrador/laboratorios/home.html',{'laboratorios': laboratorios})
 
 @login_required
 def laboratorios_cadastro(request):
+
+    if request.user.has_permission('add_laboratory'):
+        return redirect('home-adm')
+
     form = LaboratoryForm(request.POST or None)
     if form.is_valid():
         laboratorio = form.save(commit=False)
@@ -336,6 +394,10 @@ def laboratorios_cadastro(request):
 
 @login_required
 def laboratorios_editar(request, id):
+
+    if request.user.has_permission('update_laboratory'):
+        return redirect('home-adm')
+
     lab = Laboratory.objects.get(id=id)
     form = LaboratoryForm(request.POST or None, instance=lab)
     if form.is_valid():
@@ -345,6 +407,10 @@ def laboratorios_editar(request, id):
 
 @login_required
 def laboratorios_deletar(request, id):
+
+    if request.user.has_permission('delete_laboratory'):
+        return redirect('home-adm')
+
     laboratorio = Laboratory.objects.get(id=id)
     laboratorio.delete()
     return redirect('laboratory')
@@ -353,6 +419,10 @@ def laboratorios_deletar(request, id):
 @login_required
 @require_http_methods(['GET'])
 def profile(request):
+
+    if request.user.has_content('profile'):
+        return redirect('home-adm')
+
     profile = Profile.objects.all()
     return render(request,'administrador/profile/home.html',{'profiles': profile})
 
@@ -368,22 +438,34 @@ def profile_cadastro(request):
     return render(request,'administrador/profile/cadastro.html',{'form': form})
 
 @login_required
-def profile_editar(request, id):
-    pro = Profile.objects.get(id=id)
+def profile_editar(request):
+    pro = Profile.objects.get(id=request.user.id)
+    pro.password = ''
     form = ProfileForm(request.POST or None, instance=pro)
     if form.is_valid():
-        form.save()
-        return redirect('laboratory')
+        pro = form.save()
+        pro.set_password(pro.password)
+        pro.save()
+        return redirect('home-adm')
     return render(request, 'administrador/profile/cadastro.html', {'form': form,'dados': pro})
+
+def profile_desativar(request):
+    pro = Profile.objects.get(id=request.user.id)
+    pro.is_active = 0
+    pro.save()
+    return redirect('home')
 
 @login_required
 def profile_deletar(request, id):
+
+    if request.user.has_permission('delete_usuario'):
+        return redirect('home-adm')
+
     profile = Profile.objects.get(id=id)
     profile.delete()
     return redirect('laboratory')
 
 # Permissões
-
 @login_required
 def permission(request, id):
     profile = Profile.objects.get(id=id)
@@ -467,10 +549,18 @@ def permission_solicitacao(request):
 @login_required
 @require_http_methods(['GET'])
 def institution(request):
+
+    if request.user.has_content('institution'):
+        return redirect('home-adm')
+
     institution = Institution.objects.all()
     return render(request,'administrador/institution/home.html',{'institutions': institution})
 
 def institution_cadastro(request):
+
+    if request.user.has_permission('add_institution'):
+        return redirect('home-adm')
+
     form = InstitutionForm(request.POST or None)
     if form.is_valid():
         institution = form.save(commit=False)
@@ -483,6 +573,10 @@ def institution_cadastro(request):
 
 @login_required
 def institution_editar(request, id):
+
+    if request.user.has_permission('update_institution'):
+        return redirect('home-adm')
+
     pro = Institution.objects.get(id=id)
     form = InstitutionForm(request.POST or None, instance=pro)
     if form.is_valid():
@@ -492,6 +586,10 @@ def institution_editar(request, id):
 
 @login_required
 def institution_deletar(request, id):
+
+    if request.user.has_permission('delete_institution'):
+        return redirect('home-adm')
+
     institution = Institution.objects.get(id=id)
     institution.delete()
     return redirect('institution')
@@ -499,6 +597,10 @@ def institution_deletar(request, id):
 # Demands
 @login_required
 def demand(request):
+
+    if request.user.has_content('demand'):
+        return redirect('home-adm')
+
     try:
         services = Service.objects.filter(profile_id=request.user.id)
         laboratorys = Laboratory.objects.filter(profile_id=request.user.id)
@@ -557,6 +659,10 @@ def demand(request):
 
 @login_required
 def demand_ar(request, ar, id):
+
+    if request.user.has_content('update_demand'):
+        return redirect('home-adm')
+
     demandcb = Demandcb.objects.get(id=id)
     demandcb.aceita_rejeita = ar
     demandcb.save()
