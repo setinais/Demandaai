@@ -6,19 +6,20 @@
         <div class="col-md-8">
             <div class="card">
                 {% if dados %}
-                    <form class="form-horizontal" method="POST" action="{% url 'laboratory.editar' dados.id %}">
+                    <form class="form-horizontal" method="POST" action="{% url 'profile.editar' %}">
                 {% else %}
-                    <form class="form-horizontal" method="POST" action="{% url 'laboratory.cadastro' %}">
+{#                    <form class="form-horizontal" method="POST" action="{% url 'profile.deletar' %}">#}
                 {% endif %}
                     <div class="card-body">
-                        <h4 class="card-title">Adicionar/Editar Laboratorio</h4>
+                        <h4 class="card-title">Meu Perfil</h4>
                         {% csrf_token %}
                         {{ form|crispy }}
                     </div>
                     <div class="border-top">
                         <div class="card-body">
                             <button type="submit" class="btn btn-success">Salvar</button>
-                            <a href="{% url 'profile' %}" class="btn btn-danger">Voltar</a>
+                            <a href="{% url 'home-adm' %}" class="btn btn-danger">Voltar</a>
+                            <a href="{% url 'profile.desativar' %}" class="btn btn-outline-warning float-right">Desativar perfil</a>
                         </div>
                     </div>
                 </form>

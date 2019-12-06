@@ -49,9 +49,14 @@ class Profile(AbstractUser, SafeDeleteModel):
     REQUIRED_FIELDS = ['username']
 
     def has_permission(self, codigo):
-        permissao = Permission.objects.filter(codigo=codigo)
+        permissao = Permission.objects.filter(codigo=codigo).first()
         permissions_user = UserPermission.objects.filter(user_id=self.id, permission_id=permissao.id)
-        return permissions_user.count() > 0
+        return permissions_user.count() == 0
+
+    def has_content(self, model):
+        content = Content.objects.filter(model=model).first()
+        content_user = UserContent.objects.filter(profile_id=self.id, content_id=content.id)
+        return content_user.count() == 0
 
     @property
     def my_permissions(self):
