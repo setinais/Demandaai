@@ -146,6 +146,7 @@ class Migration(migrations.Migration):
                 ('deleted', models.DateTimeField(editable=False, null=True)),
                 ('titulo', models.CharField(max_length=30)),
                 ('texto', models.TextField()),
+                ('descricao', models.TextField(null=True)),
                 ('icone', models.CharField(max_length=30)),
                 ('ulr', models.TextField()),
                 ('visualizada', models.BooleanField()),

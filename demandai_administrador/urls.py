@@ -39,6 +39,8 @@ urlpatterns = [
         # Controle de Acesso
         path('permission/<int:id>', views.permission, name='permission'),
         path('permission_edit/<int:id>', views.permission_edit, name='permission.edit'),
+        path('permession/solicitacao',views.permission_solicitacao,name='permission.solicitacao'),
+
 
         # Profile
         path('profile',views.profile,name='profile'),

@@ -78,6 +78,13 @@ class Profile(AbstractUser, SafeDeleteModel):
             content = Content.objects.get(id=permissao.content_id)
             dados.append(content)
         return dados
+    def permissions_for_menu_count(self):
+        permissoes = UserContent.objects.filter(profile=self.id).order_by('content')
+        dados = 0
+        for permissao in permissoes:
+            dados = (dados+1)
+        print(dados)
+        return dados
 
     def create_user(self, email, date_of_birth, password=None):
 
@@ -277,6 +284,7 @@ class Notification(SafeDeleteModel):
 
     titulo  = models.CharField(max_length=30)
     texto   = models.TextField()
+    descricao   = models.TextField(null=True)
     icone   = models.CharField(max_length=30)
     ulr     = models.TextField()
     visualizada = models.BooleanField()

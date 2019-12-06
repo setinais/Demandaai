@@ -36,6 +36,30 @@
             </div>
         </div>
         <br>
+
+        <!-- SOLICITAÇÃO -->
+            {% if user.permissions_for_menu_count == 0 %}
+            <div class="card">
+                <form class="form-horizontal" action="{% url 'permission.solicitacao' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <h4 class="card-title">SOLICITAÇÃO DE PERMIÇÕES</h4>
+                        <div class="form-group row">
+                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Descreva as permissões necessarias:</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="descricao" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-top">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        <!-- END_SOLICITAÇÃO -->
         <!-- SERVICOS -->
         <div class="row">
             <div class="col-md-12">

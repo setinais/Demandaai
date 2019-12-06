@@ -388,7 +388,10 @@ def profile_deletar(request, id):
 def permission(request, id):
     profile = Profile.objects.get(id=id)
     permissoes = Content.objects.order_by('id')
-    return render(request, 'administrador/permission/permission.html', {'profile': profile, 'permissoes': permissoes})
+    notificacao = Notification.objects.filter(ulr='/adm/permission/'+str(id))
+    for notf in notificacao:
+        notficacao = notf
+    return render(request, 'administrador/permission/permission.html', {'profile': profile, 'permissoes': permissoes,'notificacao':notficacao})
 
 def permission_edit(request, id):
     # Adicionar as permissões selecionadas
@@ -441,6 +444,24 @@ def permission_edit(request, id):
             content_tirar.delete()
 
     return redirect('profile')
+
+@login_required
+@require_http_methods(['POST'])
+def permission_solicitacao(request):
+    permis = Permission.objects.get(codigo='update_permission')
+    usp = UserPermission.objects.filter(permission_id=permis.id)
+    for users in usp:
+        #print(users.id)
+        Notification.objects.create(
+                    titulo='Uma solcitada',
+                    texto='O usuario:<b>'+request.user.username+'</b> solicitou permissões!',
+                    icone='fa fa-lock',
+                    descricao=request.POST['descricao'],
+                    ulr='/adm/permission/'+str(request.user.id),
+                    visualizada=False,
+                    profile_id=users.user_id,
+                )
+    return redirect('home-adm')
 
 # CRUD INSTITUIÇÂO
 @login_required
@@ -546,4 +567,4 @@ def notificacao(request, id):
     if notfi.profile_id == request.user.id:
         notfi.visualizada = 1
         notfi.save()
-    return redirect('demand')
+    return redirect(notfi.ulr)

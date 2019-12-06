@@ -7,7 +7,7 @@ INSERT INTO `demandai_administrador_content`(`id`, `model`, `name`, `icon`) VALU
     (5, 'profile', 'Usuarios', 'fa fa-user'),
     (6 ,'institution', 'Instituições', 'fa fa-university'),
     (7, 'permission', 'Permissões', 'fa fa-lock'),
-    (8 ,'demand', 'Demandas', 'fa fa-newspaper'),;
+    (8 ,'demand', 'Demandas', 'fa fa-newspaper');
 
 INSERT INTO `demandai_administrador_permission`(`codigo`, `name`, `content_id`) VALUES
 
