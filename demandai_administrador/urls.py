@@ -52,6 +52,8 @@ urlpatterns = [
         path('institution/editar/<int:id>', views.institution_editar, name='institution.editar'),
         path('institution/deletar/<int:id>', views.institution_deletar, name='institution.deletar'),
 
+        # Notificação
+        path('notificacao/<int:id>', views.notificacao, name='notificacao'),
 
     # Users
         # Demanda

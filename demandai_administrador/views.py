@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods
 import _thread
 from demandai_administrador.models import Demand, Service, Laboratory, Equipment, Profile, Content, UserPermission, \
-    Permission, UserContent, UserService, Institution, DemandCallback, Demandcb
+    Permission, UserContent, UserService, Institution, DemandCallback, Demandcb, Notification
 from .forms import *
 from datetime import datetime, timedelta
 import os
@@ -23,8 +23,10 @@ def home(request):
             'Total_laboratorios': Laboratory.objects.count(),
             'Total_equipamentos': Equipment.objects.count(),
             'Total_profissionais': Profile.objects.filter(role='SE').count(),
+            'Total_notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0).count(),
             'servicos': Service.objects.all(),
             'userservice': UserService.objects.all(),
+            'notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0)
         }
         return render(request, 'administrador/home.html', {'dados': dados})
     # except Exception:
@@ -506,3 +508,10 @@ def demand(request):
         return render(request, 'administrador/demands/home.html', {'institutions': institution})
     except Exception:
         return render(request, 'site/error.html')
+@login_required
+def notificacao(request, id):
+    notfi = Notification.objects.get(id=id)
+    if notfi.profile_id == request.user.id:
+        notfi.visualizada = 1
+        notfi.save()
+    return redirect('demand')

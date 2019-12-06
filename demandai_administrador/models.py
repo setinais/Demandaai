@@ -273,8 +273,6 @@ class UserService(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
 
 class Notification(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE_CASCADE
-
     titulo  = models.CharField(max_length=30)
     texto   = models.TextField()
     icone   = models.CharField(max_length=30)
