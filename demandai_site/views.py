@@ -153,13 +153,13 @@ def demandar(request):
             post['codigo'] = binascii.hexlify(os.urandom(3)).decode().upper()
             form = DemandForm(post, request.FILES)
             if form.is_valid():
-                #form.save()
+                form.save()
                 if form.data['action'] == 'SER':
                     service = Service.objects.get(id=form.data['action_id'])
                     for us in UserService.objects.filter(service_id=form.data['action_id']):
                         notif = Notification.objects.create(
                             titulo='Uma nova demanada Solcitada.',
-                            texto='O serviço:<b>'+service.nome+'<b> foi demandado',
+                            texto='O serviço:<b>'+service.nome+'</b> foi demandado',
                             icone='fa fa-suitcase',
                             ulr='demand',
                             visualizada=False,
