@@ -47,7 +47,7 @@ class ServiceForm(forms.ModelForm):
 class EquipamentForm(forms.ModelForm):
     class Meta:
         model = Equipment
-        fields = ['codigo','nome','descricao','institution','laboratory', 'profile']
+        fields = ['codigo','nome','descricao','institution','laboratory']
 
 class LaboratoryForm(forms.ModelForm):
     class Meta:

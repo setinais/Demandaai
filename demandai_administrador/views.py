@@ -322,7 +322,7 @@ def servicos_cancelar(request, id):
 @require_http_methods(['GET'])
 def equipamentos(request):
 
-    if request.user.has_content('equipment'):
+    if request.user.has_content('equipament'):
         return redirect('home-adm')
 
     equipamentos = Equipment.objects.all()
@@ -331,7 +331,7 @@ def equipamentos(request):
 @login_required
 def equipamentos_cadastro(request):
 
-    if request.user.has_permission('add_equipment'):
+    if request.user.has_permission('add_equipament'):
         return redirect('home-adm')
 
     form = EquipamentForm(request.POST or None)
@@ -347,7 +347,7 @@ def equipamentos_cadastro(request):
 @login_required
 def equipamentos_editar(request, id):
 
-    if request.user.has_permission('update_equipment'):
+    if request.user.has_permission('update_equipament'):
         return redirect('home-adm')
 
     Equipmente = Equipment.objects.get(id=id)
@@ -360,7 +360,7 @@ def equipamentos_editar(request, id):
 @login_required
 def equipamentos_deletar(request, id):
 
-    if request.user.has_permission('delete_equipment'):
+    if request.user.has_permission('delete_equipament'):
         return redirect('home-adm')
 
     equipamento = Equipment.objects.get(id=id)
