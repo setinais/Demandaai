@@ -42,7 +42,7 @@ def send_mail_responder_solicitante(request):
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
-        fields = ['nome','plataformas','descricao','servidores','desenvolvedores','departamentos','institution', 'profile']
+        fields = ['nome','plataformas','descricao','desenvolvedores','departamentos','institution']
 
 class EquipamentForm(forms.ModelForm):
     class Meta:
@@ -52,7 +52,7 @@ class EquipamentForm(forms.ModelForm):
 class LaboratoryForm(forms.ModelForm):
     class Meta:
         model = Laboratory
-        fields = ['nome','servidores', 'telefone','descricao','atividades_realizadas','endereco_sala','departamentos', 'cursos', 'institution', 'profile']
+        fields = ['nome','servidores', 'telefone','descricao','atividades_realizadas','endereco_sala','departamentos', 'cursos', 'institution']
 
 class ProfileForm(forms.ModelForm):
 

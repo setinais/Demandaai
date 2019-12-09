@@ -148,7 +148,6 @@ class Service(SafeDeleteModel):
     plataformas = models.TextField()
     descricao = models.TextField()
     nome = models.CharField(max_length=30)
-    servidores = models.TextField()
     desenvolvedores = models.TextField()
     departamentos = models.TextField()
     institution = models.ForeignKey(Institution,  on_delete=models.SET_NULL, null=True)

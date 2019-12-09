@@ -126,7 +126,6 @@ class Migration(migrations.Migration):
                 ('plataformas', models.TextField()),
                 ('descricao', models.TextField()),
                 ('nome', models.CharField(max_length=30)),
-                ('servidores', models.TextField()),
                 ('desenvolvedores', models.TextField()),
                 ('departamentos', models.TextField()),
                 ('status', models.BooleanField()),

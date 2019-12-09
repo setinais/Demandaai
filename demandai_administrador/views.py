@@ -269,6 +269,7 @@ def servicos_cadastro(request):
     if form.is_valid():
         servico = form.save(commit=False)
         servico.status = 0
+        servico.profile_id = request.user.id
         servico.save()
         return redirect('service')
 
@@ -337,6 +338,7 @@ def equipamentos_cadastro(request):
     if form.is_valid():
         equipamento = form.save(commit=False)
         equipamento.status = 0
+        equipamento.profile_id = request.user.id
         equipamento.save()
         return redirect('equipament')
 
@@ -533,7 +535,6 @@ def permission_solicitacao(request):
     permis = Permission.objects.get(codigo='update_permission')
     usp = UserPermission.objects.filter(permission_id=permis.id)
     for users in usp:
-        #print(users.id)
         Notification.objects.create(
                     titulo='Uma solcitada',
                     texto='O usuario:<b>'+request.user.username+'</b> solicitou permissões!',
