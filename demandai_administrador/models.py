@@ -171,13 +171,13 @@ class Demand(SafeDeleteModel):
         ('EQU', 'Equipamento'),
     )
     status = (
-        ('S', 'Solicitado'),
-        ('E', 'Analise'),
+        ('S', 'Solicitada'),
+        ('E', 'Em análise'),
         ('R', 'Recusada'),
         ('A', 'Aceita'),
-        ('P', 'Produção'),
-        ('V', 'Vinculada'),
-        ('B', 'FeedBack'),
+        ('P', 'Em andamento'),
+        ('V', 'Prospectada'),
+        ('B', 'Respondida'),
         ('F', 'Finalizada'),
     )
     action = models.CharField(max_length=3, choices=actions)

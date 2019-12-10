@@ -14,13 +14,13 @@
                             <span> Solicitada em {{ dados.demanda.created_at }}</span>
                         </div>
                         <h4 class="theme-color">Demanda do Sr(a) {{ dados.demanda.nome }} </h4>
-                        <p><strong>Email para contato:</strong> {{ dados.demanda.email }}</p>
-                        <p><strong>Telefone:</strong> {% if dados.demanda.telefone != "" %} {{ dados.demanda.telefone }} {% else %} Numero não registrado!{% endif %}</p>
+                        <p><strong>E-mail:</strong> {{ dados.demanda.email }}</p>
+                        <p><strong>Contato:</strong> {% if dados.demanda.telefone != "" %} {{ dados.demanda.telefone }} {% else %} Numero não registrado!{% endif %}</p>
                         <p><strong>Descrição:</strong> {{ dados.demanda.descricao }}</p>
-                        <p><strong>Status atual: </strong><span class="badge badge-pill badge-{{ dados.demanda.status.badge }}">{{ dados.demanda.status.titulo }}</span></p>
+                        <p><strong>Status: </strong><span class="badge badge-pill badge-{{ dados.demanda.status.badge }}">{{ dados.demanda.status.titulo }}</span></p>
                         <p><strong>Tempo de solicitação: </strong><span class="badge badge-pill badge-warning">{{ dados.demanda.tempo_solicitacao }} dias atrás</span></p>
                         <p><strong>Documentos em anexo: </strong> <a href="{% url 'download_arquivos' %}?path={{ dados.demanda.id }}" target="_blank"><i class="fa fa-download"></i> clique aqui para baixar <i class="fa fa-download"></i></a></p>
-                        <p><strong>Setor: </strong>  {{ dados.demanda.setor.nome }}</p>
+                        <p><strong>Departamento: </strong>  {{ dados.demanda.setor.nome }}</p>
                         <p><strong>Responsável: </strong>  {{ dados.demanda.setor.responsavel }}</p>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
@@ -30,7 +30,7 @@
                                     <tr>
                                         <th>Data</th>
                                         <th>Status</th>
-                                        <th>FeedBack</th>
+                                        <th>Resposta</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
 <a href="{% url 'prospeccao' %}" class="btn btn-danger ">Voltar</a>
-                        <a class="btn btn-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action=dados.demanda.action id=dados.demanda.id %}">Encaminhar para <i class="fa fa-angle-right"></i></a>
+                        <a class="btn btn-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action=dados.demanda.action id=dados.demanda.id %}">Encaminhar  <i class="fa fa-angle-right"></i></a>
 
             </div>
         </div>

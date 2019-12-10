@@ -17,16 +17,12 @@ def logout_in(request):
 
 @login_required
 def home(request):
-<<<<<<< HEAD
      try:
 
         notificacao = Notification.objects.filter(ulr='/adm/permission/'+str(request.user.id))
         solicitacao = False
         for notf in notificacao:
             solicitacao = notf
-=======
-    # try:
->>>>>>> 983af8558b924a515897aa8b1ad9345394ba202c
         dados = {
             'Total_servicos': Service.objects.count(),
             'Total_laboratorios': Laboratory.objects.count(),
@@ -35,19 +31,10 @@ def home(request):
             'Total_notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0).count(),
             'servicos': Service.objects.all(),
             'userservice': UserService.objects.all(),
-<<<<<<< HEAD
-            'notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0),
-            'solicitacao': solicitacao
         }
         return render(request, 'administrador/home.html', {'dados': dados})
      except Exception:
-         return render(request, 'site/error.html')
-=======
-        }
-        return render(request, 'administrador/home.html', {'dados': dados})
-    # except Exception:
-    #     return render(request, 'site/error.html')
->>>>>>> 983af8558b924a515897aa8b1ad9345394ba202c
+        return render(request, 'site/error.html')
 
 @login_required
 def prospeccao(request):
