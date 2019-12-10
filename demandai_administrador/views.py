@@ -413,6 +413,7 @@ def laboratorios_cadastro(request):
     if form.is_valid():
         laboratorio = form.save(commit=False)
         laboratorio.pesquisa_extensao = False
+        #laboratorio.profile_id = request.user.id
         laboratorio.status = 0
         laboratorio.save()
         return redirect('laboratory')
@@ -651,7 +652,7 @@ def demand(request):
                 }
                 s.append(dados)
 
-                # Get Demandas vinculadas aos Laboratorios
+        # Get Demandas vinculadas aos Laboratorios
         for laboratory in laboratorys:
             demandcbs = Demandcb.objects.filter(action='LAB', action_id=laboratory.id, aceita_rejeita=None)
             for demandcb in demandcbs:
