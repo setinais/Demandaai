@@ -52,7 +52,7 @@ class EquipamentForm(forms.ModelForm):
 class LaboratoryForm(forms.ModelForm):
     class Meta:
         model = Laboratory
-        fields = ['nome','servidores', 'telefone','descricao','atividades_realizadas','endereco_sala','departamentos', 'cursos', 'institution']
+        fields = ['nome','servidores', 'telefone','descricao','atividades_realizadas','endereco_sala','departamentos', 'cursos', 'institution','profile']
 
 class ProfileForm(forms.ModelForm):
 
