@@ -157,13 +157,28 @@ def demandar(request):
                 if form.data['action'] == 'SER':
                     service = Service.objects.get(id=form.data['action_id'])
                     for us in UserService.objects.filter(service_id=form.data['action_id']):
-                        notif = Notification.objects.create(
+                        Notification.objects.create(
                             titulo='Uma nova demanada Solcitada.',
                             texto='O serviço:<b>'+service.nome+'</b> foi demandado',
                             icone='fa fa-suitcase',
                             ulr='demand',
                             visualizada=False,
                             profile_id=us.profile.id,
+                        )
+                else:
+                    id = 0
+                    if form.data['action'] == 'LAB':
+                        id = Laboratory.objects.get(id=form.data['action_id']).profile_id
+                    else:
+                        id = Equipment.objects.get(id=form.data['action_id']).profile_id
+                    Notification.objects.create(
+                            titulo='Demanda',
+                            texto='Foi enviada uma demanda para voçe!',
+                            icone='fa fa-newspaper',
+                            descricao=None,
+                            ulr='/adm/demand',
+                            visualizada=False,
+                            profile_id=id,
                         )
                 _thread.start_new_thread(form.send_mail, (request,))
                 form = DemandForm()

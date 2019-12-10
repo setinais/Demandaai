@@ -17,12 +17,16 @@ def logout_in(request):
 
 @login_required
 def home(request):
+<<<<<<< HEAD
      try:
 
         notificacao = Notification.objects.filter(ulr='/adm/permission/'+str(request.user.id))
         solicitacao = False
         for notf in notificacao:
             solicitacao = notf
+=======
+    # try:
+>>>>>>> 983af8558b924a515897aa8b1ad9345394ba202c
         dados = {
             'Total_servicos': Service.objects.count(),
             'Total_laboratorios': Laboratory.objects.count(),
@@ -31,12 +35,19 @@ def home(request):
             'Total_notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0).count(),
             'servicos': Service.objects.all(),
             'userservice': UserService.objects.all(),
+<<<<<<< HEAD
             'notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0),
             'solicitacao': solicitacao
         }
         return render(request, 'administrador/home.html', {'dados': dados})
      except Exception:
          return render(request, 'site/error.html')
+=======
+        }
+        return render(request, 'administrador/home.html', {'dados': dados})
+    # except Exception:
+    #     return render(request, 'site/error.html')
+>>>>>>> 983af8558b924a515897aa8b1ad9345394ba202c
 
 @login_required
 def prospeccao(request):
@@ -98,38 +109,39 @@ def encaminhar_demanda(request, action, id):
 
     if request.user.has_permission('prospectar'):
         return redirect('home-adm')
+    else:
 
-    try:
-        template = ''
-        actions = []
-        if action == 'SER':
-            template = 'administrador/encaminhar_demanda/servico.html'
-            actions = Service.objects.filter(status=0)
-        elif action == 'LAB':
-            template = 'administrador/encaminhar_demanda/laboratorio.html'
-            actions = Laboratory.objects.filter(status=0)
-        elif action == 'EQU':
-            template = 'administrador/encaminhar_demanda/equipamento.html'
-            actions = Equipment.objects.filter(status=0)
-        else:
-            return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
+        try:
+            template = ''
+            actions = []
+            if action == 'SER':
+                template = 'administrador/encaminhar_demanda/servico.html'
+                actions = Service.objects.filter(status=0)
+            elif action == 'LAB':
+                template = 'administrador/encaminhar_demanda/laboratorio.html'
+                actions = Laboratory.objects.filter(status=0)
+            elif action == 'EQU':
+                template = 'administrador/encaminhar_demanda/equipamento.html'
+                actions = Equipment.objects.filter(status=0)
+            else:
+                return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
 
-        i=0
-        dados = []
-        while i < len(actions):
-            prepare = {
-                'id': actions[i].id,
-                'action': action,
-                'nome': actions[i].nome,
-                'status': actions[i].status,
-                'responsavel': actions[i].profile.username,
-                'unidade': actions[i].institution.nome,
-            }
-            dados.append(prepare)
-            i += 1
-        return render(request, template, {'dados': dados, 'id_demanda': id})
-    except Exception:
-        return render(request, 'site/error.html')
+            i=0
+            dados = []
+            while i < len(actions):
+                prepare = {
+                    'id': actions[i].id,
+                    'action': action,
+                    'nome': actions[i].nome,
+                    'status': actions[i].status,
+                    'responsavel': actions[i].profile.username,
+                    'unidade': actions[i].institution.nome,
+                }
+                dados.append(prepare)
+                i += 1
+            return render(request, template, {'dados': dados, 'id_demanda': id})
+        except Exception:
+            return render(request, 'site/error.html')
 
 @login_required
 @require_http_methods(["GET"])
@@ -154,7 +166,27 @@ def encaminhar_demanda_acao(request):
         demanda.save()
 
         demanda.demandcallback_set.create(status='E', profile_id=request.user.id, feedback='Demanda encaminhada para "'+ action.nome+'", ficando em "análise"!', prazo_feedback=(datetime.today() + timedelta(days=2)))
-
+        if request.GET['action'] == 'SER':
+            for profile in action.userservice_set.all():
+                Notification.objects.create(
+                    titulo='Demanda',
+                    texto='Foi enviada uma demanda para voçe!',
+                    icone='fa fa-newspaper',
+                    descricao=None,
+                    ulr='/adm/demand',
+                    visualizada=False,
+                    profile_id=profile.profile_id,
+                )
+        else:
+            Notification.objects.create(
+                titulo='Demanda',
+                texto='Foi enviada uma demanda para voçe!',
+                icone='fa fa-newspaper',
+                descricao=None,
+                ulr='/adm/demand',
+                visualizada=False,
+                profile_id=action.profile.id,
+            )
         _thread.start_new_thread(send_mail, (request,))
         return redirect('prospeccao')
     except Exception:
