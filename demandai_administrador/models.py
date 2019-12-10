@@ -106,6 +106,9 @@ class Profile(AbstractUser, SafeDeleteModel):
     def __str__(self):
         return self.first_name +' '+ self.last_name
 
+    def notifications(self):
+        return self.notification_set.filter(visualizada=0)
+
 class Laboratory(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
@@ -295,5 +298,6 @@ class Notification(SafeDeleteModel):
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)
     profile     = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+
     def __str__(self):
         return self.titulo
