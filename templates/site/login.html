@@ -7,20 +7,27 @@
 {% block content %}
     <section class="gray-bg height-100vh d-flex align-items-center page-section-ptb login">
         <div class="container">
-            <div class="row no-gutters justify-content-center">
-                {% if error %}
-                <div class="alert alert-success" role="alert">
-                     <strong>{{ error }}</strong>
+            {% if error %}
+                <div class="row no-gutters justify-content-center">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="alert alert-danger" role="alert">
+                             <strong>{{ error }}</strong>
+                        </div>
+                    </div>
+
                 </div>
             {% endif %}
-                <div class="col-lg-4 col-md-6 login-fancy-bg bg-overlay-black-30" style="background: url(images/login/01.jpg);">
-                    <div class="login-fancy pos-r">
+            <div class="row no-gutters justify-content-center">
+                <div class="col-lg-4 col-md-6 login-fancy-bg" style="background: url(images/login/01.jpg);background-color: rgb(248,249,250)">
+                    <div class="justify-content-center">
                         <a href="{% url 'home' %}">
-                            <img src="{% static "images/demandai/demandai-logo.png" %}" style="height: 250px" alt="">
+                            <img src='{% static "images/demandai/demandai-logo4.png" %}' style="height: 250px;margin-left: 20%;margin-top: 18%" alt="">
                         </a>
                         <ul class="list-unstyled  pos-bot pb-30">
-                            <li class="list-inline-item"><a class="text-white" href="#"> Termo de Uso</a> </li>
-                            <li class="list-inline-item"><a class="text-white" href="#"> Politica de Privacidade</a></li>
+                            <!--
+                            <li class="list-inline-item"><a class="text-black" href="#"> Termo de Uso</a> </li>
+                            <li class="list-inline-item"><a class="text-black" href="#"> Politica de Privacidade</a></li>
+                            -->
                         </ul>
                     </div>
                 </div>
@@ -31,7 +38,7 @@
                         {% csrf_token %}
                             <div class="section-field mb-20">
                                 <label class="mb-10" for="name">E-mail </label>
-                                <input type="text" name="email" class="web form-control" placeholder="example@example.com" maxlength="254" id="id_email">
+                                <input type="text" name="email" class="web form-control" placeholder="exemplo@exemplo.com" maxlength="254" id="id_email">
                                 {% if form.email.errors %}
                                     <ol>
                                         {% for error in form.email.errors %}
@@ -42,7 +49,7 @@
                             </div>
                             <div class="section-field mb-20">
                                 <label class="mb-10" for="Password">Senha </label>
-                                <input type="password" name="password" class="Password form-control" placeholder="senha" maxlength="128" required="" id="id_password">
+                                <input type="password" name="password" class="password form-control" placeholder="*******" maxlength="128" required="" id="id_password">
                                 {% if form.password.errors %}
                                     <ol>
                                         {% for error in form.password.errors %}
@@ -59,7 +66,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="button">
-                                <span>Log in</span>
+                                <span>Entrar</span>
                                 <i class="fa fa-check"></i>
                             </button>
                         </form>

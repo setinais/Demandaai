@@ -47,7 +47,7 @@
                         <div class="form-group row">
                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Descreva as permissões necessarias:</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="descricao" rows="5"></textarea>
+                                <textarea class="form-control" name="descricao" rows="5">{{dados.solicitacao.descricao|safe}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -61,6 +61,7 @@
             {% endif %}
         <!-- END_SOLICITAÇÃO -->
         <!-- SERVICOS -->
+        {% if user.permission_service %}
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -103,6 +104,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         <!-- END_SERVICOS -->
     </div>
 </section>

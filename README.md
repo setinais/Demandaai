@@ -5,7 +5,7 @@ Comandos basicos
 *Instalar dependencias 
 
     pip install -r requirements.txt
-    pip install django-crispy-forms
+    pip install django-crispy-formspip install django-crispy-forms
 *Criar migrates
 
     python manage.py makemigrations

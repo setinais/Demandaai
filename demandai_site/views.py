@@ -235,7 +235,7 @@ def login_in(request):
             login(request, profile)
             return redirect('home-adm')
         else:
-            return render(request, 'site/login.html', {'error': 'Email/Senha Incorretos!'})
+            return render(request, 'site/login.html', {'error': 'Email ou Senha Incorretos!'})
     except Exception:
         return render(request, 'site/error.html')
 

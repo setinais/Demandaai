@@ -90,6 +90,10 @@ class Profile(AbstractUser, SafeDeleteModel):
             dados = (dados+1)
         print(dados)
         return dados
+    def permission_service(self):
+        if self.has_content('service'):
+            return False
+        return True
 
     def create_user(self, email, date_of_birth, password=None):
 
@@ -295,5 +299,6 @@ class Notification(SafeDeleteModel):
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)
     profile     = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+
     def __str__(self):
         return self.titulo

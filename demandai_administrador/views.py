@@ -17,7 +17,12 @@ def logout_in(request):
 
 @login_required
 def home(request):
-    try:
+     try:
+
+        notificacao = Notification.objects.filter(ulr='/adm/permission/'+str(request.user.id))
+        solicitacao = False
+        for notf in notificacao:
+            solicitacao = notf
         dados = {
             'Total_servicos': Service.objects.count(),
             'Total_laboratorios': Laboratory.objects.count(),
@@ -26,11 +31,12 @@ def home(request):
             'Total_notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0).count(),
             'servicos': Service.objects.all(),
             'userservice': UserService.objects.all(),
-            'notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0)
+            'notificacao': Notification.objects.filter(profile_id=request.user.id,visualizada=0),
+            'solicitacao': solicitacao
         }
         return render(request, 'administrador/home.html', {'dados': dados})
-    except Exception:
-        return render(request, 'site/error.html')
+     except Exception:
+         return render(request, 'site/error.html')
 
 @login_required
 def prospeccao(request):
@@ -473,6 +479,7 @@ def permission(request, id):
     profile = Profile.objects.get(id=id)
     permissoes = Content.objects.order_by('id')
     notificacao = Notification.objects.filter(ulr='/adm/permission/'+str(id))
+    notficacao = False
     for notf in notificacao:
         notficacao = notf
     return render(request, 'administrador/permission/permission.html', {'profile': profile, 'permissoes': permissoes,'notificacao':notficacao})
@@ -537,7 +544,7 @@ def permission_solicitacao(request):
     for users in usp:
         Notification.objects.create(
                     titulo='Uma solcitada',
-                    texto='O usuario:<b>'+request.user.username+'</b> solicitou permissões!',
+                    texto='O usuario:<b>'+request.user.first_name+' '+request.user.last_name+'</b> solicitou permissões!',
                     icone='fa fa-lock',
                     descricao=request.POST['descricao'],
                     ulr='/adm/permission/'+str(request.user.id),

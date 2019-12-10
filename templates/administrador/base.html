@@ -13,7 +13,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <link rel="stylesheet" href="{% static 'adm/assets/extra-libs/multicheck/multicheck.css' %}" />
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <title>DEMANDAÍ</title>
     <!-- Custom CSS -->
     <link href="{% static 'adm/assets/libs/flot/css/float-chart.css' %}" rel="stylesheet">
     <!-- Custom CSS -->
@@ -53,11 +53,29 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="{% url 'home-adm' %}">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
                         <b class="logo-icon p-l-10">
-                            <img src="{% static 'images/demandai/demandai-logo4.png'%}" style="height: 70px;align-content: center" alt="homepage" class="light-logo" />
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="{% static 'images/demandai/demandai-logo4.png'%}" alt="homepage" style="width: 50px;margin-left: -10px" class="light-logo">
 
                         </b>
+                        <!--End Logo icon -->
+                         <!-- Logo text -->
+                        <span class="logo-text">
+                             <!-- dark Logo text -->
+                             <b style="margin-left: 15px">DEMANDAÍ</b>
+
+                        </span>
+                        <!-- Logo icon -->
+                        <!-- <b class="logo-icon"> -->
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+
+                        <!-- </b> -->
+                        <!--End Logo icon -->
                     </a>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -198,7 +216,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'home-adm' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Home</span></a>
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'home-adm' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Início</span></a>
                         </li>
                         {% url 'home-adm' as url %}
                         {% for menu in user.permissions_for_menu %}
@@ -246,7 +264,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                <p> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#"> Galera do Estudo. </a> Todos os direitos reservados </p>
+                <p> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#" style="color: #84ba3f"> Galera do Estudo. </a> Todos os direitos reservados.</p>
             </footer>
             <!--
             <footer class="footer text-center row">
