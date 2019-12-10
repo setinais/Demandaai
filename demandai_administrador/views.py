@@ -155,6 +155,7 @@ def encaminhar_demanda_acao(request):
         demanda.demandcallback_set.create(status='E', profile_id=request.user.id, feedback='Demanda encaminhada para "'+ action.nome+'", ficando em "análise"!', prazo_feedback=(datetime.today() + timedelta(days=2)))
         if request.GET['action'] == 'SER':
             for profile in action.userservice_set.all():
+                Demandcb.objects.create(demand=demanda, action=request.GET['action'], action_id=action.id)
                 Notification.objects.create(
                     titulo='Demanda',
                     texto='Foi enviada uma demanda para voçe!',
@@ -165,6 +166,7 @@ def encaminhar_demanda_acao(request):
                     profile_id=profile.profile_id,
                 )
         else:
+            Demandcb.objects.create(demand=demanda, action=request.GET['action'], action_id=action.id)
             Notification.objects.create(
                 titulo='Demanda',
                 texto='Foi enviada uma demanda para voçe!',
@@ -626,11 +628,11 @@ def institution_deletar(request, id):
 @login_required
 def demand(request):
 
-    if request.user.has_content('demand'):
-        return redirect('home-adm')
+    # if request.user.has_content('demand'):
+    #     return redirect('home-adm')
 
-    try:
-        services = Service.objects.filter(profile_id=request.user.id)
+    # try:
+        services = UserService.objects.filter(profile_id=request.user.id)
         laboratorys = Laboratory.objects.filter(profile_id=request.user.id)
         equipments = Equipment.objects.filter(profile_id=request.user.id)
         s =[]
@@ -639,12 +641,12 @@ def demand(request):
 
         # Get Demandas vinculadas aos serviços
         for service in services:
-            demandcbs = Demandcb.objects.filter(action='SER', action_id=service.id, aceita_rejeita=None)
+            demandcbs = Demandcb.objects.filter(action='SER', action_id=service.service_id, aceita_rejeita=None)
             for demandcb in demandcbs:
                 dados = {
                     'id': demandcb.demand.id,
                     'id_cb': demandcb.id,
-                    'setor': service.nome,
+                    'setor': service.service.nome,
                     'ar': demandcb.aceita_rejeita,
                     'nome': demandcb.demand.nome,
                     'descricao': demandcb.demand.descricao,
@@ -682,8 +684,8 @@ def demand(request):
                 }
                 e.append(dados)
         return render(request, 'administrador/demands/home.html', {'services': s, 'laboratorys': l, 'equipments': e})
-    except Exception:
-        return render(request, 'site/error.html')
+    # except Exception:
+    #     return render(request, 'site/error.html')
 
 @login_required
 def demand_ar(request, ar, id):
