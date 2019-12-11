@@ -440,7 +440,8 @@ def user(request):
         user = form.save(commit=False)
         user.is_superuser = 0
         user.is_active = 1
+        user.set_password(request.POST['password'])
         user.save()
-        #return redirect('login')
+        return redirect('login')
 
     return render(request, 'site/user.html', {'form': form})

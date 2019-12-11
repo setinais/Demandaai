@@ -50,11 +50,17 @@ modal -->
                                         <a href="#" class="float-right">Esqueceu sua senha?</a>
                                     </div>
                                 </div>
-                                <button type="submit" class="button btn-block mt-10">
-                                    <span>Acessar </span>
-                                    <i class="fa fa-check"></i>
-                                </button>
 
+                                <div class="form-group">
+                                    <button type="submit" class="button mt-5">
+                                        <span>Acessar </span>
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                    <a class="button btn-info" href="{% url 'user' %}">
+                                        <span>Cadastre-se</span>
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                </div>
                             </div>
                                 </form>
                         </div>

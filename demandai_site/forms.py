@@ -49,7 +49,7 @@ class UserForm(forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput(),label='Comfirme a senha')
     institution = forms.ModelChoiceField(queryset=Institution.objects.all(),widget=forms.Select,required=True,label='Instituição')
     first_name = forms.CharField(required=True,label='Primeiro nome')
-    last_name = forms.CharField(required=True,label='Último nome')
+    last_name = forms.CharField(required=True,label='Sobrenome')
     username = forms.CharField(required=True,label='Nome de Úsuario')
     class Meta:
         model = Profile
