@@ -47,7 +47,7 @@ class DemandForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(),label='Senha')
     confirm_password = forms.CharField(widget=forms.PasswordInput(),label='Comfirme a senha')
-    institution = forms.ModelChoiceField(queryset=Institution.objects.all(),widget=forms.Select,required=True,label='Instituição')
+    institution = forms.ModelChoiceField(queryset=Institution.objects.all(),widget=forms.Select(attrs={'style':'padding: 10px'}),required=True)
     first_name = forms.CharField(required=True,label='Primeiro nome')
     last_name = forms.CharField(required=True,label='Sobrenome')
     username = forms.CharField(required=True,label='Nome de Úsuario')
