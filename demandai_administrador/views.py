@@ -1,4 +1,4 @@
-from django.contrib.auth import logout
+from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect, get_object_or_404
@@ -94,28 +94,29 @@ def badge_select(val):
 @login_required
 def encaminhar_demanda(request, action, id):
 
-    if request.user.has_permission('prospectar'):
-        return redirect('home-adm')
-    else:
+    # if request.user.has_permission('prospectar'):
+    #     return redirect('home-adm')
+    #
+    # try:
+        template = ''
+        actions = []
+        if action == 'SER':
+            template = 'administrador/encaminhar_demanda/servico.html'
+            actions = Service.objects.filter(status=0)
+        elif action == 'LAB':
+            template = 'administrador/encaminhar_demanda/laboratorio.html'
+            actions = Laboratory.objects.filter(status=0)
+        elif action == 'EQU':
+            template = 'administrador/encaminhar_demanda/equipamento.html'
+            actions = Equipment.objects.filter(status=0)
+        else:
+            return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
 
-        try:
-            template = ''
-            actions = []
-            if action == 'SER':
-                template = 'administrador/encaminhar_demanda/servico.html'
-                actions = Service.objects.filter(status=0)
-            elif action == 'LAB':
-                template = 'administrador/encaminhar_demanda/laboratorio.html'
-                actions = Laboratory.objects.filter(status=0)
-            elif action == 'EQU':
-                template = 'administrador/encaminhar_demanda/equipamento.html'
-                actions = Equipment.objects.filter(status=0)
-            else:
-                return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
+        i=0
+        dados = []
 
-            i=0
-            dados = []
-            while i < len(actions):
+        while i < len(actions):
+            if Demandcb.objects.filter(action=action, demand_id=id, aceita_rejeita=1).count() == 0:
                 prepare = {
                     'id': actions[i].id,
                     'action': action,
@@ -125,10 +126,10 @@ def encaminhar_demanda(request, action, id):
                     'unidade': actions[i].institution.nome,
                 }
                 dados.append(prepare)
-                i += 1
-            return render(request, template, {'dados': dados, 'id_demanda': id})
-        except Exception:
-            return render(request, 'site/error.html')
+            i += 1
+        return render(request, template, {'dados': dados, 'id_demanda': id})
+    # except Exception:
+    #     return render(request, 'site/error.html')
 
 @login_required
 @require_http_methods(["GET"])
@@ -476,6 +477,7 @@ def profile_editar(request):
         pro = form.save()
         pro.set_password(pro.password)
         pro.save()
+        update_session_auth_hash(request, pro)
         return redirect('home-adm')
     return render(request, 'administrador/profile/cadastro.html', {'form': form,'dados': pro})
 
@@ -498,6 +500,10 @@ def profile_deletar(request, id):
 # Permissões
 @login_required
 def permission(request, id):
+
+    if request.user.has_permission('view_permission'):
+        return redirect('home-adm')
+
     profile = Profile.objects.get(id=id)
     permissoes = Content.objects.order_by('id')
     notificacao = Notification.objects.filter(ulr='/adm/permission/'+str(id))
@@ -507,6 +513,10 @@ def permission(request, id):
     return render(request, 'administrador/permission/permission.html', {'profile': profile, 'permissoes': permissoes,'notificacao':notficacao})
 
 def permission_edit(request, id):
+
+    if request.user.has_permission('update_permission'):
+        return redirect('home-adm')
+
     # Adicionar as permissões selecionadas
     dados = request.POST
     menu = []
@@ -630,18 +640,21 @@ def demand(request):
 
     # if request.user.has_content('demand'):
     #     return redirect('home-adm')
-
+    #
     # try:
         services = UserService.objects.filter(profile_id=request.user.id)
         laboratorys = Laboratory.objects.filter(profile_id=request.user.id)
         equipments = Equipment.objects.filter(profile_id=request.user.id)
-        s =[]
+
+        md = []
+        s = []
         l = []
         e = []
 
         # Get Demandas vinculadas aos serviços
         for service in services:
             demandcbs = Demandcb.objects.filter(action='SER', action_id=service.service_id, aceita_rejeita=None)
+            demandcbs2 = Demandcb.objects.filter(action='SER', action_id=service.service_id, aceita_rejeita=1)
             for demandcb in demandcbs:
                 dados = {
                     'id': demandcb.demand.id,
@@ -653,10 +666,24 @@ def demand(request):
                     'created_at': demandcb.demand.created_at,
                 }
                 s.append(dados)
-
+            for demandcb in demandcbs2:
+                dados = {
+                    'id': demandcb.demand.id,
+                    'id_cb': demandcb.id,
+                    'ar': demandcb.aceita_rejeita,
+                    'setor': service.nome,
+                    'type_sector': 'Serviço',
+                    'status': demandcb.demand.get_status_display(),
+                    'badge': badge_select(demandcb.demand.status),
+                    'nome': demandcb.demand.nome,
+                    'descricao': demandcb.demand.descricao,
+                    'created_at': demandcb.demand.created_at,
+                }
+                md.append(dados)
         # Get Demandas vinculadas aos Laboratorios
         for laboratory in laboratorys:
             demandcbs = Demandcb.objects.filter(action='LAB', action_id=laboratory.id, aceita_rejeita=None)
+            demandcbs2 = Demandcb.objects.filter(action='LAB', action_id=laboratory.id, aceita_rejeita=1)
             for demandcb in demandcbs:
                 dados = {
                     'id': demandcb.demand.id,
@@ -668,10 +695,26 @@ def demand(request):
                     'created_at': demandcb.demand.created_at,
                 }
                 l.append(dados)
+            for demandcb in demandcbs2:
+                dados = {
+                    'id': demandcb.demand.id,
+                    'id_cb': demandcb.id,
+                    'ar': demandcb.aceita_rejeita,
+                    'setor': laboratory.nome,
+                    'status': demandcb.demand.get_status_display(),
+                    'badge': badge_select(demandcb.demand.status),
+                    'type_sector': 'Laboratorio',
+                    'nome': demandcb.demand.nome,
+                    'descricao': demandcb.demand.descricao,
+                    'created_at': demandcb.demand.created_at,
+                }
+                md.append(dados)
+
 
         # Get Demandas vinculadas aos Equipamentos
         for equipment in equipments:
             demandcbs = Demandcb.objects.filter(action='EQU', action_id=equipment.id, aceita_rejeita=None)
+            demandcbs2 = Demandcb.objects.filter(action='EQU', action_id=equipment.id, aceita_rejeita=1)
             for demandcb in demandcbs:
                 dados = {
                     'id': demandcb.demand.id,
@@ -683,19 +726,45 @@ def demand(request):
                     'created_at': demandcb.demand.created_at,
                 }
                 e.append(dados)
-        return render(request, 'administrador/demands/home.html', {'services': s, 'laboratorys': l, 'equipments': e})
+            for demandcb in demandcbs2:
+                dados = {
+                    'id': demandcb.demand.id,
+                    'id_cb': demandcb.id,
+                    'ar': demandcb.aceita_rejeita,
+                    'type_sector': 'Equipamento',
+                    'status': demandcb.demand.get_status_display(),
+                    'badge': badge_select(demandcb.demand.status),
+                    'setor': equipment.nome,
+                    'nome': demandcb.demand.nome,
+                    'descricao': demandcb.demand.descricao,
+                    'created_at': demandcb.demand.created_at,
+                }
+                md.append(dados)
+
+        ct = {'s': len(s), 'l': len(l), 'e': len(e), 'md': len(md)}
+        return render(request, 'administrador/demands/home.html', {'my_demands': md,'services': s, 'laboratorys': l, 'equipments': e, 'counts': ct})
     # except Exception:
     #     return render(request, 'site/error.html')
 
 @login_required
 def demand_ar(request, ar, id):
 
-    if request.user.has_content('update_demand'):
+    if request.user.has_permission('update_demand'):
         return redirect('home-adm')
 
-    demandcb = Demandcb.objects.get(id=id)
-    demandcb.aceita_rejeita = ar
-    demandcb.save()
+    try:
+        demandcb = Demandcb.objects.get(id=id)
+        demandcb.aceita_rejeita = ar
+        if int(ar) == 1:
+            demandcb.demand.status = 'A'
+        else:
+            demandcb.demand.status = 'R'
+        demandcb.demand.save()
+        demandcb.save()
+
+        return redirect('demand')
+    except Exception:
+        return render(request, 'site/error.html')
 
 @login_required
 def notificacao(request, id):

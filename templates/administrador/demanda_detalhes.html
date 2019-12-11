@@ -50,9 +50,12 @@
                         </div>
                     </div>
                 </div>
-<a href="{% url 'prospeccao' %}" class="btn btn-danger ">Voltar</a>
-                        <a class="btn btn-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action=dados.demanda.action id=dados.demanda.id %}">Encaminhar  <i class="fa fa-angle-right"></i></a>
-
+            {% if user.btn_voltar_and_encaminhar %}
+                <a href="{% url 'prospeccao' %}" class="btn btn-danger ">Voltar</a>
+                <a class="btn btn-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action=dados.demanda.action id=dados.demanda.id %}">Encaminhar  <i class="fa fa-angle-right"></i></a>
+            {% else %}
+                <a href="{% url 'demand' %}" class="btn btn-danger ">Voltar</a>
+            {% endif %}
             </div>
         </div>
     </section>

@@ -331,9 +331,24 @@
         /****************************************
          *       Basic Table                   *
          ****************************************/
+        jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+            "date-uk-pre": function ( a ) {
+                var ukDatea = a.split('/');
+                return (ukDatea[2] + ukDatea[1] + ukDatea[0]) * 1;
+            },
+
+            "date-uk-asc": function ( a, b ) {
+                return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+            },
+
+            "date-uk-desc": function ( a, b ) {
+                return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+            }
+            } );
         $('#zero_config').DataTable({
                 //paging: false,
                 //scrollY: 500,
+                order: [[0, "desc"]],
                 ordering: true,
                 oLanguage: {
                     sLengthMenu: "Mostrar _MENU_ registros por página",
@@ -349,6 +364,14 @@
                         "sLast": "Último"
                     }
                 },
+            "aoColumns": [
+                    { "sType": "date-uk" },
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ]
             });
             $('.zero_config').DataTable({
                 //paging: false,

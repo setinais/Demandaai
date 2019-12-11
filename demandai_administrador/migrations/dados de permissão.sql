@@ -7,7 +7,6 @@ INSERT INTO `demandai_administrador_content`(`id`, `model`, `name`, `icon`) VALU
     (5, 'equipament', 'Equipamentos', 'fa fa-cogs'),
     (6 ,'institution', 'Instituições', 'fa fa-university'),
     (7, 'profile', 'Usuarios', 'fa fa-user'),
-    (8, 'permission', 'Permissões', 'fa fa-lock');
 
 INSERT INTO `demandai_administrador_permission`(`codigo`, `name`, `content_id`) VALUES
 
@@ -34,7 +33,7 @@ INSERT INTO `demandai_administrador_permission`(`codigo`, `name`, `content_id`) 
         ('prospectar', 'Prospectar', 2),
         ('delete_demand', 'Deletar Demandas', 2),
 
-        ('view_permission', 'Visualizar Permissões', 8),
-        ('update_permission', 'Atualizar Permissões', 8),
+        ('view_permission', 'Visualizar Permissões', 7),
+        ('update_permission', 'Atualizar Permissões', 7),
 
         ('update_demand', 'Atualizar Demandas', 1);

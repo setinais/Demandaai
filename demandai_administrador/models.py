@@ -113,6 +113,11 @@ class Profile(AbstractUser, SafeDeleteModel):
     def notifications(self):
         return self.notification_set.filter(visualizada=0)
 
+    def btn_voltar_and_encaminhar(self):
+         if self.has_content('prospeccao'):
+             return False
+         return True
+
 class Laboratory(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
 
