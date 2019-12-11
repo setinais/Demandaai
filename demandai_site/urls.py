@@ -21,5 +21,8 @@ urlpatterns = [
 
     # Consulta de relações
     path('search', views.search, name='search'),
+
+    # Criar usuario
+    path('user', views.user, name='user'),
     #path('search?text=<str:text>', views.search, name='search_val'),
 ]

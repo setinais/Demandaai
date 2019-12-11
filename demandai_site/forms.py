@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.sites.shortcuts import get_current_site
 
-from demandai_administrador.models import Demand, Profile, Service, Laboratory, Equipment
+from demandai_administrador.models import Demand, Profile, Service, Laboratory, Equipment, Institution
 
 from .mail import send_mail_template
 
@@ -44,3 +44,22 @@ class DemandForm(forms.ModelForm):
 
         send_mail_template(subject, 'site/email_demanda.html', context, [self.cleaned_data['email']])
 
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(),label='Senha')
+    confirm_password = forms.CharField(widget=forms.PasswordInput(),label='Comfirme a senha')
+    institution = forms.ModelChoiceField(queryset=Institution.objects.all(),widget=forms.Select,required=True,label='Instituição')
+    first_name = forms.CharField(required=True,label='Primeiro nome')
+    last_name = forms.CharField(required=True,label='Último nome')
+    username = forms.CharField(required=True,label='Nome de Úsuario')
+    class Meta:
+        model = Profile
+        fields = ['institution','first_name','last_name','username', 'email','password']
+
+    def clean(self):
+        cleaned_data = super(UserForm, self).clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+        if password != confirm_password:
+            raise forms.ValidationError(
+                "As senhas não coincidem!"
+            )

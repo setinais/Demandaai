@@ -434,3 +434,13 @@ def search(request):
     except Exception:
         return render(request, 'site/error.html')
 
+def user(request):
+    form = UserForm(request.POST or None)
+    if form.is_valid():
+        user = form.save(commit=False)
+        user.is_superuser = 0
+        user.is_active = 1
+        user.save()
+        #return redirect('login')
+
+    return render(request, 'site/user.html', {'form': form})
