@@ -75,7 +75,40 @@ def prospeccao(request):
             }
             dados.append(demanda)
             i += 1
-        return render(request, 'administrador/prospeccao.html', {'dados': dados})
+
+        demandas = Demand.objects.filter(visualizada=1).order_by('-created_at')
+        dados2 = []
+        i = 0
+        while i < len(demandas):
+            action = {}
+            demanda = {}
+            if demandas[i].action == 'SER':
+                action = Service.objects.get(id=demandas[i].action_id)
+            elif demandas[i].action == 'LAB':
+                action = Laboratory.objects.get(id=demandas[i].action_id)
+            elif demandas[i].action == 'EQU':
+                action = Equipment.objects.get(id=demandas[i].action_id)
+            else:
+                return HttpResponseNotFound('<h1>Erro Interno 500</h1>')
+            demanda = {
+                'id': demandas[i].id,
+                'status': demandas[i].get_status_display(),
+                'created_at': demandas[i].created_at,
+                'visualizada': demandas[i].visualizada,
+                'badge': badge_select(demandas[i].status),
+                'action_sel': demandas[i].action,
+                'action': {
+                    'nome': action.nome,
+                    'profile': {
+                        'nome': action.profile.username,
+                        'id': action.profile.id
+                    },
+                    'instituicao': action.institution.nome,
+                }
+            }
+            dados2.append(demanda)
+            i += 1
+        return render(request, 'administrador/prospeccao.html', {'dados': dados, 'dados2': dados2})
     except Exception:
         return render(request, 'site/error.html')
 
@@ -94,10 +127,10 @@ def badge_select(val):
 @login_required
 def encaminhar_demanda(request, action, id):
 
-    # if request.user.has_permission('prospectar'):
-    #     return redirect('home-adm')
-    #
-    # try:
+    if request.user.has_permission('prospectar'):
+        return redirect('home-adm')
+
+    try:
         template = ''
         actions = []
         if action == 'SER':
@@ -142,8 +175,8 @@ def encaminhar_demanda(request, action, id):
                 dados.append(prepare)
             i += 1
         return render(request, template, {'dados': dados, 'id_demanda': id})
-    # except Exception:
-    #     return render(request, 'site/error.html')
+    except Exception:
+        return render(request, 'site/error.html')
 
 @login_required
 @require_http_methods(["GET"])
@@ -801,10 +834,27 @@ def demand_ar(request, ar, id):
     try:
         demandcb = Demandcb.objects.get(id=id)
         demandcb.aceita_rejeita = ar
+        action = {}
+        if demandcb.action == 'SER':
+            action = Service.objects.get(id=demandcb.action_id)
+        elif demandcb.action == 'LAB':
+            action = Laboratory.objects.get(id=demandcb.action_id)
+        elif demandcb.action == 'EQU':
+            action = Equipment.objects.get(id=demandcb.action_id)
         if int(ar) == 1:
             demandcb.demand.status = 'A'
+            demandcb.demand.demandcallback_set.create(status='A', profile_id=request.user.id,
+                                              feedback='Demanda aceita por "' + action.nome + '"!',
+                                              prazo_feedback=(datetime.today() + timedelta(days=2)))
+
         else:
             demandcb.demand.status = 'R'
+            demandcb.demand.demandcallback_set.create(status='R', profile_id=request.user.id,
+                                              feedback='Demanda recusada por "' + action.nome + '"!',
+                                              prazo_feedback=(datetime.today() + timedelta(days=2)))
+        demandcb.demand.action = demandcb.action
+        demandcb.demand.action_id = demandcb.action_id
+        demandcb.demand.visualizada = 1
         demandcb.demand.save()
         demandcb.save()
 
@@ -814,6 +864,39 @@ def demand_ar(request, ar, id):
 
 @login_required
 def atualizacao_demand(request):
+    if request.user.has_permission('update_demand'):
+        return redirect('home-adm')
+
+    try:
+        demanda = Demand.objects.get(id=request.POST['id'])
+
+        action = {}
+        if demanda.action == 'SER':
+            action = Service.objects.get(id=demanda.action_id)
+        elif demanda.action == 'LAB':
+            action = Laboratory.objects.get(id=demanda.action_id)
+        elif demanda.action == 'EQU':
+            action = Equipment.objects.get(id=demanda.action_id)
+
+        texto = ''
+        if request.POST['status'] == 'A':
+            texto = 'Duvida encaminhada para o demandante!'
+        elif request.POST['status'] == 'P':
+            texto = 'Demanda começou a ser produzida!'
+        elif request.POST['status'] == 'R':
+            texto = 'Demanda cancelada por "'+action.nome+'"!'
+        elif request.POST['status'] == 'F':
+            texto = 'Demanda concluida por "'+action.nome+'"!'
+        demanda.status = request.POST['status']
+        demanda.demandcallback_set.create(status=request.POST['status'], profile_id=request.user.id,
+                                                      feedback=texto,
+                                                      prazo_feedback=(datetime.today() + timedelta(days=2)))
+
+        demanda.save()
+
+        return redirect('demand')
+    except Exception:
+        return render(request, 'site/error.html')
 
 @login_required
 def notificacao(request, id):

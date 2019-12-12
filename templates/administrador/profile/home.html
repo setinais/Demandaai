@@ -15,7 +15,6 @@
                                 <th scope="col">Unidade</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">E-mail</th>
-                                <th scope="col">Role</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -25,11 +24,10 @@
                                     <td>{{ profile.institution.nome }}</td>
                                     <td>{{ profile.first_name }}</td>
                                     <td>{{ profile.email }}</td>
-                                    <td>{{ profile.get_role_display }}</td>
                                     <td class="btn-group btn-group-toggle">
 {#                                        <a href="{% url 'profile.editar' profile.id %}" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</a>#}
-                                        <a href="{% url 'permission' profile.id %}" class="btn btn-info"><i class="fa fa-lock"></i> Permissões</a>
-                                        <a href="{% url 'profile.deletar' profile.id %}" class="btn btn-danger"><i class="fa fa-trash-alt"></i> Desativar</a>
+                                        <a href="{% url 'permission' profile.id %}" class="btn btn-info btn-sm"><i class="fa fa-lock"></i> Permissões</a>
+                                        <a href="{% url 'profile.deletar' profile.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i> Desativar</a>
                                     </td>
                                 </tr>
                             {% endfor %}
