@@ -11,6 +11,7 @@ urlpatterns = [
         path('prospeccao', views.prospeccao, name='prospeccao'),
         path('prospeccao/encaminhar-demanda/<str:action>/<int:id>', views.encaminhar_demanda, name='encaminhar-demanda'),
         path('prospeccao/eda', views.encaminhar_demanda_acao, name='encaminhar-d-action'),
+        path('prospeccao/edac', views.encaminhar_demanda_acao_cancel, name='encaminhar-d-action-cancel'),
         path('prospeccao/rejeitar-demanda', views.rejeitar_demanda, name='rejeitar-demanda'),
         path('prospeccao/detalhes-demanda/<int:id>', views.detalhes_demanda, name='detalhes-demanda'),
         path('prospeccao/download_arquivos', views.download_arquivos, name='download_arquivos'),

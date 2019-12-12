@@ -116,7 +116,9 @@ def encaminhar_demanda(request, action, id):
         dados = []
 
         while i < len(actions):
-            if Demandcb.objects.filter(action=action, demand_id=id, aceita_rejeita=1).count() == 0:
+            prepare = {}
+            dcb = Demandcb.objects.filter(action=action, action_id=actions[i].id, demand_id=id)
+            if dcb.count() == 0:
                 prepare = {
                     'id': actions[i].id,
                     'action': action,
@@ -124,6 +126,18 @@ def encaminhar_demanda(request, action, id):
                     'status': actions[i].status,
                     'responsavel': actions[i].profile.username,
                     'unidade': actions[i].institution.nome,
+                    'enviado': False
+                }
+                dados.append(prepare)
+            elif dcb.first().aceita_rejeita is None:
+                prepare = {
+                    'id': actions[i].id,
+                    'action': action,
+                    'nome': actions[i].nome,
+                    'status': actions[i].status,
+                    'responsavel': actions[i].profile.username,
+                    'unidade': actions[i].institution.nome,
+                    'enviado': True
                 }
                 dados.append(prepare)
             i += 1
@@ -181,6 +195,36 @@ def encaminhar_demanda_acao(request):
         return redirect('prospeccao')
     except Exception:
         return render(request, 'site/error.html')
+
+@login_required
+@require_http_methods(["GET"])
+def encaminhar_demanda_acao_cancel(request):
+    # if request.user.has_permission('prospectar'):
+    #     return redirect('home-adm')
+    #
+    # try:
+        action = {}
+        if request.GET['action'] == 'SER':
+            action = Service.objects.get(id=request.GET['id'])
+        elif request.GET['action'] == 'LAB':
+            action = Laboratory.objects.get(id=request.GET['id'])
+        elif request.GET['action'] == 'EQU':
+            action = Equipment.objects.get(id=request.GET['id'])
+        else:
+            return render(request, 'site/error.html')
+        demanda = Demand.objects.get(id=request.GET['id_demanda'])
+        demanda.visualizada = 0
+        demanda.status = 'S'
+        demanda.save()
+
+        dcb = Demandcb.objects.filter(demand=demanda, action=request.GET['action'], action_id=action.id).first()
+        dcb.delete()
+        demanda.demandcallback_set.create(status='E', profile_id=request.user.id, feedback='Demanda cancelada para "'+ action.nome+'"!', prazo_feedback=(datetime.today() + timedelta(days=2)))
+
+
+        return redirect('prospeccao')
+    # except Exception:
+    #     return render(request, 'site/error.html')
 
 @login_required
 @require_http_methods(["GET"])
@@ -454,7 +498,7 @@ def profile(request):
     if request.user.has_content('profile'):
         return redirect('home-adm')
 
-    profile = Profile.objects.all()
+    profile = Profile.objects.all().filter(deleted=None)
     return render(request,'administrador/profile/home.html',{'profiles': profile})
 
 def profile_cadastro(request):
@@ -484,6 +528,7 @@ def profile_editar(request):
 def profile_desativar(request):
     pro = Profile.objects.get(id=request.user.id)
     pro.is_active = 0
+    pro.delete()
     pro.save()
     return redirect('home')
 
@@ -495,7 +540,8 @@ def profile_deletar(request, id):
 
     profile = Profile.objects.get(id=id)
     profile.delete()
-    return redirect('laboratory')
+
+    return redirect('profile')
 
 # Permissões
 @login_required
