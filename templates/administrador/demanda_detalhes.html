@@ -19,7 +19,7 @@
                         <p><strong>Descrição:</strong> {{ dados.demanda.descricao }}</p>
                         <p><strong>Status: </strong><span class="badge badge-pill badge-{{ dados.demanda.status.badge }}">{{ dados.demanda.status.titulo }}</span></p>
                         <p><strong>Tempo de solicitação: </strong><span class="badge badge-pill badge-warning">{{ dados.demanda.tempo_solicitacao }} dias atrás</span></p>
-                        <p><strong>Documentos em anexo: </strong> <a href="{% url 'download_arquivos' %}?path={{ dados.demanda.id }}" target="_blank"><i class="fa fa-download"></i> clique aqui para baixar <i class="fa fa-download"></i></a></p>
+                        <p><strong>Documentos em anexo: </strong> <a href="#" ><i class="fa fa-download"></i> clique aqui para baixar <i class="fa fa-download"></i></a></p>
                         <p><strong>Departamento: </strong>  {{ dados.demanda.setor.nome }}</p>
                         <p><strong>Responsável: </strong>  {{ dados.demanda.setor.responsavel }}</p>
                         <div class="row">
@@ -55,10 +55,42 @@
                 <a class="btn btn-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action=dados.demanda.action id=dados.demanda.id %}">Encaminhar  <i class="fa fa-angle-right"></i></a>
             {% else %}
                 <a href="{% url 'demand' %}" class="btn btn-danger ">Voltar</a>
+                <Button type="button" onclick="setIdDemanda({{ demanda.id }})" style="font-size: 0.800rem;cursor: pointer;" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">Atualizar Demanda</Button>
             {% endif %}
             </div>
         </div>
     </section>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Responder demanda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form method="post" action="{% url 'atualizacao_demand' %}">
+      <div class="modal-body">
+          {% csrf_token %}
+            <input type="hidden" name="id" id="action_id"/>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Mensagem</label>
+            <textarea class="form-control" name="texto" ></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-success">Enviar messagem</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block javascript %}
+    <script>
+        function setIdDemanda(id){
+            $('#action_id').val(id);
+        }
+    </script>
 {% endblock %}

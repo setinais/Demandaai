@@ -304,7 +304,7 @@ def download_arquivos(request):
     file_path = os.path.join(settings.MEDIA_ROOT, demanda.file.name)
     if os.path.exists(file_path):
         with open(file_path, 'wb') as fh:
-            response = HttpResponse(fh.read(), content_type="application/x-rar-compressed")
+            response = HttpResponse(fh.read(), content_type="application/x-zip-compressed")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     raise Http404
@@ -811,6 +811,9 @@ def demand_ar(request, ar, id):
         return redirect('demand')
     except Exception:
         return render(request, 'site/error.html')
+
+@login_required
+def atualizacao_demand(request):
 
 @login_required
 def notificacao(request, id):
