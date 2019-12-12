@@ -814,6 +814,7 @@ def demand_ar(request, ar, id):
 
 @login_required
 def atualizacao_demand(request):
+    return True
 
 @login_required
 def notificacao(request, id):
