@@ -69,9 +69,9 @@
                                           <td>{{ laboratory.nome }}</td>
                                            <td>{{ laboratory.descricao }}</td>
                                           <td>
-                                                        <a class="btn btn-info btn-sm" style="font-size: 0.800rem;" href="{% url 'detalhes-demanda' id=laboratory.id %}">Detalhes</a>
+                                              <a class="btn btn-info btn-sm" style="font-size: 0.800rem;" href="{% url 'detalhes-demanda' id=laboratory.id %}">Detalhes</a>
 
-                                                        <a class="btn btn-success btn-sm" style="font-size: 0.800rem;" href="{% url 'demand_ar' ar=1 id=laboratory.id_cb %}"><i class="fa fa-check"></i>  Aceitar </a>
+                                              <a class="btn btn-success btn-sm" style="font-size: 0.800rem;" href="{% url 'demand_ar' ar=1 id=laboratory.id_cb %}"><i class="fa fa-check"></i>  Aceitar </a>
                                                 <a class="btn btn-danger btn-sm" style="font-size: 0.800rem;" href="{% url 'demand_ar' ar=0 id=laboratory.id_cb %}"><i class="fa fa-times"></i>  Rejeitar </a>
 
                                             </td>

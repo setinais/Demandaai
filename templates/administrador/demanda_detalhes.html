@@ -55,7 +55,7 @@
                 <a class="btn btn-info " style="font-size: 0.800rem;" href="{% url 'encaminhar-demanda' action=dados.demanda.action id=dados.demanda.id %}">Encaminhar  <i class="fa fa-angle-right"></i></a>
             {% else %}
                 <a href="{% url 'demand' %}" class="btn btn-danger ">Voltar</a>
-                <Button type="button" onclick="setIdDemanda({{ demanda.id }})" style="font-size: 0.800rem;cursor: pointer;" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">Atualizar Demanda</Button>
+                <Button type="button" style="font-size: 0.800rem;cursor: pointer;" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">Atualizar Demanda</Button>
             {% endif %}
             </div>
         </div>
@@ -72,15 +72,24 @@
         <form method="post" action="{% url 'atualizacao_demand' %}">
       <div class="modal-body">
           {% csrf_token %}
-            <input type="hidden" name="id" id="action_id"/>
+            <input type="hidden" name="id" value="{{ dados.demanda.id }}"/>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Mensagem</label>
+            <label for="message-text" class="col-form-label">Descrição <span style="font-size: 7pt">(Opcional)</span> </label>
             <textarea class="form-control" name="texto" ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Status</label>
+            <select class="form-control" name="status" >
+                <option value="A">Responder demandante</option>
+                <option value="P">Em Produção</option>
+                <option value="F">Finalizar</option>
+                <option value="R">Recusar</option>
+            </select>
           </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="submit" class="btn btn-success">Enviar messagem</button>
+        <button type="submit" class="btn btn-success">Atualizar</button>
       </div>
         </form>
     </div>
@@ -90,7 +99,7 @@
 {% block javascript %}
     <script>
         function setIdDemanda(id){
-            $('#action_id').val(id);
+            $('#action_id_form').val(id);
         }
     </script>
 {% endblock %}
