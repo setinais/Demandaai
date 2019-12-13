@@ -189,7 +189,7 @@ def demandar(request):
 
 @require_http_methods(["GET"])
 def demandDetail(request):
-    # try:
+    try:
         demanda = Demand.objects.filter(email=request.GET['email'].strip(), codigo=request.GET['codigo'].strip()).first()
         demand_callback = []
         action = {}
@@ -236,8 +236,8 @@ def demandDetail(request):
             'time_now': datetime.now(),
         }
         return render(request, 'site/visualizar_demanda.html', {'dados': dados, 'callbacks': demand_callback})
-    # except Exception:
-    #     return render(request, 'site/error.html')
+    except Exception:
+        return render(request, 'site/error.html')
 
 def login_in(request):
     try:
@@ -285,6 +285,7 @@ def search(request):
                             'id': s_inicio[i].id,
                             'nome': s_inicio[i].nome,
                             'descricao': s_inicio[i].descricao,
+                            'action': 'ser',
                             'icon': 'fa fa-cogs'
                         }
                         lista_servicos.append(prepare)
@@ -293,12 +294,14 @@ def search(request):
                             'id': s_inicio[i].id,
                             'nome': s_inicio[i].nome,
                             'descricao': s_inicio[i].descricao,
+                            'action': 'ser',
                             'icon': 'fa fa-cogs'
                         }
                         prepare2 = {
                             'id': s_des[i].id,
                             'nome': s_des[i].nome,
                             'descricao': s_des[i].descricao,
+                            'action': 'ser',
                             'icon': 'fa fa-cogs'
                         }
                         lista_servicos.append(prepare)
@@ -308,6 +311,7 @@ def search(request):
                         'id': s_inicio[i].id,
                         'nome': s_inicio[i].nome,
                         'descricao': s_inicio[i].descricao,
+                        'action': 'ser',
                         'icon': 'fa fa-cogs'
                     }
                     lista_servicos.append(prepare)
@@ -316,6 +320,7 @@ def search(request):
                     'id': s_des[i].id,
                     'nome': s_des[i].nome,
                     'descricao': s_des[i].descricao,
+                    'action': 'ser',
                     'icon': 'fa fa-cogs'
                 }
                 lista_servicos.append(prepare)
@@ -337,6 +342,7 @@ def search(request):
                             'id': l_inicio[i].id,
                             'nome': l_inicio[i].nome,
                             'descricao': l_inicio[i].descricao,
+                            'action': 'lab',
                             'icon': 'ti-desktop'
                         }
                         lista_servicos.append(prepare)
@@ -345,12 +351,14 @@ def search(request):
                             'id': l_inicio[i].id,
                             'nome': l_inicio[i].nome,
                             'descricao': l_inicio[i].descricao,
+                            'action': 'lab',
                             'icon': 'ti-desktop'
                         }
                         prepare2 = {
                             'id': l_des[i].id,
                             'nome': l_des[i].nome,
                             'descricao': l_des[i].descricao,
+                            'action': 'lab',
                             'icon': 'ti-desktop'
                         }
                         lista_servicos.append(prepare)
@@ -360,6 +368,7 @@ def search(request):
                         'id': l_inicio[i].id,
                         'nome': l_inicio[i].nome,
                         'descricao': l_inicio[i].descricao,
+                        'action': 'lab',
                         'icon': 'ti-desktop'
                     }
                     lista_servicos.append(prepare)
@@ -368,6 +377,7 @@ def search(request):
                     'id': l_des[i].id,
                     'nome': l_des[i].nome,
                     'descricao': l_des[i].descricao,
+                    'action': 'lab',
                     'icon': 'ti-desktop'
                 }
                 lista_servicos.append(prepare)
@@ -389,6 +399,7 @@ def search(request):
                             'id': e_inicio[i].id,
                             'nome': e_inicio[i].nome,
                             'descricao': e_inicio[i].descricao,
+                            'action': 'equ',
                             'icon': 'fa fa-cog'
                         }
                         lista_servicos.append(prepare)
@@ -397,12 +408,14 @@ def search(request):
                             'id': e_inicio[i].id,
                             'nome': e_inicio[i].nome,
                             'descricao': e_inicio[i].descricao,
+                            'action': 'equ',
                             'icon': 'fa fa-cog'
                         }
                         prepare2 = {
                             'id': e_des[i].id,
                             'nome': e_des[i].nome,
                             'descricao': e_des[i].descricao,
+                            'action': 'equ',
                             'icon': 'fa fa-cog'
                         }
                         lista_servicos.append(prepare)
@@ -412,6 +425,7 @@ def search(request):
                         'id': e_inicio[i].id,
                         'nome': e_inicio[i].nome,
                         'descricao': e_inicio[i].descricao,
+                        'action': 'equ',
                         'icon': 'fa fa-cog'
                     }
                     lista_servicos.append(prepare)
@@ -420,6 +434,7 @@ def search(request):
                     'id': e_des[i].id,
                     'nome': e_des[i].nome,
                     'descricao': e_des[i].descricao,
+                    'action': 'equ',
                     'icon': 'fa fa-cog'
                 }
                 lista_servicos.append(prepare)
@@ -435,13 +450,16 @@ def search(request):
         return render(request, 'site/error.html')
 
 def user(request):
-    form = UserForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        user.is_superuser = 0
-        user.is_active = 1
-        user.set_password(request.POST['password'])
-        user.save()
-        return redirect('login')
+    try:
+        form = UserForm(request.POST or None)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_superuser = 0
+            user.is_active = 1
+            user.set_password(request.POST['password'])
+            user.save()
+            return redirect('login')
 
-    return render(request, 'site/user.html', {'form': form})
+        return render(request, 'site/user.html', {'form': form})
+    except Exception:
+        return render(request, 'site/error.html')

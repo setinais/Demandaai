@@ -34,7 +34,7 @@
                         {% if dados.lista_servicos|length > 0 %}
                             {% for servico in dados.lista_servicos %}
                                 {{ servico.nome }}
-                                <a href="{% url 'about_portifolio' action='ser' id=servico.id %}">
+                                <a href="{% url 'about_portifolio' action=servico.action id=servico.id %}">
                                     <div class="feature-text left-icon mb-40">
                                         <div class="feature-icon">
                                             {% if dados.icon != "" %}

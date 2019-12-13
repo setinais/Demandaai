@@ -717,10 +717,10 @@ def institution_deletar(request, id):
 @login_required
 def demand(request):
 
-    # if request.user.has_content('demand'):
-    #     return redirect('home-adm')
-    #
-    # try:
+    if request.user.has_content('demand'):
+        return redirect('home-adm')
+
+    try:
         services = UserService.objects.filter(profile_id=request.user.id)
         laboratorys = Laboratory.objects.filter(profile_id=request.user.id)
         equipments = Equipment.objects.filter(profile_id=request.user.id)
@@ -750,7 +750,7 @@ def demand(request):
                     'id': demandcb.demand.id,
                     'id_cb': demandcb.id,
                     'ar': demandcb.aceita_rejeita,
-                    'setor': service.nome,
+                    #'setor': service.nome,
                     'type_sector': 'Serviço',
                     'status': demandcb.demand.get_status_display(),
                     'badge': badge_select(demandcb.demand.status),
@@ -822,8 +822,8 @@ def demand(request):
 
         ct = {'s': len(s), 'l': len(l), 'e': len(e), 'md': len(md)}
         return render(request, 'administrador/demands/home.html', {'my_demands': md,'services': s, 'laboratorys': l, 'equipments': e, 'counts': ct})
-    # except Exception:
-    #     return render(request, 'site/error.html')
+    except Exception:
+        return render(request, 'site/error.html')
 
 @login_required
 def demand_ar(request, ar, id):
