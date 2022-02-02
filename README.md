@@ -1,4 +1,6 @@
-Projeto Demandai
+Projeto Demandai v1.0.1
+
+Projeto voltado para oferta e demanda de porjetos de pesquisa e extensão de um regiao para a instituição cadastrada.
 
 Comandos basicos
 
